@@ -6,7 +6,7 @@ const initialPlaidState = {
 	accessToken: ''
 }
 
-// actions
+// --------------------------- actions ----------------------
 const GETACCESSTOKEN = 'GET_ACCESSTOKEN'
 
 // action creator
@@ -14,14 +14,14 @@ export const getAccessToken = accessToken => ({
 	type: GETACCESSTOKEN, accessToken
 })
 
-// dispatchers
+// ---------------------- dispatchers ----------------------
 export const fetchAccessToken = () =>
 	dispatch =>
 		axios.get('/api/get_access_token')
 			.then(res => dispatch(getAccessToken(res.data)))
 			.catch(err => console.error('Fetching access token unsuccessful', err))
 
-// reducers
+// ---------------------- reducers ----------------------
 const reducer = (state = initialPlaidState, action) => {
 	const newState = Object.assign({}, state)
 	switch (action.type) {
