@@ -1,7 +1,7 @@
 const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-
+const secrets = require('../mercury.js')
 const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
@@ -47,15 +47,14 @@ OAuth.setupStrategy({
 
 
 
-
 // Google needs the GOOGLE_CLIENT_SECRET AND GOOGLE_CLIENT_ID
 // environment variables.
 OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    clientID: "794276576427-ocu5r49vd4jfl65j2hmt2k",
-    clientSecret: "rjfD1Qeiz93o2wJHcnV7fyFM",
+    clientID: secrets.GOOGLE_CLIENT_ID,
+    clientSecret: secrets.GOOGLE_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
@@ -166,7 +165,7 @@ auth.post('/signup', (req, res, next) => {
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) => {
   console.log('in AUTH DOT GET', req.params.strategy)
-  console.log(env.GOOGLE_CLIENT_ID, "!!!!SFSFSFS")
+  console.log(secrets.GOOGLE_CLIENT_ID, "!!!!SFSFSFS")
   passport.authenticate(req.params.strategy, {
 
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
