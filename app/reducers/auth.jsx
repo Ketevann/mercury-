@@ -21,10 +21,10 @@ export const login = (email, password) =>
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 
-export const signup = (email, password) =>
+export const signup = ( email, password, name) =>
     dispatch =>
       axios.post('/api/auth/signup',
-        {email, password})
+        {email, password, name})
         .then(() => dispatch(whoami()))
         .catch(() => dispatch(whoami()))
 

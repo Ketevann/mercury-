@@ -16,7 +16,7 @@ export const Login = ({ login, signup, thirdPartyLogin }) => (
     evt.preventDefault()
     console.log(evt.target.email.value, ' valuee')
 
-    signup(evt.target.email.value, evt.target.password.value)
+    signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
   } }>
     <input name="name" />
     <input name="email" />

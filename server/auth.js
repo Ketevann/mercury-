@@ -150,16 +150,20 @@ auth.post('/signup', (req, res, next) => {
     }
   })
     .then((user) => {
+
       if (user !== null) {
+        console.log("user exists")
         res.end()
       } else {
-        return User.create({
-          where: {
+        console.log("creating user")
+         User.create({
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password
           }
-        })
+        )
           .then(user => {
+            console.log("user", user)
             return req.logIn(user, (err) => {
               if (err) { return next(err) }
             })
@@ -182,11 +186,11 @@ auth.get('/login/:strategy', (req, res, next) => {
     // provider specific, and let you access additional data (like
     // their friends or email), or perform actions on their behalf.
     successRedirect: '/',
-    failureRedirect: '/some'
+    failureRedirect: '/somewhere'
     // Specify other config here
   }, function (err, user, info){
     if (err) return next(err)
-    if(!user) return res.redirect('http://www.google.com')
+    if(!user) return res.redirect('http://www.google.com') //copied this from passport docs
     req.login(user, function(err){
       if (err) return next(err)
       res.redirect('/')
