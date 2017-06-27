@@ -5,7 +5,7 @@ const secrets = require('../mercury.js')
 const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
-
+const cors = require('cors')
 /*************************
  * Auth strategies
  *
@@ -38,8 +38,8 @@ OAuth.setupStrategy({
   provider: 'facebook',
   strategy: require('passport-facebook').Strategy,
   config: {
-    clientID: env.FACEBOOK_CLIENT_ID,
-    clientSecret: env.FACEBOOK_CLIENT_SECRET,
+    clientID: secrets.FACEBOOK_CLIENT_ID,
+    clientSecret: secrets.FACEBOOK_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
   },
   passport
@@ -49,6 +49,15 @@ OAuth.setupStrategy({
 
 // Google needs the GOOGLE_CLIENT_SECRET AND GOOGLE_CLIENT_ID
 // environment variables.
+
+
+auth.use(cors())
+auth.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+  })
+
 OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
@@ -66,8 +75,8 @@ OAuth.setupStrategy({
   provider: 'github',
   strategy: require('passport-github2').Strategy,
   config: {
-    clientID: env.GITHUB_CLIENT_ID,
-    clientSecret: env.GITHUB_CLIENT_SECRET,
+    clientID: secrets.GITHUB_CLIENT_ID,
+    clientSecret: secrets.GITHUB_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/github`,
   },
   passport
@@ -161,6 +170,7 @@ auth.post('/signup', (req, res, next) => {
     })
 })
 
+
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) => {
@@ -174,6 +184,13 @@ auth.get('/login/:strategy', (req, res, next) => {
     successRedirect: '/',
     failureRedirect: '/some'
     // Specify other config here
+  }, function (err, user, info){
+    if (err) return next(err)
+    if(!user) return res.redirect('http://www.google.com')
+    req.login(user, function(err){
+      if (err) return next(err)
+      res.redirect('/')
+    })
   })(req, res, next)
 }
 )

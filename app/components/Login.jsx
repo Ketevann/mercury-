@@ -24,7 +24,7 @@ export const Login = ({ login, signup, thirdPartyLogin }) => (
     <input type="submit" value="Login" />
   </form>
       <br/>
-      <button onClick={evt => { thirdPartyLogin('google')}}>log in with google</button>
+     <a href="/api/auth/login/github"> <button>log in with google</button> </a>
 </div>
 )
 
