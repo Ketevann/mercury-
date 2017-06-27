@@ -17,6 +17,7 @@ const app = require('APP')
       User: require('./user'),
       Income: require('./income'),
       Expense: require('./expenses'),
+      Savings: require('./savings'),
       Thing: require('./thing'),
       Favorite: require('./favorite'),
       // ---------- Add new models here ----------
