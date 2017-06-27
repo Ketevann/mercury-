@@ -44,7 +44,8 @@ OAuth.setupStrategy({
   },
   passport
 })
-console.log(process.env.GOOGLE_CLIENT_ID,"!!!!SFSFSFS")
+
+
 
 
 // Google needs the GOOGLE_CLIENT_SECRET AND GOOGLE_CLIENT_ID
@@ -53,8 +54,8 @@ OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    clientID: env.GOOGLE_CLIENT_ID,
-    clientSecret: env.GOOGLE_CLIENT_SECRET,
+    clientID: "794276576427-ocu5r49vd4jfl65j2hmt2k",
+    clientSecret: "rjfD1Qeiz93o2wJHcnV7fyFM",
     callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
@@ -128,7 +129,7 @@ auth.post('/login/local', (req, res, next) => {
     .catch(next)
 })
 auth.post('/login/local', () => {
-  console.log("FWRWRW")
+
   return passport.authenticate('local', { successRedirect: '/' })
 })
 
@@ -141,36 +142,31 @@ auth.post('/signup', (req, res, next) => {
     }
   })
     .then((user) => {
-      console.log("in hereee", user)
       if (user !== null) {
-        console.log("user exists")
         res.end()
-      }
-      else {
-       return User.create({
+      } else {
+        return User.create({
           where: {
             email: req.body.email,
             password: req.body.password
           }
         })
           .then(user => {
-            return req.logIn(user, function (err) {
-              if (err) { return next(err); }
+            return req.logIn(user, (err) => {
+              if (err) { return next(err) }
             })
           })
           .then(() => res.redirect('/'))
           .catch(next)
       }
-      })
-
-
-
+    })
 })
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) => {
   console.log('in AUTH DOT GET', req.params.strategy)
+  console.log(env.GOOGLE_CLIENT_ID, "!!!!SFSFSFS")
   passport.authenticate(req.params.strategy, {
 
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
