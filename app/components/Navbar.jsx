@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router";
 import Login from './Login'
 import WhoAmI from './WhoAmI'
+import Modal from './Modal';
+
 
 
 
@@ -17,6 +19,14 @@ export default function Navbar({ handleClick }) {
                     <ul className="nav navbar-nav navbar-left">
                         <li><Link id="home" to="/home">Home</Link></li>
                     </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><a href="#">Sign Up</a></li>
+                    </ul>
+                  <Modal />
+
                 </div>
             </div>
         </nav>

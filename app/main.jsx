@@ -12,6 +12,8 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
+import BudgetForm from './components/BudgetForm'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -25,6 +27,8 @@ const ExampleApp = connect(
       {/* Render our children (whatever the router gives us) */}
       {children}
      <Sidebar />
+     <Login />
+
     </div>
 )
 
