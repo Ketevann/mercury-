@@ -3,30 +3,15 @@
 const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
 
 module.exports = db => db.define('savings', {
-
-    general: {
-        type: DECIMAL(10, 2),
+    category: {
+        type: ENUM(, 'College Fund', 'Emergency', 'Retirement', 'Vacation', 'Car', 'House'),
         allowNull: false
     },
-    education: {
-        type: DECIMAL(10, 2),
-        allowNull: false
-    },
-    retirement: {
-        type: DECIMAL(10, 2),
-        allowNull: false
-    },
-    vacation: {
-        type: DECIMAL(10, 2),
-        allowNull: false
-    },
-    car: {
-        type: DECIMAL(10, 2),
-        allowNull: false
-    },
-    house: {
+    amount: {
         type: DECIMAL(10, 2),
         allowNull: false
     }
 })
-Savings.belongsTo(User)
+module.exports.associations = (Savings, { User }) => {
+    Savings.belongsTo(User)
+}
