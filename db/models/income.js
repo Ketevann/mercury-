@@ -13,7 +13,7 @@ module.exports = db => db.define('income', {
     allowNull: false
   },
 })
-module.exports.associations = (Income, { User }) => {
-  Income.belongsTo(User)
-}
+// module.exports.associations = (Income, { User }) => {
+//   Income.belongsTo(User)
+// }
 
