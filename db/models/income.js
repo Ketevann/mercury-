@@ -1,4 +1,5 @@
-'use strict'
+// 'use strict'
+
 
 const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
 

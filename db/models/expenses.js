@@ -1,6 +1,6 @@
-'use strict'
+// 'use strict'
 
-const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
+// const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
 
 module.exports = db => db.define('expense', {
     category: {
@@ -17,3 +17,4 @@ module.exports = db => db.define('expense', {
 module.exports.associations = (Expense, { User }) => {
     Expense.belongsTo(User)
 }
+
