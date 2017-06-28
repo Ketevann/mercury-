@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+
+const inistialState = {
+  clicked: true
+}
 const reducer = (state=null, action) => {
   switch (action.type) {
   case AUTHENTICATED:

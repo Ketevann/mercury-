@@ -16,7 +16,7 @@ import BudgetForm from './components/BudgetForm'
 
 
 const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth, modal }) => ({ user: auth, modal })
 )(
   ({ user, children }) =>
     <div>
@@ -37,7 +37,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
+        <Route path="/jokes" component={FrontPage} />
          <Route path='/home' component={FrontPage} />
       </Route>
       <Route path='*' component={NotFound} />

@@ -1,53 +1,37 @@
-import React from 'react';
+import React from 'react'
 
 class Modal extends React.Component {
   render() {
-    // Render nothing if the "show" prop is false
-    if(!this.props.show) {
-      return null;
-    }
-
-    // The gray background
-    const backdropStyle = {
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)',
-      padding: 50
-    };
-
-    // The modal "window"
-    const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      maxWidth: 500,
-      minHeight: 300,
-      margin: '0 auto',
-      padding: 30
-    };
 
     return (
-      <div className="backdrop" style={backdropStyle}>
-        <div className="modal" style={modalStyle}>
-          {this.props.children}
 
-          <div className="footer">
-            <button onClick={this.props.onClose}>
-              Close
-            </button>
+
+      <div id="credits" >
+        <a href="#openModal" style={{fontSize: 40, color: 'yellow', paddingLeft: 75}}>Click to Join NewsFeed</a>
+        <div id="openModal" className="modalDialog">
+          <div>
+            {/* below code for form*/}
+            <form>
+              <h3 style={{color: 'yellow'}}>Join NewsFeed</h3>
+              First Name<br />
+              <input type="text" name="firstname" /><br />
+              Last Name<br />
+              <input type="text" name="lastname" /><br />
+              Email<br />
+              <input type="text" name="email" /><br />
+              Update Frequency<br />
+               <a href="/api/auth/login/google"> <button>log in with google</button> </a>
+              <input type="radio" name="freq" defaultValue="Monthly" />
+              Monthly<br />
+              <a href="#close" title="Close" className="close">
+                <input type="Button" name="submit" defaultValue="Submit" />
+                <input type="Button" defaultValue="Exit" />
+              </a>
+            </form>
           </div>
         </div>
       </div>
-    );
+    )
+
   }
 }
-
-Modal.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
-  show: React.PropTypes.bool,
-  children: React.PropTypes.node
-};
-
-export default Modal;
