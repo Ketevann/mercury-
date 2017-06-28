@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router";
 import Login from './Login'
 import WhoAmI from './WhoAmI'
-import Modal from './Modal'
+import View from './Modal'
 import {connect} from 'react-redux'
+import {modalShow} from "../reducers/modal"
+import store from '../store'
 
 
 
@@ -12,8 +14,17 @@ import {connect} from 'react-redux'
 // Ensure that we have (almost) always have a user ID, by creating
 // an anonymous user if nobody is signed in.
 
-const Navbar = ({ handleClick }, props) => {
-    {console.log(props, ' we have props')}
+class Navbar extends Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick() {
+      console.log('in click', this.props.modal)
+    store.dispatch(this.props.modalShow(this.props.modal))
+  }
+  render() {
+    {console.log(this.props, ' we have props')}
 
     return (
 
@@ -24,25 +35,32 @@ const Navbar = ({ handleClick }, props) => {
                         <li><Link id="home" to="/home">Home</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><button onClick={() => {some=!some}} >Login</button></li>
+                        <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
                     </ul>
+
                     <ul className="nav navbar-nav navbar-right">
-                   <li><a href="/api/auth/login/google"> Log in with google </a></li>
-                   </ul>
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">Login/Sign Up</a></li>
                     </ul>
 
                 </div>
 
             </div>
+            {console.log(this.props.modal.showModal, ' in navbar')}
+            {this.props.modal.showModal ? <View /> : null }
 
         </nav>
 
     )
+  }
 }
 
-const mapStateToProps = (modal) => {
-  return {modal: modal}
-}
-export default connect(mapStateToProps, null)(Navbar)
+/*const mapStateToProps = (state) => {
+  return {modal: state.modal}
+}*/
+
+
+export default connect(
+   ({ modal }) => ({ modal: modal }),
+  {modalShow},
+)(Navbar)
+

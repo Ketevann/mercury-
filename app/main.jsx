@@ -27,7 +27,7 @@ const ExampleApp = connect(
       {/* Render our children (whatever the router gives us) */}
       {children}
      <Sidebar />
-     <Login />
+
 
     </div>
 )
@@ -37,7 +37,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={FrontPage} />
+        <Route path="/jokes" component={Jokes} />
          <Route path='/home' component={FrontPage} />
       </Route>
       <Route path='*' component={NotFound} />

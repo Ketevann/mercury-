@@ -24,7 +24,7 @@
     "seed": "node db/seed.js",
     "deploy-heroku": "bin/deploy-heroku.sh",
     "lint": "esw . --ignore-path .gitignore --ext '.js,.jsx'",
-    "lint-watch": "npm run lint -- -w",
+    "lint-watch": "npm run lint -- -w"
   },
   "repository": {
     "type": "git",
@@ -65,8 +65,10 @@
     "pretty-error": "^2.0.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-modal-dialog": "^4.0.7",
     "react-popup": "^0.8.0",
     "react-redux": "^4.4.5",
+    "react-redux-modal": "^0.5.2",
     "react-router": "^3.0.0",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
