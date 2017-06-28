@@ -34,7 +34,7 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/link" />
+        <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
         <Route path='/home' component={FrontPage} />
       </Route>

@@ -13,9 +13,6 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
 
-// No routes matched? 404.
-api.use((req, res) => res.status(404).end())
-
 // We store the access_token in memory - in production, store it in a secure
 // persistent data store
 const ACCESS_TOKEN = null
@@ -41,6 +38,7 @@ api.post('/get_access_token', function(request, response, next) {
   const PUBLIC_TOKEN = request.body.public_token
   console.log('PUBLIC', PUBLIC_TOKEN)
   client.exchangePublicToken(PUBLIC_TOKEN, function(error, tokenResponse) {
+    console.log('TOKENRESPONSE', tokenResponse)
     if (error != null) {
       console.log('ERROR', error)
       let msg = 'Could not exchange public_token!'
@@ -50,7 +48,7 @@ api.post('/get_access_token', function(request, response, next) {
       })
     }
     const ACCESS_TOKEN = tokenResponse.access_token
-    ITEM_ID = tokenResponse.item_id
+    const ITEM_ID = tokenResponse.item_id
     console.log('Access Token: ' + ACCESS_TOKEN)
     console.log('Item ID: ' + ITEM_ID)
     response.json({
@@ -62,8 +60,11 @@ api.post('/get_access_token', function(request, response, next) {
 api.get('/accounts', function(request, response, next) {
   // Retrieve high-level account information and account and routing numbers
   // for each account associated with the Item.
+const ACCESS_TOKEN = 'access-sandbox-294617f8-b00f-4cff-b9c1-98d88776a940'
   console.log('ACCESS', ACCESS_TOKEN)
+  
   client.getAuth(ACCESS_TOKEN, function(error, authResponse) {
+    console.log('authResponse', authResponse)
     if (error != null) {
       let msg = 'Unable to pull accounts from the Plaid API.'
       // console.log("authResponse", authResponse)
@@ -129,3 +130,6 @@ api.post('/transactions', function(request, response, next) {
     response.json(transactionsResponse)
   })
 })
+
+// No routes matched? 404.
+api.use((req, res) => res.status(404).end())
