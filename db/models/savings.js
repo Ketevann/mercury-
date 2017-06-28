@@ -1,10 +1,10 @@
 'use strict'
 
-const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
+const { STRING, INTEGER, DECIMAL, JSON, TEXT, ENUM } = require('sequelize')
 
 module.exports = db => db.define('savings', {
     category: {
-        type: ENUM(, 'College Fund', 'Emergency', 'Retirement', 'Vacation', 'Car', 'House'),
+        type: ENUM( 'College Fund', 'Emergency', 'Retirement', 'Vacation', 'Car', 'House'),
         allowNull: false
     },
     amount: {
