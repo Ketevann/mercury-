@@ -1,28 +1,20 @@
 // 'use strict'
 
-// const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
 
-// module.exports = db => db.define('debt', {
+const { STRING, INTEGER, DECIMAL, JSON, TEXT, ENUM } = require('sequelize')
 
-//     creditl: {
-//         type: DECIMAL(10, 2),
-//         allowNull: false
-//     },
-//     student: {
-//         type: DECIMAL(10, 2),
-//         allowNull: false
-//     },
-//     medical: {
-//         type: DECIMAL(10, 2),
-//         allowNull: false
-//     },
-//     car: {
-//         type: DECIMAL(10, 2),
-//         allowNull: false
-//     },
-//     house: {
-//         type: DECIMAL(10, 2),
-//         allowNull: false
-//     }
-// })
-// Debt.belongsTo(User)
+module.exports = db => db.define('debt', {
+    category: {
+        type: ENUM('Credit Card', 'Student Loans', 'Medical', 'Car Loan', 'Mortgage'),
+        allowNull: false
+    },
+    amount: {
+        type: DECIMAL(10, 2),
+        allowNull: false
+    }
+})
+module.exports.associations = (Debt, { User }) => {
+    Debt.belongsTo(User)
+}
+
+
