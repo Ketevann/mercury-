@@ -189,11 +189,16 @@ auth.get('/login/:strategy', (req, res, next) => {
     failureRedirect: '/somewhere'
     // Specify other config here
   }, function (err, user, info){
+    console.log("usaaaaaa", user)
     if (err) return next(err)
     if(!user) return res.redirect('http://www.google.com') //copied this from passport docs
     req.login(user, function(err){
       if (err) return next(err)
       res.redirect('/')
+      User.create({
+        name: user.name,
+        googleId : id
+      })
     })
   })(req, res, next)
 }

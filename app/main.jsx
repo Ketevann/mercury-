@@ -20,9 +20,9 @@ const ExampleApp = connect(
 )(
   ({ user, children }) =>
     <div>
-      {/*<nav>
+      {<nav>
         {user ? <WhoAmI/> : <Login/>}
-      </nav>*/}
+      </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
