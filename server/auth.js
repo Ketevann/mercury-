@@ -1,10 +1,11 @@
-const app = require('APP'), {env} = app
+const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-
-const {User, OAuth} = require('APP/db')
+const secrets = require('../mercury.js')
+const { User, OAuth } = require('APP/db')
+console.log('*********', User)
 const auth = require('express').Router()
-
+const cors = require('cors')
 /*************************
  * Auth strategies
  *
@@ -37,21 +38,32 @@ OAuth.setupStrategy({
   provider: 'facebook',
   strategy: require('passport-facebook').Strategy,
   config: {
-    clientID: env.FACEBOOK_CLIENT_ID,
-    clientSecret: env.FACEBOOK_CLIENT_SECRET,
+    clientID: secrets.FACEBOOK_CLIENT_ID,
+    clientSecret: secrets.FACEBOOK_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
   },
   passport
 })
 
+
+
 // Google needs the GOOGLE_CLIENT_SECRET AND GOOGLE_CLIENT_ID
 // environment variables.
+
+
+auth.use(cors())
+auth.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
+  })
+
 OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    clientID: env.GOOGLE_CLIENT_ID,
-    clientSecret: env.GOOGLE_CLIENT_SECRET,
+    clientID: secrets.GOOGLE_CLIENT_ID,
+    clientSecret: secrets.GOOGLE_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
@@ -63,8 +75,8 @@ OAuth.setupStrategy({
   provider: 'github',
   strategy: require('passport-github2').Strategy,
   config: {
-    clientID: env.GITHUB_CLIENT_ID,
-    clientSecret: env.GITHUB_CLIENT_SECRET,
+    clientID: secrets.GITHUB_CLIENT_ID,
+    clientSecret: secrets.GITHUB_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/github`,
   },
   passport
@@ -93,48 +105,103 @@ passport.deserializeUser(
   }
 )
 
-// require.('passport-local').Strategy => a function we can use as a constructor, that takes in a callback
-passport.use(new (require('passport-local').Strategy)(
-  (email, password, done) => {
-    debug('will authenticate user(email: "%s")', email)
-    User.findOne({
-      where: {email},
-      attributes: {include: ['password_digest']}
-    })
-      .then(user => {
-        if (!user) {
-          debug('authenticate user(email: "%s") did fail: no such user', email)
-          return done(null, false, { message: 'Login incorrect' })
-        }
-        return user.authenticate(password)
-          .then(ok => {
-            if (!ok) {
-              debug('authenticate user(email: "%s") did fail: bad password')
-              return done(null, false, { message: 'Login incorrect' })
-            }
-            debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
-            done(null, user)
-          })
-      })
-      .catch(done)
-  }
-))
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+// maybe add a fail redirect to a signup page?
+auth.post('/login/local', (req, res, next) => {
+  const { email, password } = req.body;
+  console.log('email:', email, 'password:', password, req.body)
+  User.findOne({
+    where: { email },
+    attributes: { include: ['password_digest'] }
+  })
+    .then(user => {
+      if (!user) {
+        debug('authenticate user(email: "%s") did fail: no such user', email)
+        throw new Error('one')
+      }
+      return user.authenticate(password).then(ok => {
+        if (!ok) {
+          debug('authenticate user(email: "%s") did fail: bad password')
+          throw new Error('two')
+        }
+        debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
+        req.logIn(user, function (err) {
+          if (err) { throw next('three') }
+          return res.redirect('/')
+        })
+      })
+    })
+    .catch(next)
+})
+auth.post('/login/local', () => {
+
+  return passport.authenticate('local', { successRedirect: '/' })
+})
+
+auth.post('/signup', (req, res, next) => {
+  console.log("we are getting in here", req.body)
+  User.findOne({
+    where: {
+      email: req.body.email,
+
+    }
+  })
+    .then((user) => {
+
+      if (user !== null) {
+        console.log("user exists")
+        res.end()
+      } else {
+        console.log("creating user")
+         User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+          }
+        )
+          .then(user => {
+            console.log("user", user)
+            return req.logIn(user, (err) => {
+              if (err) { return next(err) }
+            })
+          })
+          .then(() => res.redirect('/'))
+          .catch(next)
+      }
+    })
+})
+
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
-auth.get('/login/:strategy', (req, res, next) =>
+auth.get('/login/:strategy', (req, res, next) => {
+  console.log('in AUTH DOT GET', req.params.strategy)
+  console.log(secrets.GOOGLE_CLIENT_ID, "!!!!SFSFSFS")
   passport.authenticate(req.params.strategy, {
+
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
-                    // provider specific, and let you access additional data (like
-                    // their friends or email), or perform actions on their behalf.
+    // provider specific, and let you access additional data (like
+    // their friends or email), or perform actions on their behalf.
     successRedirect: '/',
+    failureRedirect: '/somewhere'
     // Specify other config here
+  }, function (err, user, info){
+    console.log("usaaaaaa", user)
+    if (err) return next(err)
+    if(!user) return res.redirect('http://www.google.com') //copied this from passport docs
+    req.login(user, function(err){
+      if (err) return next(err)
+      res.redirect('/')
+      User.create({
+        name: user.name,
+        googleId : id
+      })
+    })
   })(req, res, next)
+}
 )
 
 auth.post('/logout', (req, res) => {

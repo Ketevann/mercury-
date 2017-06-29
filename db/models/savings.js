@@ -1,6 +1,11 @@
-'use strict'
+// 'use strict'
 
+// const { STRING, INTEGER, DECIMAL, JSON, TEXT } = require('sequelize')
+
+<<<<<<< HEAD
 const { STRING, INTEGER, DECIMAL, JSON, TEXT, ENUM } = require('sequelize')
+=======
+>>>>>>> 77404c3a44ed705cf33803f60fedcc1e738d73d5
 
 module.exports = db => db.define('savings', {
     category: {
