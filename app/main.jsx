@@ -12,6 +12,7 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
+import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
 
 
@@ -47,12 +48,9 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-
-
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
-        <Route path='/home' component={FrontPage} />
-        <Route path="/jokes" component={Jokes} />
+        <Route path='/spending' component={FrontPage} />
          <Route path='/home' component={FrontPage} />
          <Route path='/budget' component={Budget} />
 
