@@ -3,11 +3,11 @@
 const api = module.exports = require('express').Router()
 const plaid = require('plaid')
 const envvar = require('envvar')
-const PLAID_CLIENT_ID = require('../credentials.js').PLAID_CLIENT_ID
-const PLAID_SECRET = require('../credentials.js').PLAID_SECRET
-const PLAID_PUBLIC_KEY = require('../credentials.js').PLAID_PUBLIC_KEY
+const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
+const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
+const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
 const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
-const ACCESS_TOKEN = 'access-sandbox-cef31a78-256e-48ca-b9ce-2fbd66e28b0e' // sandbox
+const ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e' // sandbox
 
 var x = new Date();
 var z = x.toString().split(' ');
@@ -69,7 +69,6 @@ api.get('/accounts', function (request, response, next) {
   // for each account associated with the Item.
   //let ACCESS_TOKEN = ''
   console.log('ACCESS', ACCESS_TOKEN)
-
   client.getAuth(ACCESS_TOKEN, function (error, authResponse) {
     console.log('authResponse', authResponse)
     if (error != null) {
@@ -93,7 +92,7 @@ api.get('/accounts', function (request, response, next) {
 api.post('/item', function (request, response, next) {
   // Pull the Item - this includes information about available products,
   // billed products, webhook information, and more.
-  //let ACCESS_TOKEN = ''
+  let ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e'
   client.getItem(ACCESS_TOKEN, function (error, itemResponse) {
     if (error != null) {
       console.log(JSON.stringify(error))
@@ -122,7 +121,7 @@ api.post('/item', function (request, response, next) {
 
 api.post('/transactions', function (request, response, next) {
   // Pull transactions for the Item for the last 30 days
-  // let ACCESS_TOKEN = ''
+  let ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e'
   // let startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
   //let startDate = prevMonth 
   let startDate = '2017-01-01'

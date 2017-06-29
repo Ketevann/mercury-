@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 
 const PlaidLink = require('react-plaid-link');
-const PLAID_PUBLIC_KEY = require('../../credentials.js').PLAID_PUBLIC_KEY
+const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 
 import { connectPlaid, fetchAccounts, fetchTransactions, fetchItems } from '../reducers/plaid'
 import ReactPlaid, { DEV_ENV, PROD_ENV, CONNECT_PRODUCT } from "react-plaid";

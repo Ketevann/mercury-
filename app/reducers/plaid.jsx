@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
-const PLAID_PUBLIC_KEY = require('../../credentials.js').PLAID_PUBLIC_KEY
+const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 
 const initialPlaidState = {
 	currentUser: {},
