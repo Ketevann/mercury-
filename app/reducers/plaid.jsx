@@ -30,7 +30,7 @@ export const connectPlaid = ()	=>
 	Plaid.create({
         apiVersion: 'v2',
         clientName: 'Mercury',
-        env: 'sandbox',
+        env: 'development',
         product: ['auth'],
         key: PLAID_PUBLIC_KEY,
         onSuccess: (public_token) => {
@@ -45,9 +45,26 @@ export const fetchAccounts = (access_token) =>
 	dispatch =>
 		axios.get('/api/accounts')
 			.then(res => {
-				console.log(res.data)
+				console.log('ACCT INFO', res.data)
 			})
 			.catch(err => console.error('Fetching accounts unsuccessful', err))
+
+export const fetchTransactions = (access_token) => 
+	dispatch =>
+		axios.post('/api/transactions')
+			.then(res => {
+				console.log('TRANSANCTIONS', res.data)
+			})
+			.catch(err => console.error('Fetching transactions unsuccessful', err))
+
+
+export const fetchItems = (access_token) => 
+	dispatch =>
+		axios.post('/api/item')
+			.then(res => {
+				console.log('ITEM', res.data)
+			})
+			.catch(err => console.error('Fetching items unsuccessful', err))
 
 
 // ------------------------- reducers ---------------------------
