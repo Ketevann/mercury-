@@ -6,8 +6,8 @@ const envvar = require('envvar')
 const PLAID_CLIENT_ID = require('../credentials.js').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../credentials.js').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../credentials.js').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
-// const ACCESS_TOKEN = 'access-sandbox-cef31a78-256e-48ca-b9ce-2fbd66e28b0e' // sandbox
+const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
+const ACCESS_TOKEN = 'access-sandbox-cef31a78-256e-48ca-b9ce-2fbd66e28b0e' // sandbox
 
 var x = new Date();
 var z = x.toString().split(' ');
@@ -25,8 +25,6 @@ api
 // We store the access_token in memory - in production, store it in a secure
 // persistent data store
 // const ACCESS_TOKEN = null
-const PUBLIC_TOKEN = null
-const ITEM_ID = null
 
 // Initialize the Plaid client
 const client = new plaid.Client(
@@ -69,7 +67,7 @@ api.post('/get_access_token', function (request, response, next) {
 api.get('/accounts', function (request, response, next) {
   // Retrieve high-level account information and account and routing numbers
   // for each account associated with the Item.
-  let ACCESS_TOKEN = 'access-development-cdbfc1f9-7dc9-4f86-9d00-7f7d18d46765'
+  //let ACCESS_TOKEN = ''
   console.log('ACCESS', ACCESS_TOKEN)
 
   client.getAuth(ACCESS_TOKEN, function (error, authResponse) {
@@ -95,7 +93,7 @@ api.get('/accounts', function (request, response, next) {
 api.post('/item', function (request, response, next) {
   // Pull the Item - this includes information about available products,
   // billed products, webhook information, and more.
-  let ACCESS_TOKEN = 'access-development-cdbfc1f9-7dc9-4f86-9d00-7f7d18d46765'
+  //let ACCESS_TOKEN = ''
   client.getItem(ACCESS_TOKEN, function (error, itemResponse) {
     if (error != null) {
       console.log(JSON.stringify(error))
@@ -124,7 +122,7 @@ api.post('/item', function (request, response, next) {
 
 api.post('/transactions', function (request, response, next) {
   // Pull transactions for the Item for the last 30 days
-  let ACCESS_TOKEN = 'access-development-cdbfc1f9-7dc9-4f86-9d00-7f7d18d46765'
+  // let ACCESS_TOKEN = ''
   // let startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
   //let startDate = prevMonth 
   let startDate = '2017-01-01'
@@ -150,12 +148,3 @@ api.post('/transactions', function (request, response, next) {
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
-
-
-/*
-TOKENRESPONSE { access_token: 'access-development-cdbfc1f9-7dc9-4f86-9d00-7f7d18d46765',
-2017-06-28 15:15:18 (EDT) server   	⎹   item_id: 'EMJX8D1jr7ugPZq91deNTAOB339XLDcq4aL1VR',
-2017-06-28 15:15:18 (EDT) server   	⎹   request_id: 'waEdU',
-2017-06-28 15:15:18 (EDT) server   	⎹   status_code: 200 }
-
-*/
