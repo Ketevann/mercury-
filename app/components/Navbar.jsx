@@ -6,6 +6,8 @@ import View from './Modal'
 import {connect} from 'react-redux'
 import {modalShow} from "../reducers/modal"
 import store from '../store'
+import {logout} from 'APP/app/reducers/auth'
+
 
 
 
@@ -34,7 +36,10 @@ class Navbar extends Component {
                         <li><Link id="home" to="/home">Home</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
+                     {!this.props.user ?
                         <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
+                        :  <div><span className="whoami-user-name">{this.props.user && this.props.user.name}</span>
+                         <button className="logout" onClick={this.props.logout}>Logout</button></div> }
                     </ul>
                 </div>
             </div>
@@ -52,7 +57,7 @@ class Navbar extends Component {
 
 
 export default connect(
-   ({ modal }) => ({ modal: modal }),
-  {modalShow},
+   ({ modal, auth }) => ({ modal: modal, user: auth }),
+  {modalShow, logout},
 )(Navbar)
 

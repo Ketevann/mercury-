@@ -34,7 +34,7 @@ class View extends React.Component {
             <div className="clear"></div>
             <br></br>
             <h3> <a href="#" onClick={()=> this.props.Login() } className="alignleft">Login</a></h3>
-            <h5> <a onClick={() => this.props.Signup() }className="alignright">Sign up</a></h5>
+            <h5> <a onClick={() => store.dispatch(this.props.Signup()) }className="alignright">Sign up</a></h5>
             <br></br>
             {this.props.modal.login === true ?
               <div>
@@ -65,15 +65,16 @@ class View extends React.Component {
 
                   <form onSubmit={evt => {
                      evt.preventDefault()
-                     this.props.login(evt.target.email.value, evt.target.password.value)
-                     this.handleClose()
+                    console.log(evt.target.email.value, ' valuee')
+
+                  this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
                    }
                   }>
                     <input name="name" placeholder="Name"required />
 
                     <input name="email" placeholder="Email" required />
                   <input name="password" type="password" placeholder="Password" required />
-                    <input type="submit" value="Sign Up" />
+                    <input type="submit" value="Login" />
                   </form></div> }
                 <br></br>
                  <a href="/api/auth/login/google"> <button className="google"></button> </a>

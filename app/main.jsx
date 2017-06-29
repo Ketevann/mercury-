@@ -21,7 +21,7 @@ const ExampleApp = connect(
   ({ user, children }) =>
     <div>
       {<nav>
-        {user ? <WhoAmI/> : <Login/>}
+        {/*user ? <WhoAmI/> : <Login/>*/}
       </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
