@@ -4,11 +4,11 @@
   "icons": [
    {
       "src":"icon.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "image/png"
     }
   ],
-  "start_url": "/home",
+  "start_url": "/?utm_source=home",
   "background_color": "#222",
   "theme_color": "#222",
   "display": "standalone"
