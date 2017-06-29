@@ -36,12 +36,7 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-<<<<<<< HEAD
         <Route path="/jokes" component={Jokes} />
-=======
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={FrontPage} />
->>>>>>> 77404c3a44ed705cf33803f60fedcc1e738d73d5
          <Route path='/home' component={FrontPage} />
       </Route>
       <Route path='*' component={NotFound} />

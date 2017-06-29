@@ -1,4 +1,3 @@
-
 // Set this to true for production
 var doCache = false;
 
@@ -29,7 +28,7 @@ self.addEventListener('install', function(event) {
         .then(function(cache) {
           // Get the assets manifest so we can see what our js file is named
           // This is because webpack hashes it
-          fetch("asset-manifest.json")
+          fetch("manifest.json")
             .then(response => {
               response.json()
             })
@@ -39,6 +38,7 @@ self.addEventListener('install', function(event) {
               // We could also cache any static assets like CSS or images
               const urlsToCache = [
                 "/",
+                "/home",
                 assets["main.js"]
               ]
               cache.addAll(urlsToCache)
