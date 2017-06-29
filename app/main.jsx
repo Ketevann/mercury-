@@ -12,21 +12,27 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
+
 import LinkAccounts from './components/LinkAccounts'
 
+import BudgetForm from './components/BudgetForm'
+
+
+
 const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth, modal }) => ({ user: auth, modal })
 )(
   ({ user, children }) =>
     <div>
-      {/*<nav>
+      {<nav>
         {user ? <WhoAmI/> : <Login/>}
-      </nav>*/}
+      </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
       <Sidebar />
       <LinkAccounts />
+     <Login />
     </div>
   )
 
@@ -34,9 +40,13 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
+
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
-        <Route path='/home' component={FrontPage} />
+        <Route path='/home' component={FrontPage} />      
+        <Route path="/jokes" component={FrontPage} />
+         <Route path='/home' component={FrontPage} />
+
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

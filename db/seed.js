@@ -15,6 +15,10 @@ function seedEverything() {
   return Promise.props(seeded)
 }
 
+
+
+
+
 const users = seed(User, {
   god: {
     email: 'god@example.com',
@@ -26,6 +30,11 @@ const users = seed(User, {
     email: 'barack@example.gov',
     password: '1234'
   },
+  claire: {
+    email: 'claire@claire.com',
+    name: 'claire',
+    password: '1234'
+  }
 })
 
 const things = seed(Thing, {
