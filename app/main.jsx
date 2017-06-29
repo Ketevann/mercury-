@@ -12,6 +12,8 @@ import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
+import Budget from './components/Budget'
+
 
 import LinkAccounts from './components/LinkAccounts'
 
@@ -49,12 +51,10 @@ render(
 
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
-        <Route path='/home' component={FrontPage} />      
-        
-
+        <Route path='/home' component={FrontPage} />
         <Route path="/jokes" component={Jokes} />
-
          <Route path='/home' component={FrontPage} />
+         <Route path='/budget' component={Budget} />
 
       </Route>
       <Route path='*' component={NotFound} />

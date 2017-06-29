@@ -21,11 +21,8 @@
     "start-dev": "cross-env NODE_ENV=development npm run start-watch",
     "test": "mocha --compilers js:babel-register --watch-extensions js,jsx app/**/*.test.js app/**/*.test.jsx server/**/*.test.js db/**/*.test.js",
     "test-watch": "npm run test -- --watch --reporter=min",
-    "seed": "node db/seed.js",    
-    "deploy-heroku": "bin/deploy-heroku.sh",
-    "lint": "esw . --ignore-path .gitignore --ext '.js,.jsx'",
-    "lint-watch": "npm run lint -- -w"
-
+    "seed": "node db/seed.js",
+    "deploy-heroku": "bin/deploy-heroku.sh"
   },
   "repository": {
     "type": "git",
@@ -52,11 +49,8 @@
     "check-node-version": "^1.1.2",
     "concurrently": "^3.1.0",
     "cookie-session": "^2.0.0-alpha.1",
-
-    "envvar": "^1.1.0",
-
     "cors": "^2.8.3",
-
+    "envvar": "^1.1.0",
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
@@ -72,15 +66,9 @@
     "pretty-error": "^2.0.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-
-
-    "react-plaid": "^0.1.1",
-
-
     "react-modal-dialog": "^4.0.7",
-
+    "react-plaid": "^0.1.1",
     "react-popup": "^0.8.0",
-
     "react-redux": "^4.4.5",
     "react-redux-modal": "^0.5.2",
     "react-router": "^3.0.0",
@@ -114,6 +102,7 @@
     "husky": "^0.13.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
+    "prop-types": "^15.5.10",
     "supertest": "^3.0.0",
     "volleyball": "^1.4.1",
     "webpack": "^2.2.1",

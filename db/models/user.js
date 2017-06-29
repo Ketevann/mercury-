@@ -18,11 +18,6 @@ module.exports = db => db.define('users', {
   //     defaultValue: false
   //   },
 
-
-   googleId: STRING,
-  //   githubId: STRING,
-  //   facebookId: STRING,
-
     role: {
       type: ENUM('user', 'admin')
     },

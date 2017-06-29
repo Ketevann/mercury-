@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar } from 'victory';
+import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar } from 'victory'
 //import PieChart from './PieChart'
 
 export default class Home extends Component {

@@ -51,12 +51,12 @@ OAuth.setupStrategy({
 // environment variables.
 
 
-auth.use(cors())
-auth.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next()
-  })
+// auth.use(cors())
+// auth.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*")
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+//     next()
+//   })
 
 OAuth.setupStrategy({
   provider: 'google',
@@ -86,6 +86,7 @@ OAuth.setupStrategy({
 // Passport review in the Week 6 Concept Review:
 // https://docs.google.com/document/d/1MHS7DzzXKZvR6MkL8VWdCxohFJHGgdms71XNLIET52Q/edit?usp=sharing
 passport.serializeUser((user, done) => {
+  debug('will serialize user=%s', user)
   done(null, user.id)
 })
 
@@ -178,33 +179,15 @@ auth.post('/signup', (req, res, next) => {
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) => {
-  console.log('in AUTH DOT GET', req.params.strategy)
-  console.log(secrets.GOOGLE_CLIENT_ID, "!!!!SFSFSFS")
   passport.authenticate(req.params.strategy, {
-
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
     // provider specific, and let you access additional data (like
     // their friends or email), or perform actions on their behalf.
     successRedirect: '/',
     failureRedirect: '/somewhere'
     // Specify other config here
-  }, function (err, user, info){
-    console.log("usaaaaaa", user)
-    if (err) return next(err)
-    if(!user) return res.redirect('http://www.google.com') //copied this from passport docs
-    req.login(user, function(err){
-      if (err) return next(err)
-      res.redirect('/')
-      User.create({
-        email: email,
-        name: user.name,
-        googleId : id,
-        role : 'user'
-      })
-    })
   })(req, res, next)
-}
-)
+})
 
 auth.post('/logout', (req, res) => {
   req.logout()
