@@ -6,6 +6,8 @@ const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
 const cors = require('cors')
+var nodemailer = require('nodemailer');
+
 /*************************
  * Auth strategies
  *
@@ -46,17 +48,6 @@ OAuth.setupStrategy({
 })
 
 
-
-// Google needs the GOOGLE_CLIENT_SECRET AND GOOGLE_CLIENT_ID
-// environment variables.
-
-
-auth.use(cors())
-auth.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next()
-  })
 
 OAuth.setupStrategy({
   provider: 'google',
@@ -141,6 +132,85 @@ auth.post('/login/local', () => {
   return passport.authenticate('local', { successRedirect: '/' })
 })
 
+
+
+
+
+//  function handleSayHello(req, res) {
+//     // Not the movie transporter!
+//     console.log("creating hellow transporter")
+//     var transporter = nodemailer.createTransport({
+//         service: 'Gmail',
+//         auth: {
+//             user: 'katie.tsin@gmail.com', // Your email id
+//             pass: 'Ninokety1' // Your password
+//         }
+//     })
+//    console.log(transporter, "transporter")
+//    return transporter
+//          }
+
+// auth.post('/password', (req, res, next) => {
+//   console.log("we are getting in here", req.body)
+//   User.findOne({
+//     where: {
+//       email: req.body.email,
+
+//     }
+//   })
+//     .then((user) => {
+//       console.log(req.body, 'req.body', user, 'user')
+//       user.update({
+//         password : req.body.password
+//       })
+//     })
+//     .then(user => {
+//             console.log("user", user)
+//             return req.logIn(user, (err) => {
+//               if (err) { return next(err) }
+//             })
+//           })
+//           .then(() =>{
+
+//        return nodemailer.createTransport({
+//         service: 'Gmail',
+//         auth: {
+//             user: 'katie.tsin@gmail.com', // Your email id
+//             pass: 'Ninokety1' // Your password
+//         }
+//     })
+//           })
+//     .then(() => {
+//                var mailOptions = {
+//     from: 'katie.tsin@g@gmail.com>', // sender address
+//     to: 'req.body.email', // list of receivers
+//     subject: 'New Password', // Subject line
+//     text: req.body.password //, // plaintext body
+//     // html: '<b>Hello world ✔</b>
+//                }
+//     transporter.sendMail(mailOptions, function(error, info){
+//     if(error){
+//         console.log(error);
+//         res.json({yo: 'error'});
+//     }else{
+//         console.log('Message sent: ' + info.response);
+//         // res.json({yo: info.response});
+//     }
+// })
+
+//     })
+
+
+
+
+//           .then(() => res.redirect('/'))
+//           .catch(next)
+// })
+
+
+
+
+
 auth.post('/signup', (req, res, next) => {
   console.log("we are getting in here", req.body)
   User.findOne({
@@ -182,14 +252,14 @@ auth.get('/login/:strategy', (req, res, next) => {
   console.log(secrets.GOOGLE_CLIENT_ID, "!!!!SFSFSFS")
   passport.authenticate(req.params.strategy, {
 
-    scope: 'email', // You may want to ask for additional OAuth scopes. These are
+    scope: 'https://www.googleapis.com/auth/plus.me https://www.google.com/m8/feeds https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile', // You may want to ask for additional OAuth scopes. These are
     // provider specific, and let you access additional data (like
     // their friends or email), or perform actions on their behalf.
     successRedirect: '/',
     failureRedirect: '/somewhere'
     // Specify other config here
   }, function (err, user, info){
-    console.log("usaaaaaa", user, info)
+
     if (err) return next(err)
     if(!user) return res.redirect('http://www.google.com') //copied this from passport docs
     req.login(user, function(err){
@@ -203,7 +273,7 @@ auth.get('/login/:strategy', (req, res, next) => {
       })
     })
   })(req, res, next)
-}
+ console.log("blabla", req.session)}
 )
 
 auth.post('/logout', (req, res) => {
