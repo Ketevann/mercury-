@@ -11,8 +11,7 @@ public/bundle.js.map
 # NPM errors
 npm-debug.log
 
-# secrets
-secrets.json
+#secrets
+newCredentials.js
 mercury.js
-
 
