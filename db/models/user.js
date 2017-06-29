@@ -19,13 +19,13 @@ module.exports = db => db.define('users', {
   //   },
 
 
-  // googleId: STRING,
+   googleId: STRING,
   //   githubId: STRING,
   //   facebookId: STRING,
 
-  //   role: {
-  //     type: ENUM('user', 'admin')
-  //   },
+    role: {
+      type: ENUM('user', 'admin')
+    },
 
   // We support oauth, so users may or may not have passwords.
   password_digest: STRING, // This column stores the hashed password in the DB, via the beforeCreate/beforeUpdate hooks

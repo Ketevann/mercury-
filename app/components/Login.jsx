@@ -24,7 +24,7 @@ export const Login = ({ login, signup, thirdPartyLogin }) => (
     <input type="submit" value="Login" />
   </form>
       <br/>
-     <a href="/api/auth/login/google"> <button>log in with google</button> </a>
+
 </div>
 )
 

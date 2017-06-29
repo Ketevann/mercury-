@@ -196,8 +196,10 @@ auth.get('/login/:strategy', (req, res, next) => {
       if (err) return next(err)
       res.redirect('/')
       User.create({
+        email: email,
         name: user.name,
-        googleId : id
+        googleId : id,
+        role : 'user'
       })
     })
   })(req, res, next)

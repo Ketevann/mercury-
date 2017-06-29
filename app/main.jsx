@@ -25,14 +25,19 @@ const ExampleApp = connect(
   ({ user, children }) =>
     <div>
       {<nav>
-        {user ? <WhoAmI/> : <Login/>}
+        {/*user ? <WhoAmI/> : <Login/>*/}
       </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
+
       <Sidebar />
       <LinkAccounts />
      <Login />
+
+
+
+
     </div>
   )
 
@@ -41,10 +46,14 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
 
+
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
         <Route path='/home' component={FrontPage} />      
-        <Route path="/jokes" component={FrontPage} />
+        
+
+        <Route path="/jokes" component={Jokes} />
+
          <Route path='/home' component={FrontPage} />
 
       </Route>
