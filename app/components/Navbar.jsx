@@ -27,7 +27,6 @@ class Navbar extends Component {
     {console.log(this.props, ' we have props')}
 
     return (
-
         <nav className="navbar navbar-inverse   navbar-fixed-top topnav " role="navigation">
             <div className="container topnav">
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -37,17 +36,10 @@ class Navbar extends Component {
                     <ul className="nav navbar-nav navbar-right">
                         <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
                     </ul>
-
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#">Login/Sign Up</a></li>
-                    </ul>
-
                 </div>
-
             </div>
             {console.log(this.props.modal.showModal, ' in navbar')}
             {this.props.modal.showModal ? <View /> : null }
-
         </nav>
 
     )

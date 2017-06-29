@@ -73,7 +73,7 @@ class View extends React.Component {
 
                     <input name="email" placeholder="Email" required />
                   <input name="password" type="password" placeholder="Password" required />
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Sign Up" />
                   </form></div> }
                 <br></br>
                  <a href="/api/auth/login/google"> <button className="google"></button> </a>

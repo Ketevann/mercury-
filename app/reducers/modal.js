@@ -42,7 +42,7 @@ const modalReducer = (modal=inistialState, action) => {
 
     case LOGIN:
 
-    return Object.assign({}, modal, {login: true, signUp:false})
+    return Object.assign({}, modal, {login: true, signUp:false, forgotPassword: false})
 
   case SIGNUP:
 
