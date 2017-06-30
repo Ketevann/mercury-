@@ -1,6 +1,7 @@
 body{
   padding-top: 65px;
   padding-left: 80px;
+  min-height:100%;
 }
 sidebar {
   position: fixed;
@@ -53,4 +54,74 @@ sidebar {
   border: 1px solid black;
   margin: 10px;
 }
+.home{
+    background:url('paperback.jpg') no-repeat center center;
+    z-index: 9999;
+    width: 100%;
+    min-height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background-size:cover;
+     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.text-vertical-center {
+   display: block;
+   text-align: center;
+   position: relative;
+   margin: 90px;
+   padding: 90px;
 
+}
+
+.text-vertical-center h1 {
+   font-size: 6em;
+   font-weight: 800;
+  
+}
+.text-vertical-center h3 {
+   font-size: 2em;
+   font-weight: 400;
+   margin-top: 15px;
+ 
+}
+
+.btn-dark {
+   border-radius: 0;
+   color: #fff;
+   background-color: rgba(0,0,0,0.4);
+   padding:5px;
+}
+
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active {
+   color: #fff;
+   background-color: rgba(0,0,0,0.7);
+}
+
+.btn-light {
+   border-radius: 0;
+   color: #333;
+   background-color: rgb(255,255,255);
+}
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
+   color: #333;
+   background-color: rgba(255,255,255,0.8);
+}
+h1{
+  font-family: 'Pacifico', cursive;
+}
+h4{
+  font-family: 'Philosopher', sans-serif;
+}
+.btn{
+  padding:5px;
+  margin: 10px;
+}
