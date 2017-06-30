@@ -20,13 +20,12 @@ export default class FrontPage extends Component {
                             <h3>Stop living paycheck to paycheck and control your life.</h3>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className="btn btn-secondary"><Link id="about" to="/about">Learn More</Link></button>
-                                <button type="button" className="btn btn-secondary">Sign Up</button>
-                                <ul className="btn btn-secondary">
+                                <div>
                                     {!this.props.user ?
-                                        <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
+                                        <button className="btn btn-secondary"><a href="#" onClick={() => this.handleClick()}> Sign Up </a></button>
                                         : <div><span className="whoami-user-name">{this.props.user && this.props.user.name}</span>
                                             <button className="logout" onClick={this.props.logout}>Logout</button></div>}
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     </header>
