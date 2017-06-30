@@ -8,6 +8,8 @@ const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
 const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
 const ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e' // sandbox
+const db = require('../db')
+const AccessToken = db.model('accessToken');
 
 var x = new Date();
 var z = x.toString().split(' ');
@@ -58,9 +60,10 @@ api.post('/get_access_token', function (request, response, next) {
     const ITEM_ID = tokenResponse.item_id
     console.log('Access Token: ' + ACCESS_TOKEN)
     console.log('Item ID: ' + ITEM_ID)
-    response.json({
+    response.send(ACCESS_TOKEN)
+    /*response.json({
       'error': false
-    })
+    })*/
   })
 })
 
@@ -143,6 +146,23 @@ api.post('/transactions', function (request, response, next) {
     console.log('pulled ' + transactionsResponse.transactions.length + ' transactions')
     response.json(transactionsResponse)
   })
+})
+
+api.post('/putTokenInDB', (req, res, next) => {
+  console.log('IN API')
+  console.log('REQ BODY AT', typeof req.body.accessToken)
+  var user = req.body.user;
+  AccessToken.create(
+    {
+    
+        accessToken: req.body.accessToken,
+        user_id: user.id
+      
+    })
+    .then((aT) => {
+      console.log("AT",aT);
+      res.send(aT);
+    })
 })
 
 // No routes matched? 404.

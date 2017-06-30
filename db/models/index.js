@@ -21,6 +21,7 @@ const app = require('APP')
       // Debt: require('./debt'),
       Thing: require('./thing'),
       Favorite: require('./favorite'),
+      AccessToken: require('./accessTokens')
       // ---------- Add new models here ----------
     }
     , {mapValues} = require('lodash')
