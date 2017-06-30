@@ -13,8 +13,11 @@ import { connect } from 'react-redux'
         console.log('PROPS',this.props)
         let transactions = this.props.transac.transactions
         if(transactions!==undefined)
-            var tot = transactions.reduce((total,val)=> {return total+val.amount},0)
-        console.log(tot);
+            var tot = this.props.barChartTr.reduce((total,val)=> {
+                console.log('VAL+TOTAL',val.amount,total)
+                    return total+val.amount}
+                ,0)
+        console.log('TOT',tot);
         return (
         <div className="home">
             <h4> Monthly Budget </h4>
@@ -128,8 +131,10 @@ const barChart = (items) =>{
     if(toLoop!==undefined){
     for(var i=0; i < loopLength; i++){
         var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A' ;
+        if(toLoop[i].amount>0&&name!=='Transfer'){
         things[name] = things[name] || 0
         things[name]+=toLoop[i].amount
+        }
         console.log(things)
     }
     console.log('things!!!',things)
