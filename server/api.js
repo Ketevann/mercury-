@@ -23,6 +23,7 @@ api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
+  .use('/budget', require('./budget'))
 
 // We store the access_token in memory - in production, store it in a secure
 // persistent data store
@@ -126,7 +127,7 @@ api.post('/transactions', function (request, response, next) {
   // Pull transactions for the Item for the last 30 days
   let ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e'
   // let startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
-  //let startDate = prevMonth 
+  //let startDate = prevMonth
   let startDate = '2017-01-01'
   //console.log('DATES', prevMonth, currentMonth)
   // let endDate = moment().format('YYYY-MM-DD')

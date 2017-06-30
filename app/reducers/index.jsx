@@ -5,7 +5,9 @@ const rootReducer = combineReducers({
 
   plaid: require('./plaid').default,
 
-  modal: require('./modal').default
+  modal: require('./modal').default,
+
+  budget: require('./budget').default
 })
 
 export default rootReducer

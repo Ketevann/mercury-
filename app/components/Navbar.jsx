@@ -32,7 +32,7 @@ class Navbar extends Component {
                     <ul className="nav navbar-nav navbar-left">
                         <li><Link id="home" to="/home">Home</Link></li>
                         <li><Link id="link" to="/link">Link Accounts</Link></li>
-                        <li><Link id="link" to="/budget">Create Budget</Link></li>
+                        <li><Link id="link" to="/budget">my Budget</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?

@@ -14,12 +14,20 @@ import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
 import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
+
+import Expenses from './components/Expenses'
+import {userExpenses} from './reducers/budget'
+
+import BudgetForm from './components/BudgetForm'
+
+
+
 import About from './components/About'
+
 
 
 import LinkAccounts from './components/LinkAccounts'
 
-import BudgetForm from './components/BudgetForm'
 
 
 
@@ -37,8 +45,19 @@ const ExampleApp = connect(
       <Sidebar />
 
 
+
+
+
+
+
+
     </div>
   )
+
+const getExpenses = () => {
+  console.log('in get expenses')
+  store.dispatch(userExpenses())
+}
 
 render(
   <Provider store={store}>
@@ -46,9 +65,18 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
+
+        <Route path="/jokes" component={Jokes} />
+         <Route path='/home' component={FrontPage} />
+         <Route path='/budget' component={Budget} />
+         <Route path="/addexpenses" component={BudgetForm} />
+        <Route path="/myexpenses" component={Expenses} onEnter={getExpenses}/>
+
+
         <Route path='/spending' component={FrontPage} />
 
         <Route path='/budget' component={Budget} />
+
 
       </Route>
       <Route path='/home' component={FrontPage} />
