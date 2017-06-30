@@ -13,7 +13,7 @@ export default class About extends Component {
             <div >
 
                 <body className="home">
-                    <Navbar />
+                    
                     <header id="top" className="header">
                         <div className="text-vertical-center">
                             <h1>About Mercury</h1>

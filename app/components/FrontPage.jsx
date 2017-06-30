@@ -13,7 +13,6 @@ export default class FrontPage extends Component {
             <div >
 
                 <body className="home">
-                    <Navbar />
                     <header id="top" className="header">
                         <div className="text-vertical-center">
                             <h1>Mercury</h1>

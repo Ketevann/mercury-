@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {modalShow} from "../reducers/modal"
 import store from '../store'
 import {logout} from 'APP/app/reducers/auth'
-import {PieChart} from 'react-easy-chart';
 
 
 
