@@ -14,7 +14,12 @@ import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
 import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
+
 import {fetchTransactions} from './reducers/plaid.jsx'
+
+import About from './components/About'
+
+
 
 import LinkAccounts from './components/LinkAccounts'
 
@@ -37,8 +42,7 @@ const ExampleApp = connect(
       {children}
 
       <Sidebar />
-      {/*<LinkAccounts />*/}
-     {/*<Login />*/}
+
 
 
 
@@ -56,7 +60,10 @@ render(
          <Route path='/home' component={FrontPage} />
          <Route path='/budget' component={Budget} />
 
+
       </Route>
+      <Route path='/home' component={FrontPage} />
+      <Route path='/about' component={About} />
       <Route path='*' component={NotFound} />
     </Router>
   </Provider>,
