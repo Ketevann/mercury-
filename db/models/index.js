@@ -16,7 +16,7 @@ const app = require('APP')
       OAuth: require('./oauth'),
       User: require('./user'),
       // Income: require('./income'),
-      // Expense: require('./expenses'),
+       Expense: require('./expenses'),
       // Savings: require('./savings'),
       // Debt: require('./debt'),
       Thing: require('./thing'),
