@@ -56,14 +56,5 @@ const modalReducer = (modal=inistialState, action) => {
   return modal
 }
 
-export const newPassowrd = (credentials) =>
-dispatch =>
-  axios.post('api/auth/password', credentials)
-  .then(() => dispatch(forgot()))
-  .then(() => dispatch(whoami()))
-   .catch(() => dispatch(whoami()))
-
-
-
 
 export default modalReducer

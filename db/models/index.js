@@ -16,11 +16,12 @@ const app = require('APP')
       OAuth: require('./oauth'),
       User: require('./user'),
       // Income: require('./income'),
-      // Expense: require('./expenses'),
+       Expense: require('./expenses'),
       // Savings: require('./savings'),
       // Debt: require('./debt'),
       Thing: require('./thing'),
       Favorite: require('./favorite'),
+      AccessToken: require('./accessTokens')
       // ---------- Add new models here ----------
     }
     , {mapValues} = require('lodash')
