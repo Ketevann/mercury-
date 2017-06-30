@@ -17,7 +17,9 @@ export default class FrontPage extends Component {
                     <header id="top" className="header">
                         <div className="text-vertical-center">
                             <h1>Mercury</h1>
-                            <h3>Stop living paycheck to paycheck and control your life.</h3>
+                            <div>
+                                <h3>Stop living paycheck to paycheck and control your life.</h3>
+                            </div>
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" className="btn btn-secondary"><Link id="about" to="/about">Learn More</Link></button>
                                 <div>
