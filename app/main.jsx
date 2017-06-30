@@ -34,12 +34,7 @@ const ExampleApp = connect(
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
-
       <Sidebar />
-      <LinkAccounts />
-      <Login />
-
-
 
 
     </div>
