@@ -49,3 +49,5 @@ export const userExpenses = () =>
     axios.get('api/budget')
     .then((res) => dispatch(create(res.data)))
     .catch(console.error())
+
+export default budgetReducer
