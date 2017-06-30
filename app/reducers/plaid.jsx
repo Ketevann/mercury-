@@ -66,6 +66,17 @@ export const fetchAccounts = (access_token) =>
 			})
 			.catch(err => console.error('Fetching accounts unsuccessful', err))
 
+
+
+
+// export const fetchAccounts = (access_token) =>
+// 	dispatch =>
+// 		axios.get('/api/accounts')
+// 			.then(res => {
+// 				console.log('ACCT INFO', res.data)
+// 			})
+// 			.catch(err => console.error('Fetching accounts unsuccessful', err))
+
 export const fetchTransactions = (access_token) =>
 	dispatch =>
 		axios.post('/api/transactions')
