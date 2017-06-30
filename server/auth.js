@@ -183,7 +183,7 @@ auth.get('/login/:strategy', (req, res, next) => {
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
     // provider specific, and let you access additional data (like
     // their friends or email), or perform actions on their behalf.
-    successRedirect: '/',
+    successRedirect: '/link',
     failureRedirect: '/somewhere'
     // Specify other config here
   })(req, res, next)

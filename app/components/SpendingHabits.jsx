@@ -19,7 +19,7 @@ import { connect } from 'react-redux'
                 ,0)
         console.log('TOT',tot);
         return (
-        <div className="home">
+        <div>
             <h4> Monthly Budget </h4>
             <h5>${this.props.monthlyBudget}</h5>
             <h4> Total Spent</h4>

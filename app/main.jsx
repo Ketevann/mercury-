@@ -69,22 +69,10 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
-
         <Route path='/spending' component={Spending} onEnter={getTransac}/>
-
-
-        <Route path="/jokes" component={Jokes} />
-         <Route path='/home' component={FrontPage} />
          <Route path='/budget' component={Budget} />
          <Route path="/addexpenses" component={BudgetForm} />
         <Route path="/myexpenses" component={Expenses} onEnter={getExpenses}/>
-
-
-        <Route path='/spending' component={FrontPage} />
-
-
-
-
       </Route>
       <Route path='/home' component={FrontPage} />
       <Route path='/about' component={About} />
