@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 
 import { connectPlaid, fetchAccounts, fetchTransactions, fetchItems } from '../reducers/plaid'
-import ReactPlaid, { DEV_ENV, PROD_ENV, CONNECT_PRODUCT } from "react-plaid";
 
 class LinkAccounts extends Component {
     constructor(props, context) {
@@ -20,8 +19,8 @@ class LinkAccounts extends Component {
             <div>
                 <button onClick={this.props.connectPlaid}>Open Plaid</button>
                 <button onClick={this.props.fetchAccounts}>Get Accounts</button>
-                 <button onClick={this.props.fetchTransactions}>Get Transactions</button>
-                  <button onClick={this.props.fetchItems}>Get Items</button>
+                <button onClick={this.props.fetchTransactions}>Get Transactions</button>
+                <button onClick={this.props.fetchItems}>Get Items</button>
                 {this.state.plaidData.map(({ institution }) => <div>{institution.name} - {institution.type}</div>)}
             </div>
         )
@@ -29,4 +28,4 @@ class LinkAccounts extends Component {
 }
 
 export default connect(
-    state => ({}), {connectPlaid, fetchAccounts, fetchItems, fetchTransactions})(LinkAccounts)
+    state => ({}), { connectPlaid, fetchAccounts, fetchItems, fetchTransactions })(LinkAccounts)

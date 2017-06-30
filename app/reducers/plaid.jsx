@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
 const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
-
+import Promise from 'bluebird'
 const initialPlaidState = {
 	currentUser: {},
 	accessToken: ''
@@ -16,32 +16,49 @@ export const getAccessToken = accessToken => ({
 })
 
 // ------------------------- dispatchers ------------------------
-export const fetchAccessToken = (public_token) =>
+/*export const fetchAccessToken = (public_token) =>
 	dispatch => 
 		axios.post('/api/get_access_token', {public_token: public_token})
 			.then(res => {
 				dispatch(getAccessToken(res.data))
 			})
-			.catch(err => console.error('Fetching access token unsuccessful', err))
+			.catch(err => console.error('Fetching access token unsuccessful', err))*/
 
-export const connectPlaid = ()	=> 
+export const fetchAccessToken = (public_token) =>
 	dispatch => {
-		console.log('CONNECT PLAID')
-	Plaid.create({
-        apiVersion: 'v2',
-        clientName: 'Mercury',
-        env: 'sandbox',
-        product: ['auth'],
-        key: PLAID_PUBLIC_KEY,
-        onSuccess: (public_token) => {
-            console.log('calling this function?', public_token, fetchAccessToken)
-            dispatch(fetchAccessToken(public_token))
-        },
-        onExit: console.log
-    }).open()
+		var user = axios.get('/api/auth/whoami')
+		var accessToken = axios.post('/api/get_access_token', { public_token: public_token })
+
+		Promise.all([user, accessToken]).spread((user, accessToken) => {
+			console.log('USER ', user.data, accessToken.data)
+			return axios.post('/api/putTokenInDB',
+				{ user: user.data, 
+				  accessToken: accessToken.data })
+		})
+			.then((thing) => {
+				console.log('in db?????')
+				console.log(thing)
+			})
+			.catch(err => console.error('Fetching access token unsuccessful', err))
 	}
 
-export const fetchAccounts = (access_token) => 
+export const connectPlaid = () =>
+	dispatch => {
+		console.log('CONNECT PLAID')
+		Plaid.create({
+			apiVersion: 'v2',
+			clientName: 'Mercury',
+			env: 'sandbox',
+			product: ['auth'],
+			key: PLAID_PUBLIC_KEY,
+			onSuccess: (public_token) => {
+				dispatch(fetchAccessToken(public_token))
+			},
+			onExit: console.log
+		}).open()
+	}
+
+export const fetchAccounts = (access_token) =>
 	dispatch =>
 		axios.get('/api/accounts')
 			.then(res => {
@@ -49,7 +66,7 @@ export const fetchAccounts = (access_token) =>
 			})
 			.catch(err => console.error('Fetching accounts unsuccessful', err))
 
-export const fetchTransactions = (access_token) => 
+export const fetchTransactions = (access_token) =>
 	dispatch =>
 		axios.post('/api/transactions')
 			.then(res => {
@@ -58,7 +75,7 @@ export const fetchTransactions = (access_token) =>
 			.catch(err => console.error('Fetching transactions unsuccessful', err))
 
 
-export const fetchItems = (access_token) => 
+export const fetchItems = (access_token) =>
 	dispatch =>
 		axios.post('/api/item')
 			.then(res => {
@@ -67,7 +84,7 @@ export const fetchItems = (access_token) =>
 			.catch(err => console.error('Fetching items unsuccessful', err))
 
 
-// ------------------------- reducers ---------------------------
+// ------------------------------- reducers ---------------------------------
 const reducer = (state = initialPlaidState, action) => {
 	const newState = Object.assign({}, state)
 	switch (action.type) {
