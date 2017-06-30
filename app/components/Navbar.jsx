@@ -33,6 +33,7 @@ class Navbar extends Component {
                         <li><Link id="home" to="/home">Home</Link></li>
                         <li><Link id="link" to="/link">Link Accounts</Link></li>
                         <li><Link id="link" to="/budget">Create Budget</Link></li>
+                        <li><Link id="link" to="/spending">Spending & Analysis</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?

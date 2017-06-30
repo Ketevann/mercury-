@@ -1,25 +1,92 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar } from 'victory'
+import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar, VictoryTheme, VictoryAxis } from 'victory'
 //import PieChart from './PieChart'
+import { connect } from 'react-redux'
 
-export default class Spending extends Component {
-    constructor() {
-        super()
+ class Spending extends Component {
+    constructor(props) {
+        super(props)
     }
 
     render() {
+        console.log('PROPS',this.props)
+        let transactions = this.props.transac.transactions
+        if(transactions!==undefined)
+            var tot = transactions.reduce((total,val)=> {return total+val.amount},0)
+        console.log(tot);
         return (
-            <div className="home">
-
+        <div className="home">
+            <h4> Monthly Budget </h4>
+            <h5>${this.props.monthlyBudget}</h5>
+            <h4> Total Spent</h4>
+            {tot && <h5>${tot.toFixed(2)}</h5>}
+            <h4> Amount Left </h4>
+             {tot && <h5>${(this.props.monthlyBudget-tot).toFixed(2)}</h5>}
+            <h3> Monthly Transactions </h3>
+            <table>
+                <tr>
+                    <th>Location</th>
+                    <th>Type</th> 
+                    <th>Cost</th>
+                </tr>
+                {
+                transactions && transactions.map((item)=>{
+                    
+                    return(
+                        <tr>
+                            <td>{item.name}</td>
+                            {item.category ? (<td>{item.category[0]  }</td>) : (<td>N/A</td>)} 
+                            <td>{item.amount}</td>
+                        </tr>
+                        )
+                })
+                
+                }
+                
+                </table>
                 <div className="text">
-                    <h1>Spending Habits</h1>
+                    <h3>Spending Habits</h3>
                 </div>
-                <div className="chart col-md-4">
-                    <h2>Breakdown</h2>
-                    <VictoryPie />
+                <div className="chart col-md-6">
+                    <h6>Amount Spent by Category</h6>
+                    {/*<VictoryChart
+                        theme={VictoryTheme.material}
+                        domainPadding={20}
+                    >
+                        <VictoryAxis
+                            dependentAxis
+                            tickFormat={(x) => (`$${x}`)}
+                        />
+                        <VictoryBar
+                            //[{type:'dog',amount:10},{type:'cat',amount:7}]
+                            data={this.props.barChartTr}
+                            //data={this.props.barChartTr}
+                            x="type"
+                            y="amount"
+                        />
+                    </VictoryChart>*/}
+                    <VictoryBar
+                        data= {this.props.barChartTr}
+                        x="type"
+                        y="amount"
+                        labels={(datum) => datum.x}
+                        theme={VictoryTheme.material}
+                    />
                 </div>
-                <div className="chart col-md-4">
+                <div className="chart col-md-6">
+                    <h6>Percent Spent by Category</h6>
+                    <VictoryPie
+                        data= {this.props.barChartTr}
+                        x="type"
+                        y="amount"
+                        labels={(datum) =>{
+                            console.log('DATUM',datum.y/4700)
+                            return `${datum.x}: ${Math.floor(datum.y / tot*100)}%`}}
+                        theme={VictoryTheme.material}
+                    />
+                </div>
+                {/*<div className="chart col-md-4">
                     <h2>Savings Progress</h2>
                     <VictoryChart height={450}>
                         <VictoryScatter
@@ -41,7 +108,7 @@ export default class Spending extends Component {
                                 { x: 1, y: 3 }
                             ]} />
                     </VictoryChart>
-                </div>
+                </div>*/}
 
             </div>
 
@@ -51,3 +118,35 @@ export default class Spending extends Component {
 
 
 }
+const barChart = (items) =>{
+    console.log('ITEMS',items)
+    var toLoop  = items.transactions
+    var loopLength = items.total_transactions
+    console.log('LOOPSTUFF',toLoop,loopLength)
+    var things = {}
+    var arr = []
+    if(toLoop!==undefined){
+    for(var i=0; i < loopLength; i++){
+        var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A' ;
+        things[name] = things[name] || 0
+        things[name]+=toLoop[i].amount
+        console.log(things)
+    }
+    console.log('things!!!',things)
+    for(var val in things){
+        console.log(val)
+        arr.push({type: val, amount: things[val]})
+    }
+    //return arr;
+    return arr
+    }
+    return 'failed'
+}
+
+export default connect(
+    state => ({
+        transac: state.plaid.transactions,
+        barChartTr: barChart(state.plaid.transactions),
+        monthlyBudget: 3000
+    }), null)(Spending)
+

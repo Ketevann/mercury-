@@ -6,7 +6,7 @@ const envvar = require('envvar')
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
+const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
 const ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e' // sandbox
 
 var x = new Date();
@@ -121,7 +121,7 @@ api.post('/item', function (request, response, next) {
 
 api.post('/transactions', function (request, response, next) {
   // Pull transactions for the Item for the last 30 days
-  let ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e'
+  let ACCESS_TOKEN = 'access-development-6b21ea59-3855-4c7c-a8a1-9ad906280629'
   // let startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
   //let startDate = prevMonth 
   let startDate = '2017-01-01'
