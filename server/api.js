@@ -127,12 +127,13 @@ api.post('/transactions', function (request, response, next) {
   // Pull transactions for the Item for the last 30 days
   let ACCESS_TOKEN = 'access-sandbox-69aa126f-6075-4325-8afd-fac600c79b5e'
   // let startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
-  //let startDate = prevMonth
-  let startDate = '2017-01-01'
+
+  let startDate = '2017-06-01'
+
   //console.log('DATES', prevMonth, currentMonth)
   // let endDate = moment().format('YYYY-MM-DD')
   //let endDate = currentMonth
-  let endDate = '2017-02-15'
+  let endDate = '2017-06-30'
 
   client.getTransactions(ACCESS_TOKEN, startDate, endDate, {
     count: 250,

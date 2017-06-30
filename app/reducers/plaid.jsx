@@ -4,15 +4,21 @@ const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 import Promise from 'bluebird'
 const initialPlaidState = {
 	currentUser: {},
-	accessToken: ''
+	accessToken: '',
+	transactions: {}
 }
 
 // --------------------------- actions --------------------------
 const GETACCESSTOKEN = 'GET_ACCESSTOKEN'
+const GETTRANSAC = 'GET_TRANSACTIONS'
 
 // ------------------------ action creator ----------------------
 export const getAccessToken = accessToken => ({
 	type: GETACCESSTOKEN, accessToken
+})
+
+export const getTransactions = transactions => ({
+	type: GETTRANSAC, transactions
 })
 
 // ------------------------- dispatchers ------------------------
@@ -71,6 +77,7 @@ export const fetchTransactions = (access_token) =>
 		axios.post('/api/transactions')
 			.then(res => {
 				console.log('TRANSANCTIONS', res.data)
+				dispatch(getTransactions(res.data))
 			})
 			.catch(err => console.error('Fetching transactions unsuccessful', err))
 
@@ -90,6 +97,8 @@ const reducer = (state = initialPlaidState, action) => {
 	switch (action.type) {
 		case GETACCESSTOKEN:
 			return Object.assign({}, state, { accessToken: action.accessToken })
+		case GETTRANSAC:
+			return Object.assign({}, state, { transactions: action.transactions })
 		default:
 			return state
 	}

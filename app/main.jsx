@@ -15,10 +15,14 @@ import FrontPage from './components/FrontPage'
 import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
 
+
+import {fetchTransactions} from './reducers/plaid.jsx'
+
 import Expenses from './components/Expenses'
 import {userExpenses} from './reducers/budget'
 
 import BudgetForm from './components/BudgetForm'
+
 
 
 
@@ -30,21 +34,21 @@ import LinkAccounts from './components/LinkAccounts'
 
 
 
-
+const getTransac = () => {
+  store.dispatch(fetchTransactions());
+}
 const ExampleApp = connect(
   ({ auth, modal }) => ({ user: auth, modal })
 )(
   ({ user, children }) =>
     <div>
       {<nav>
-        {/*user ? <WhoAmI/> : <Login/>*/}
+        
       </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
       <Sidebar />
-
-
 
 
 
@@ -66,6 +70,9 @@ render(
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
 
+        <Route path='/spending' component={Spending} onEnter={getTransac}/>
+
+
         <Route path="/jokes" component={Jokes} />
          <Route path='/home' component={FrontPage} />
          <Route path='/budget' component={Budget} />
@@ -75,7 +82,7 @@ render(
 
         <Route path='/spending' component={FrontPage} />
 
-        <Route path='/budget' component={Budget} />
+
 
 
       </Route>
