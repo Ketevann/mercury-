@@ -1,25 +1,21 @@
-'use strict'
-
-var xoauth2 = require('xoauth2');
+var schedule = require('node-schedule');
+var axios = require('axios');
 var nodemailer = require('nodemailer');
-var smtp = require('nodemailer-smtp-transport');
-//const giffy = require('../giffy.js')
-var giphy = require('giphy-api')();  //using secrets does not work - i have secrets on my laptop
+const db = require('../db')
+const AccessToken = db.model('accessToken');
 
-// need to add FindUser in case user exists
-module.exports = require('express').Router()
-  .post('/', (req, res, next) =>{
-    console.log("in nodemailer!!!!!!*************")
 
-    // create reusable transporter object using the default SMTP transport
+var j = schedule.scheduleJob('30 * * * *', function(){
+  console.log('Please work????')
+  AccessToken.findAll({}).then((token)=> console.log(token))
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       host: 'smtp.gmail.com',
       port: 465,
       secure: true, // secure:true for port 465, secure:false for port 587
       auth: {
-        user: '****@gmail.com',
-        pass: '***!'
+        user: 'clairepfis@gmail.com',
+        pass: 'simonrubinstein'
       }
     })
 
@@ -34,8 +30,8 @@ module.exports = require('express').Router()
 
 
     var mailOptions = {
-        from: '"Fred Foo bread junior 👻" <myexampleapp7@gmail.com>', // sender address
-      to: 'myexampleapp7@gmail.com', // list of receivers
+        from: '"Fred Foo bread junior 👻" <clairepfis@gmail.com>', // sender address
+      to: 'howebs@yahoo.com', // list of receivers
       subject: 'Hello ✔', // Subject line
       text: 'got bread ?', // plain text body
     html: ' <img src="lets"/>',
@@ -55,20 +51,6 @@ module.exports = require('express').Router()
       transporter.close()
       res.send('WHYYYYYY')*/
     })
-
-
 })
 
-//gipgy
-
-.get('/search', (req,res, next) => {
-
- console.log(giffy, "apikeeyy")
-
-giphy.search('flamingo') // 'flamingo is a keyword to search for
-.then(function (data) {
-    // Res contains gif data!
-    console.log("hitting", data)
-    res.send(data)
-})
-})
+module.exports = j;

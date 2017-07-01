@@ -1,7 +1,7 @@
 import React from 'react'
 import {budgetCreate, send, sendGiff} from '../reducers/budget'
 import {connect} from 'react-redux'
-import {PieChart} from 'react-easy-chart';
+//import {PieChart} from 'react-easy-chart';
 
 
 

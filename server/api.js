@@ -38,6 +38,11 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
+api.get('/timer', function(req, res, next) {
+  console.log('timer!!!')
+  res.send('In the timer route!!')
+})
+
 api.get('/', function (request, response, next) {
   response.render('index.ejs', {
     PLAID_PUBLIC_KEY: PLAID_PUBLIC_KEY,
