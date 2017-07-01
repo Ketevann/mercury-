@@ -8,7 +8,7 @@ import {modalShow} from "../reducers/modal"
 import store from '../store'
 import {logout} from 'APP/app/reducers/auth'
 
-import {PieChart} from 'react-easy-chart';
+//import {PieChart} from 'react-easy-chart';
 
 
 class Expenses extends Component {

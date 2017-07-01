@@ -30,10 +30,11 @@ class Navbar extends Component {
             <div className="container topnav">
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav navbar-left">
+                    <li><img className="logo " src={'./logo3.png'} /></li>
                         <li><Link id="home" to="/home">Home</Link></li>
                         <li><Link id="link" to="/link">Link Accounts</Link></li>
 
-                        
+
                         <li><Link id="link" to="/spending">Spending & Analysis</Link></li>
 
                         <li><Link id="link" to="/budget">my Budget</Link></li>
@@ -43,7 +44,7 @@ class Navbar extends Component {
                      {!this.props.user ?
                         <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
                         :  <div><span className="whoami-user-name">{this.props.user && this.props.user.name}</span>
-                         <button className="logout" onClick={this.props.logout}>Logout</button></div> }
+                         <button type="button" className="btn" onClick={this.props.logout}>Logout</button></div> }
                     </ul>
                 </div>
             </div>

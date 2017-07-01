@@ -14,6 +14,8 @@ import Sidebar from './components/Sidebar'
 import FrontPage from './components/FrontPage'
 import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
+import Front from './components/Front'
+
 
 
 import {fetchTransactions} from './reducers/plaid.jsx'
@@ -43,12 +45,12 @@ const ExampleApp = connect(
   ({ user, children }) =>
     <div>
       {<nav>
-        
+
       </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
-      <Sidebar />
+      {/*<Sidebar /> */}
 
 
 
@@ -73,10 +75,12 @@ render(
          <Route path='/budget' component={Budget} />
          <Route path="/addexpenses" component={BudgetForm} />
         <Route path="/myexpenses" component={Expenses} onEnter={getExpenses}/>
+         <Route path='/home' component={Front} />
+
       </Route>
-      <Route path='/home' component={FrontPage} />
+      {/*<Route path='/home' component={FrontPage} />
       <Route path='/about' component={About} />
-      <Route path='*' component={NotFound} />
+      <Route path='*' component={NotFound} /> */}
     </Router>
   </Provider>,
   document.getElementById('main')
