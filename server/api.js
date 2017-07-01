@@ -24,6 +24,7 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
   .use('/budget', require('./budget'))
+  .use('/nodemailer', require('./nodemailer'))
 
 // We store the access_token in memory - in production, store it in a secure
 // persistent data store
@@ -156,10 +157,10 @@ api.post('/putTokenInDB', (req, res, next) => {
   var user = req.body.user;
   AccessToken.create(
     {
-    
+
         accessToken: req.body.accessToken,
         user_id: user.id
-      
+
     })
     .then((aT) => {
       console.log("AT",aT);

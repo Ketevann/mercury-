@@ -55,7 +55,9 @@
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
+    "giphy-api": "^1.2.6",
     "homedir": "^0.6.0",
+    "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
@@ -80,7 +82,8 @@
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
-    "victory": "^0.21.0"
+    "victory": "^0.21.0",
+    "xoauth2": "^1.2.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",

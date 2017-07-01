@@ -3,14 +3,14 @@ import axios from 'axios'
 const initialState = {budget: null}
 
 const CREATEBUDGET = 'CREATEBUDGET'
-const GETBUDGET = 'GETBUDGET'
+const GETGIF = 'GETGIF'
 
 
 const create = (budget) => {
   console.log("3434343")
 
   return {type: CREATEBUDGET, budget} }
-//const getUser = (budget) => ({type: GETBUDGET, budget})
+const sendGif = (data) => ({type: GETGIF, data})
 
 
 
@@ -24,9 +24,9 @@ const budgetReducer = (budget=initialState, action) => {
     return Object.assign({}, budget, {budget: action.budget})
 
 
-  // case GETBUDGET:
-  // console.log(action.budget, "#$#$#", budget)
-  //   return Object.assign({}, budget, {budget: action.budget})
+  case GETGIF:
+  console.log(action, "#$#lololo$#", budget, action.data)
+    return Object.assign({}, budget, {budget: action.data})
   }
 
 
@@ -42,6 +42,17 @@ export const budgetCreate = (credentials) =>
 
 
 
+export const send = () =>
+  dispatch =>
+  axios.post('/api/nodemailer')
+    .then((res) => (console.log("aaaadid a thing!!!!", res.data)))
+    .catch(console.error())
+
+export const sendGiff = () =>
+  dispatch =>
+  axios.get('/api/nodemailer/search')
+    .then((res) => dispatch(sendGif(res.data)))
+    .catch(console.error())
 
 
 export const userExpenses = () =>
@@ -51,3 +62,4 @@ export const userExpenses = () =>
     .catch(console.error())
 
 export default budgetReducer
+
