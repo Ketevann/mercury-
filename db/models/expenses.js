@@ -41,7 +41,7 @@ module.exports = db => db.define('expense', {
 
 
 })
-// module.exports.associations = (Expense, { User }) => {
-//     Expense.belongsTo(User)
-// }
+module.exports.associations = (Expense, { User }) => {
+    Expense.belongsTo(User)
+}
 
