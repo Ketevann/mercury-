@@ -4,7 +4,7 @@ var xoauth2 = require('xoauth2');
 var nodemailer = require('nodemailer');
 var smtp = require('nodemailer-smtp-transport');
 const giffy = require('../giffy.js')
-var giphy = require('giphy-api')();
+var giphy = require('giphy-api')();  //using secrets does not work - i have secrets on my laptop
 
 // need to add FindUser in case user exists
 module.exports = require('express').Router()
@@ -18,14 +18,14 @@ module.exports = require('express').Router()
       port: 465,
       secure: true, // secure:true for port 465, secure:false for port 587
       auth: {
-        user: 'ketevan.tsin@gmail.com',
-        pass: 'Ninokety1!'
+        user: '****@gmail.com',
+        pass: '***!'
       }
     })
 
     // setup email data with unicode symbols
     // let mailOptions = {
-    //   from: '"Fred Foo bread junior 👻" <ketevan.tsin@gmail.com>', // sender address
+    //   from: '"Fred Foo bread junior 👻" <*****@gmail.com>', // sender address
     //   to: 'ninbaratwli@gmail.com', // list of receivers
     //   subject: 'Hello ✔', // Subject line
     //   text: 'got bread ?', // plain text body
@@ -34,7 +34,7 @@ module.exports = require('express').Router()
 
 
     var mailOptions = {
-        from: '"Fred Foo bread junior 👻" <ketevan.tsin@gmail.com>', // sender address
+        from: '"Fred Foo bread junior 👻" <myexampleapp7@gmail.com>', // sender address
       to: 'myexampleapp7@gmail.com', // list of receivers
       subject: 'Hello ✔', // Subject line
       text: 'got bread ?', // plain text body
@@ -59,13 +59,13 @@ module.exports = require('express').Router()
 
 })
 
-
+//gipgy
 
 .get('/search', (req,res, next) => {
 
  console.log(giffy, "apikeeyy")
 
-giphy.search('flamingo')
+giphy.search('flamingo') // 'flamingo is a keyword to search for
 .then(function (data) {
     // Res contains gif data!
     console.log("hitting", data)
