@@ -59,7 +59,7 @@ module.exports = require('express').Router()
 
  console.log(giffy, "apikeeyy")
 
-giphy.search('kardashian') // 'flamingo is a keyword to search for
+giphy.search('starbucks') // 'flamingo is a keyword to search for
 .then(function (data) {
     // Res contains gif data!
     console.log("hitting", data)
