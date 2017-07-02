@@ -89,7 +89,7 @@ class Spending extends Component {
                         theme={VictoryTheme.material}
                     />
                 </div>
-                <div className=" chart col-md-6">
+                <div className="chart col-md-6">
                     <h6>Percent Spent by Category</h6>
                     <VictoryPie
                         data={this.props.barChartTr}
