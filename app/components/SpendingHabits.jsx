@@ -3,10 +3,21 @@ import { Link } from 'react-router'
 import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar, VictoryTheme, VictoryAxis } from 'victory'
 //import PieChart from './PieChart'
 import { connect } from 'react-redux'
+import { fetchTransactions } from '../reducers/plaid'
 
 class Spending extends Component {
     constructor(props) {
         super(props)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(evt) {
+        evt.preventDefault()
+        const dates = {
+            startDate: evt.target.startDate.value,
+            endDate: evt.target.endDate.value
+        }
+        this.props.fetchTransactions(dates.startDate, dates.endDate)
     }
 
     render() {
@@ -20,14 +31,48 @@ class Spending extends Component {
                 , 0)
         console.log('TOT', tot);
         return (
+
+            <div>
+                <div className="form-container">
+                <h2>Select transaction dates:</h2>
+                    <form className = "pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
+                        <label for="startDate">Start Date:  </label>
+                        <input className="pure-input-rounded" name="startDate" type="date" />
+                        <br />
+                        <label for="endDate">End Date:  </label>
+                        <input className="pure-input-rounded" name="endDate" type="date" />
+                        <br />
+                        <button className="pure-button" type="submit" className="btn">Submit</button>
+                    </form>
+                </div>
+
             <div className="spendinghabits">
             <div>
+
                 <h4> Monthly Budget </h4>
                 <h5>${this.props.monthlyBudget}</h5>
                 <h4> Total Spent</h4>
                 {tot && <h5>${tot.toFixed(2)}</h5>}
                 <h4> Amount Left </h4>
                 {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
+
+                <h3> Monthly Transactions </h3>
+                <table>
+                    <tr>
+                        <th>Location</th>
+                        <th>Type</th>
+                        <th>Cost</th>
+                    </tr>
+                    {
+                        transactions && transactions.map((item) => {
+
+                            return (
+                                <tr>
+                                    <td>{item.name}</td>
+                                    {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
+                                    <td>{item.amount}</td>
+                                </tr>
+
                 <div className="transaction">
                     <h3 > Monthly Transactions </h3>
                 </div>
@@ -54,6 +99,7 @@ class Spending extends Component {
                                     </tr>
 
                                 </tbody>
+
                             )
                         })
 
@@ -87,7 +133,7 @@ class Spending extends Component {
                         y="amount"
                         labels={(datum) => datum.x}
                         theme={VictoryTheme.material}
-                    />
+                        />
                 </div>
                 <div className=" chart col-md-6">
                     <h6>Percent Spent by Category</h6>
@@ -98,9 +144,13 @@ class Spending extends Component {
                         labels={(datum) => {
                             console.log('DATUM', datum.y / 4700)
                             return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
+
+                        } }
+
                         }}
+
                         theme={VictoryTheme.material}
-                    />
+                        />
                 </div>
                 {/*<div className="chart col-md-4">
                     <h2>Savings Progress</h2>
@@ -134,6 +184,7 @@ class Spending extends Component {
 
 
 }
+
 const barChart = (items) => {
     console.log('ITEMS', items)
     var toLoop = items.transactions
@@ -166,5 +217,5 @@ export default connect(
         transac: state.plaid.transactions,
         barChartTr: barChart(state.plaid.transactions),
         monthlyBudget: 3000
-    }), null)(Spending)
+    }), {fetchTransactions})(Spending)
 
