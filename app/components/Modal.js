@@ -33,36 +33,43 @@ class View extends React.Component {
           <ModalDialog className="dialog"onClose={this.handleClose}>
             <div className="clear"></div>
             <br></br>
-            <h3> <a href="#" onClick={()=> this.props.Login() } className="alignleft">Login</a></h3>
-            <h5> <a onClick={() => store.dispatch(this.props.Signup()) }className="alignright">Sign up</a></h5>
+
+
             <br></br>
             {this.props.modal.login === true ?
               <div>
+               <h5> <a onClick={() => store.dispatch(this.props.Signup()) }className="alignright">Sign up</a></h5>
+                <span className="alignright" >Not a member? </span>
 
                 <br></br>
+                <h2 clssName="clear">Member Login</h2>
                 <form onSubmit={evt => {
                   evt.preventDefault()
                   this.props.login(evt.target.email.value, evt.target.password.value)
                   this.handleClose()
                 }
                }>
-                  <input name="email" placeholder="Email" required />
-                  <input name="password" type="password" placeholder="Password" required />
-                  <input type="submit" value="Login" />
-                 </form>
+                  <input className="credentials" name="email" placeholder="Email" required />
+                  <br></br>
+                  <input className="credentials" name="password" type="password" placeholder="Password" required />
+                  <br></br>
+                    <input type="submit" value="Login" />
+                </form>
                 <h5> <a href="#" onClick={()=> this.props.forgot() }>Forgot Password?</a></h5>
                   {this.props.modal.forgotPassword?
                     <form onSubmit={(evt) => this.handleSubmit(evt)}>
                      <input name="email" placeholder="Email" required />
+
                      <input name="password" type="password" placeholder="New Password" required />
-                      <input type="submit" value="Change Password" />
+                      <input  type="submit" value="Change Password" />
                     </form>:null }
               </div> :
               <div>
-
+                 <h5> <a href="#" onClick={()=> this.props.Login() } className="alignright">Login</a></h5>
+                 <span className="alignright" >Alredy a member? </span>
                 <br></br>
                 <br></br>
-
+                  <h2 clssName="clear">Join Mercury</h2>
                   <form onSubmit={evt => {
                      evt.preventDefault()
                     console.log(evt.target.email.value, ' valuee')
@@ -70,10 +77,12 @@ class View extends React.Component {
                   this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
                    }
                   }>
-                    <input name="name" placeholder="Name"required />
-
-                    <input name="email" placeholder="Email" required />
-                  <input name="password" type="password" placeholder="Password" required />
+                    <input className="credentials" name="name" placeholder="Name"required />
+                    <br></br>
+                    <input className="credentials" name="email" placeholder="Email" required />
+                    <br></br>
+                  <input className="credentials" name="password" type="password" placeholder="Password" required />
+                  <br></br>
                     <input type="submit" value="Login" />
                   </form></div> }
                 <br></br>

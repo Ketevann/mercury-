@@ -11,6 +11,9 @@ import {logout} from 'APP/app/reducers/auth'
 
 
 
+//import {PieChart} from 'react-easy-chart';
+
+
 class Expenses extends Component {
   constructor(props){
     super(props)

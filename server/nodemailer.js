@@ -9,8 +9,7 @@ var giphy = require('giphy-api')();  //using secrets does not work - i have secr
 // need to add FindUser in case user exists
 module.exports = require('express').Router()
   .post('/', (req, res, next) =>{
-    console.log("in nodemailer!!!!!!*************")
-
+        console.log("i!!n nodemailer!!!!!!*************")
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -18,11 +17,10 @@ module.exports = require('express').Router()
       port: 465,
       secure: true, // secure:true for port 465, secure:false for port 587
       auth: {
-        user: '****@gmail.com',
-        pass: '***!'
+        user: 'myexampleapp7@gmail.com',
+        pass: 'nodemailer'
       }
     })
-
     // setup email data with unicode symbols
     // let mailOptions = {
     //   from: '"Fred Foo bread junior 👻" <*****@gmail.com>', // sender address
@@ -31,11 +29,9 @@ module.exports = require('express').Router()
     //   text: 'got bread ?', // plain text body
     //   html: '<b>got bread  ?</b>' // html body
     // }
-
-
     var mailOptions = {
         from: '"Fred Foo bread junior 👻" <myexampleapp7@gmail.com>', // sender address
-      to: 'myexampleapp7@gmail.com', // list of receivers
+      to: 'ketevan.tsin@gmail.com', // list of receivers
       subject: 'Hello ✔', // Subject line
       text: 'got bread ?', // plain text body
     html: ' <img src="lets"/>',
@@ -55,8 +51,6 @@ module.exports = require('express').Router()
       transporter.close()
       res.send('WHYYYYYY')*/
     })
-
-
 })
 
 //gipgy
@@ -65,7 +59,7 @@ module.exports = require('express').Router()
 
  console.log(giffy, "apikeeyy")
 
-giphy.search('flamingo') // 'flamingo is a keyword to search for
+giphy.search('starbucks') // 'flamingo is a keyword to search for
 .then(function (data) {
     // Res contains gif data!
     console.log("hitting", data)

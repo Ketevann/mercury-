@@ -29,11 +29,12 @@ class LinkAccounts extends Component {
 
     render() {
         return (
-            <div>
-                <button onClick={this.props.connectPlaid}>Open Plaid</button>
-                <button onClick={this.props.fetchAccounts}>Get Accounts</button>
-                <button onClick={this.props.fetchTransactions}>Get Transactions</button>
-                <button onClick={this.props.fetchItems}>Get Items</button>
+            <div className="linkedaccounts">
+
+                <button className="transbutton btn" onClick={this.props.connectPlaid}>Open Plaid</button>
+                <button className="transbutton btn" onClick={this.props.fetchAccounts}>Get Accounts</button>
+                <button className="transbutton btn" onClick={this.props.fetchTransactions}>Get Transactions</button>
+                <button className="transbutton btn" onClick={this.props.fetchItems}>Get Items</button>
                 {this.state.plaidData.map(({ institution }) => <div>{institution.name} - {institution.type}</div>)}
                 <form onSubmit={(evt)=>{
                     console.log('in??')

@@ -10,9 +10,9 @@ class Budget extends Component {
   }
   render(){
 
-    return (<div>
-    <Link to="/addexpenses"><h3>Edit Expenses</h3></Link>
-    <Link to="/myexpenses"><h3>My Expenses</h3></Link>
+    return (<div className="budget">
+    <Link to="/addexpenses"><button className="budgetbutton btn">Edit Expenses</button></Link>
+    <Link to="/myexpenses"><button className="budgetbutton btn">My Expenses</button></Link>
 
     </div>)
   }
