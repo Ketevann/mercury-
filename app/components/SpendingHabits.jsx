@@ -31,7 +31,6 @@ class Spending extends Component {
                 , 0)
         console.log('TOT', tot);
         return (
-
             <div>
                 <div className="form-container">
                 <h2>Select transaction dates:</h2>
@@ -45,17 +44,12 @@ class Spending extends Component {
                         <button className="pure-button" type="submit" className="btn">Submit</button>
                     </form>
                 </div>
-
-            <div className="spendinghabits">
-            <div>
-
                 <h4> Monthly Budget </h4>
                 <h5>${this.props.monthlyBudget}</h5>
                 <h4> Total Spent</h4>
                 {tot && <h5>${tot.toFixed(2)}</h5>}
                 <h4> Amount Left </h4>
                 {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
-
                 <h3> Monthly Transactions </h3>
                 <table>
                     <tr>
@@ -72,37 +66,8 @@ class Spending extends Component {
                                     {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
                                     <td>{item.amount}</td>
                                 </tr>
-
-                <div className="transaction">
-                    <h3 > Monthly Transactions </h3>
-                </div>
-                <table className="table table-bordered">
-                    <thead className="habits" >
-                        <tr>
-                            <th>#</th>
-                            <th>Location</th>
-                            <th>Type</th>
-                            <th>Cost</th>
-                        </tr>
-                    </thead>
-                    {
-                        transactions && transactions.map((item, index) => {
-
-                            return (
-
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{index + 1}</th>
-                                        <td>{item.name}</td>
-                                        {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
-                                        <td>{item.amount}</td>
-                                    </tr>
-
-                                </tbody>
-
                             )
                         })
-
                     }
 
                 </table>
@@ -135,7 +100,7 @@ class Spending extends Component {
                         theme={VictoryTheme.material}
                         />
                 </div>
-                <div className=" chart col-md-6">
+                <div className="chart col-md-6">
                     <h6>Percent Spent by Category</h6>
                     <VictoryPie
                         data={this.props.barChartTr}
@@ -144,11 +109,7 @@ class Spending extends Component {
                         labels={(datum) => {
                             console.log('DATUM', datum.y / 4700)
                             return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
-
                         } }
-
-                        }}
-
                         theme={VictoryTheme.material}
                         />
                 </div>
@@ -177,7 +138,7 @@ class Spending extends Component {
                 </div>*/}
 
             </div>
-            </div>
+
 
         )
     }
@@ -218,4 +179,3 @@ export default connect(
         barChartTr: barChart(state.plaid.transactions),
         monthlyBudget: 3000
     }), {fetchTransactions})(Spending)
-

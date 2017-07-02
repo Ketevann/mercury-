@@ -53,7 +53,7 @@ class View extends React.Component {
                   <br></br>
                   <input className="credentials" name="password" type="password" placeholder="Password" required />
                   <br></br>
-                  <button type="button" className="btn">Login</button>
+                   <input type="submit" value="Login" />
                 </form>
                 <h5> <a href="#" onClick={()=> this.props.forgot() }>Forgot Password?</a></h5>
                   {this.props.modal.forgotPassword?
@@ -83,7 +83,7 @@ class View extends React.Component {
                     <br></br>
                   <input className="credentials" name="password" type="password" placeholder="Password" required />
                   <br></br>
-                   <button type="button" className="btn">Sign Up</button>
+                    <input type="submit" value="Login" />
                   </form></div> }
                 <br></br>
                  <a href="/api/auth/login/google"> <button className="google"></button> </a>
@@ -99,6 +99,3 @@ export default connect(
    ({ modal }) => ({ modal: modal }),
   {modalShow, modalHide, login, signup, Login, Signup, forgot, newPassowrd},
 )(View)
-
-
-
