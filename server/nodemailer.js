@@ -4,6 +4,7 @@ var xoauth2 = require('xoauth2');
 var nodemailer = require('nodemailer');
 var smtp = require('nodemailer-smtp-transport');
 // const giffy = require('../giffy.js')
+
 var giphy = require('giphy-api')();  //using secrets does not work - i have secrets on my laptop
 
 // need to add FindUser in case user exists
@@ -59,7 +60,7 @@ module.exports = require('express').Router()
 
  console.log(giffy, "apikeeyy")
 
-giphy.search('kardashian') // 'flamingo is a keyword to search for
+giphy.search('starbucks') // 'flamingo is a keyword to search for
 .then(function (data) {
     // Res contains gif data!
     console.log("hitting", data)
