@@ -53,6 +53,7 @@ class View extends React.Component {
                   <br></br>
                   <input className="credentials" name="password" type="password" placeholder="Password" required />
                   <br></br>
+     
                     <input type="submit" value="Login" />
                 </form>
                 <h5> <a href="#" onClick={()=> this.props.forgot() }>Forgot Password?</a></h5>
@@ -99,6 +100,3 @@ export default connect(
    ({ modal }) => ({ modal: modal }),
   {modalShow, modalHide, login, signup, Login, Signup, forgot, newPassowrd},
 )(View)
-
-
-

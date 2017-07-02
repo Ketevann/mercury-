@@ -3,7 +3,8 @@
 var xoauth2 = require('xoauth2');
 var nodemailer = require('nodemailer');
 var smtp = require('nodemailer-smtp-transport');
-//const giffy = require('../giffy.js')
+// const giffy = require('../giffy.js')
+
 var giphy = require('giphy-api')();  //using secrets does not work - i have secrets on my laptop
 
 // need to add FindUser in case user exists
