@@ -6,6 +6,7 @@ const AccessToken = db.model('accessToken');
 const User = db.model('users');
 const plaid = require('plaid')
 const envvar = require('envvar')
+var giphy = require('giphy-api')();
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
@@ -17,7 +18,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('10 * * * *', function(){
+var j = schedule.scheduleJob('32 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include:[User]}).then((token)=> {
@@ -63,17 +64,21 @@ var j = schedule.scheduleJob('10 * * * *', function(){
     //   text: 'got bread ?', // plain text body
     //   html: '<b>got bread  ?</b>' // html body
     // }
-
-
+    console.log('to pass:',token[0].user.thing )
+    giphy.search(token[0].user.thing) // 'flamingo is a keyword to search for
+		.then(function (data) {
+    // Res contains gif data!
+    console.log('found a gif!!!')
+    console.log('HAS A THING??',data.data[0])
     var mailOptions = {
         from: '"Fred Foo bread junior 👻" <clairepfis@gmail.com>', // sender address
-      to: 'howebs@yahoo.com', // list of receivers
+      to: 'clairepfis@gmail.com', // list of receivers
       subject: fin, // Subject line
-      text: fin, // plain text body
-    html: ' <img src="lets"/>',
+      text: 'fin', // plain text body
+    html: `<${fin}img src="lets"/>`,
     attachments: [{
-        filename: 'image.png',
-        path: 'http://cutepuppyclub.com/wp-content/uploads/2015/05/White-Cute-Puppy-.jpg',
+        filename: 'image.gif',
+        path: data.data[0].images.downsized.url,
         cid: 'lets' //same cid value as in the html img src
     }]
 }
@@ -87,6 +92,7 @@ var j = schedule.scheduleJob('10 * * * *', function(){
       transporter.close()
       res.send('WHYYYYYY')*/
     })
+    }).catch((error)=>console.log(error))
 })
   })
   })
