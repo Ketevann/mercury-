@@ -10,14 +10,6 @@ const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
 const db = require('../db')
 const AccessToken = db.model('accessToken');
 
-var x = new Date();
-var z = x.toString().split(' ');
-var month = (x.getMonth() < 10) ? '0' + x.getMonth() : x.getMonth()
-var currentMonth = z[3] + '-' + month + '-' + (+z[2] - 1);
-var prevmonth = (month === 1) ? 12 : month - 1;
-prevmonth = (prevmonth < 10) ? '0' + prevmonth : prevmonth;
-var prevMonth = z[3] + '-' + prevmonth + '-' + (+z[2] - 1);
-
 api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))
   .use('/auth', require('./auth'))
@@ -125,14 +117,9 @@ api.post('/item', function (request, response, next) {
 })
 
 api.post('/transactions', function (request, response, next) {
-  // Pull transactions for the Item for the last 30 days
-  // let startDate = moment().subtract(30, 'days').format('YYYY-MM-DD')
-  //let startDate = prevMonth 
-  let startDate = '2017-01-01'
-  //console.log('DATES', prevMonth, currentMonth)
-  // let endDate = moment().format('YYYY-MM-DD')
-  //let endDate = currentMonth
-  let endDate = '2017-02-15'
+
+  let startDate = request.body.startDate
+  let endDate = request.body.endDate
 
   AccessToken.find({
     where: {
@@ -140,7 +127,6 @@ api.post('/transactions', function (request, response, next) {
     }
   })
     .then(foundUser => {
-      console.log('USERRR', foundUser)
       client.getTransactions(foundUser.dataValues.accessToken, startDate, endDate, {
         count: 250,
         offset: 0,
@@ -166,9 +152,8 @@ api.post('/putTokenInDB', (req, res, next) => {
       accessToken: req.body.accessToken,
       user_id: user.id
     })
-    .then((aT) => {
-      console.log("AT", aT);
-      res.send(aT);
+    .then((accessToken) => {
+      res.send(accessToken);
     })
 })
 

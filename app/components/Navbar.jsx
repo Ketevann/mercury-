@@ -25,8 +25,8 @@ class Navbar extends Component {
   render() {
     {console.log(this.props, ' we have props')}
 
-    return (
-        <nav className="navbar navbar-inverse   navbar-fixed-top topnav " role="navigation">
+    return ( 
+        <nav className="navbar navbar-inverse navbar-fixed-top topnav " role="navigation">
             <div className="container topnav">
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav navbar-left">

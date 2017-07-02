@@ -38,11 +38,13 @@ export const fetchAccessToken = (public_token) =>
 		Promise.all([user, accessToken]).spread((user, accessToken) => {
 			console.log('USER ', user.data, accessToken.data)
 			return axios.post('/api/putTokenInDB',
-				{ user: user.data, 
-				  accessToken: accessToken.data })
+				{
+					user: user.data,
+					accessToken: accessToken.data
+				})
 		})
-			.then((thing) => {
-				console.log('in db?????')
+			.then((accessToken) => {
+
 				console.log(thing)
 			})
 			.catch(err => console.error('Fetching access token unsuccessful', err))
@@ -72,9 +74,9 @@ export const fetchAccounts = (access_token) =>
 			})
 			.catch(err => console.error('Fetching accounts unsuccessful', err))
 
-export const fetchTransactions = (access_token) =>
+export const fetchTransactions = (startDate, endDate) =>
 	dispatch =>
-		axios.post('/api/transactions')
+		axios.post('/api/transactions', { startDate: startDate, endDate: endDate })
 			.then(res => {
 				console.log('TRANSANCTIONS', res.data)
 				dispatch(getTransactions(res.data))
