@@ -32,6 +32,8 @@ export const signup = ( email, password, name) =>
         .then(() => dispatch(whoami()))
         .catch(() => dispatch(whoami()))
 
+
+
 export const thirdPartyLogin = (provider) =>
   dispatch =>
      axios.get(`/api/auth/login/${provider}`)

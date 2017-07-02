@@ -3,6 +3,7 @@ var axios = require('axios');
 var nodemailer = require('nodemailer');
 const db = require('../db')
 const AccessToken = db.model('accessToken');
+const User = db.model('users');
 const plaid = require('plaid')
 const envvar = require('envvar')
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
@@ -16,12 +17,12 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('33 * * * *', function(){
+var j = schedule.scheduleJob('10 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
-  AccessToken.findAll({}).then((token)=> {
-  	console.log('token?',token[1])
-  	client.getTransactions(token[1].accessToken, '2017-06-01','2017-06-30' , {
+  AccessToken.findAll({include:[User]}).then((token)=> {
+  	console.log('token?',token[0])
+  	client.getTransactions(token[0].accessToken, '2017-06-01','2017-06-30' , {
     count: 250,
     offset: 0,
   }, function (error, transactionsResponse) {
@@ -33,6 +34,16 @@ var j = schedule.scheduleJob('33 * * * *', function(){
     }
     console.log('Transactions:',transactionsResponse)
     console.log('pulled ' + transactionsResponse.transactions.length + ' transactions')
+    var total = transactionsResponse.transactions.reduce((total,val)=>{
+    	if(val.name===token[0].user.thing)
+    		return total+val.amount;
+    	else return total
+    },0)
+    console.log(total,typeof total);
+    console.log(total, token[0].user.thing )
+    var message = (total<token[0].user.amount) ? `${token[0].user.name} was successful!` : `${token[0].user.name} was unsuccessful!`
+    var second = `${token[0].user.name} spent ${total} on ${token[0].user.thing} - goal was ${token[0].user.amount}` 
+    var fin = message + " "+second;
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       host: 'smtp.gmail.com',
@@ -57,8 +68,8 @@ var j = schedule.scheduleJob('33 * * * *', function(){
     var mailOptions = {
         from: '"Fred Foo bread junior 👻" <clairepfis@gmail.com>', // sender address
       to: 'howebs@yahoo.com', // list of receivers
-      subject: `${transactionsResponse.transactions[0].name}`, // Subject line
-      text: `${transactionsResponse.transactions.length}`, // plain text body
+      subject: fin, // Subject line
+      text: fin, // plain text body
     html: ' <img src="lets"/>',
     attachments: [{
         filename: 'image.png',

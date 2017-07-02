@@ -175,6 +175,18 @@ api.post('/putTokenInDB', (req, res, next) => {
     })
 })
 
+api.put('/addToUser', (req,res,next)=>{
+  console.log('HIT THIS ROUTE?')
+  var user = req.user
+  user.update({
+    thing: req.body.thing,
+    amount: req.body.amount
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
 
