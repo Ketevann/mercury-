@@ -31,6 +31,13 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
+
+
+api.get('/timer', function(req, res, next) {
+  console.log('timer!!!')
+  res.send('In the timer route!!')
+})
+
 api.get('/', function (request, response, next) {
   response.render('index.ejs', {
     PLAID_PUBLIC_KEY: PLAID_PUBLIC_KEY,
@@ -171,5 +178,18 @@ api.post('/putTokenInDB', (req, res, next) => {
     })
 })
 
+api.put('/addToUser', (req,res,next)=>{
+  console.log('HIT THIS ROUTE?')
+  var user = req.user
+  user.update({
+    thing: req.body.thing,
+    amount: req.body.amount
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
+

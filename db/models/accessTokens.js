@@ -5,8 +5,7 @@ const { STRING } = require('sequelize')
 
 module.exports = db => db.define('accessToken', {
   accessToken: {
-    type: STRING,
-    allowNull: false
+    type: STRING
   }
 })
 module.exports.associations = (AccessToken, { User }) => {

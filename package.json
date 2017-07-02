@@ -57,6 +57,7 @@
     "finalhandler": "^1.0.0",
     "giphy-api": "^1.2.6",
     "homedir": "^0.6.0",
+    "node-schedule": "^1.2.3",
     "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.3.2",
