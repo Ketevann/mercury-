@@ -14,6 +14,7 @@ npm-debug.log
 #secrets
 newCredentials.js
 mercury.js
+giffy.js
 
 .DS_Store
 

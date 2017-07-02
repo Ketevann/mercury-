@@ -15,6 +15,15 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
 
+
+  .use('/budget', require('./budget'))
+  .use('/nodemailer', require('./nodemailer'))
+
+// We store the access_token in memory - in production, store it in a secure
+// persistent data store
+// const ACCESS_TOKEN = null
+
+
 const client = new plaid.Client(
   PLAID_CLIENT_ID,
   PLAID_SECRET,
@@ -151,6 +160,11 @@ api.post('/putTokenInDB', (req, res, next) => {
     {
       accessToken: req.body.accessToken,
       user_id: user.id
+
+
+        accessToken: req.body.accessToken,
+        user_id: user.id
+
     })
     .then((accessToken) => {
       res.send(accessToken);

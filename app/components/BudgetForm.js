@@ -1,6 +1,8 @@
 import React from 'react'
-import {budgetCreate} from '../reducers/budget'
+import {budgetCreate, send, sendGiff} from '../reducers/budget'
 import {connect} from 'react-redux'
+//import {PieChart} from 'react-easy-chart';
+
 
 
 class BudgetForm extends React.Component  {
@@ -124,6 +126,11 @@ class BudgetForm extends React.Component  {
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
        </form>
+       <button onClick={() => this.props.send()}>send</button>
+       <button onClick={() => this.props.sendGiff()}>senssd</button>
+       {this.props.budget.budget !== null ?
+
+         <img src={this.props.budget.budget.data[5].images.downsized.url} /> :null}
       </div>
 
     )
@@ -136,6 +143,6 @@ class BudgetForm extends React.Component  {
 
 
 export default connect(
- ({ modal, auth }) => ({ modal: modal, user: auth }),
-  {budgetCreate},
+ ({ modal, auth, budget }) => ({ modal: modal, user: auth, budget: budget }),
+  {budgetCreate, send, sendGiff},
 )(BudgetForm)
