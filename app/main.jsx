@@ -15,6 +15,7 @@ import FrontPage from './components/FrontPage'
 import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
 import Front from './components/Front'
+import Footer from './components/Footer'
 
 
 
@@ -50,6 +51,8 @@ const ExampleApp = connect(
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
+            <Footer />
+
       {/*<Sidebar /> */}
 
 

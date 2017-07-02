@@ -130,7 +130,7 @@ class BudgetForm extends React.Component  {
        <button onClick={() => this.props.sendGiff()}>senssd</button>
        {this.props.budget.budget !== null ?
 
-         <img src={this.props.budget.budget.data[1].images.downsized.url} /> :null}
+         <img src={this.props.budget.budget.data[5].images.downsized.url} /> :null}
       </div>
 
     )
