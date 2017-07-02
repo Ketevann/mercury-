@@ -38,6 +38,8 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
+
+
 api.get('/timer', function(req, res, next) {
   console.log('timer!!!')
   res.send('In the timer route!!')
@@ -175,3 +177,4 @@ api.post('/putTokenInDB', (req, res, next) => {
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
+

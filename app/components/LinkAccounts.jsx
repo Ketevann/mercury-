@@ -22,6 +22,17 @@ class LinkAccounts extends Component {
                 <button onClick={this.props.fetchTransactions}>Get Transactions</button>
                 <button onClick={this.props.fetchItems}>Get Items</button>
                 {this.state.plaidData.map(({ institution }) => <div>{institution.name} - {institution.type}</div>)}
+                <form>
+                    <label>
+                    Thing:
+                    <input type="text" name="thing" />
+                    </label>
+                    <label>
+                    Dollar Amount:
+                    <input type="text" name="dollar" />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         )
     }
