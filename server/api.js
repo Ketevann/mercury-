@@ -160,11 +160,6 @@ api.post('/putTokenInDB', (req, res, next) => {
     {
       accessToken: req.body.accessToken,
       user_id: user.id
-
-
-        accessToken: req.body.accessToken,
-        user_id: user.id
-
     })
     .then((accessToken) => {
       res.send(accessToken);
