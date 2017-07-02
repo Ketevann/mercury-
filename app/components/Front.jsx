@@ -16,7 +16,9 @@ class Front extends Component {
 
     return (<div className="homepage">
 
-      <h3 className="text">Stop living paycheck to paycheck and control your life.</h3>
+      <h2 className="tex header"> SPEND YOUR MONEY WISELY</h2>
+      <h4 className="text">Mercury helps you see all your accounts at one place</h4>
+      <h4 className="hometext"> understand where your money goes, reduce unwanted spending, and save for future goals</h4>
       <button onClick={() => store.dispatch(this.props.modalShow()) }type="button" className="btn btn-warning">Sign Up</button>
       {this.props.modal.signup ? <View /> :null}
 
