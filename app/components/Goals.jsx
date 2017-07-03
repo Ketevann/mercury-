@@ -1,33 +1,36 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-class Goals extends React.Component {
+export default class Goals extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = { value: '' };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+  // handleChange(event) {
+  //   this.setState({ value: event.target.value });
+  // }
 
-  handleSubmit(event) {
-    alert('A goal was added: ' + this.state.value);
-    event.preventDefault();
-  }
+  // handleSubmit(event) {
+  //   alert('A goal was added: ' + this.state.value);
+  //   event.preventDefault();
+  // }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="goalsMain">
+        <h2>Your Goals</h2>
+        <div className="header">
+          <form>
+            <input placeholder="Enter Goal">
+            </input>
+            <button type="submit">+</button>
+          </form>
+        </div>
+      </div>
     );
   }
 }
