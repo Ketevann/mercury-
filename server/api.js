@@ -6,7 +6,7 @@ const envvar = require('envvar')
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
+const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
 const db = require('../db')
 const AccessToken = db.model('accessToken');
 
@@ -154,6 +154,7 @@ api.post('/transactions', function (request, response, next) {
           })
         }
         console.log('pulled ' + transactionsResponse.transactions.length + ' transactions')
+
         response.json(transactionsResponse)
       })
     })
@@ -185,6 +186,19 @@ api.put('/addToUser', (req,res,next)=>{
     res.send(updated)
   })
 })
+
+api.get('/bla', (req, res, next) =>{
+  console.log("GEEEET")
+   var categories
+   client.getCategories(function(err, response) {
+            // Handle err
+              categories = response.categories
+res.send({cat:categories})
+            })
+            console.log('categories********', categories )
+
+})
+
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())

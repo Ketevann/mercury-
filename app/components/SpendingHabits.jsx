@@ -4,6 +4,8 @@ import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar, Vict
 //import PieChart from './PieChart'
 import { connect } from 'react-redux'
 import { fetchTransactions } from '../reducers/plaid'
+import store from '../store'
+import {getCategories} from '../reducers/plaid'
 
 class Spending extends Component {
     constructor(props) {
@@ -151,6 +153,7 @@ handleSubmit(evt) {
 
                     </div>
                 </div>
+                <button onClick={() => store.dispatch(getCategories())}>BLA</button>
                 </div>
 
                 )

@@ -23,7 +23,7 @@ export const getTransactions = transactions => ({
 
 // ------------------------- dispatchers ------------------------
 /*export const fetchAccessToken = (public_token) =>
-	dispatch => 
+	dispatch =>
 		axios.post('/api/get_access_token', {public_token: public_token})
 			.then(res => {
 				dispatch(getAccessToken(res.data))
@@ -45,7 +45,6 @@ export const fetchAccessToken = (public_token) =>
 		})
 			.then((accessToken) => {
 
-				console.log(thing)
 			})
 			.catch(err => console.error('Fetching access token unsuccessful', err))
 	}
@@ -56,7 +55,7 @@ export const connectPlaid = () =>
 		Plaid.create({
 			apiVersion: 'v2',
 			clientName: 'Mercury',
-			env: 'sandbox',
+			env: 'development',
 			product: ['auth'],
 			key: PLAID_PUBLIC_KEY,
 			onSuccess: (public_token) => {
@@ -91,6 +90,14 @@ export const fetchItems = (access_token) =>
 				console.log('ITEM', res.data)
 			})
 			.catch(err => console.error('Fetching items unsuccessful', err))
+
+export const getCategories = () =>
+dispatch =>
+axios.get('/api/bla')
+.then(res => {
+console.log('ITEM', res.data)
+})
+.catch(err => console.error('Fetching items unsuccessful', err))
 
 
 // ------------------------------- reducers ---------------------------------

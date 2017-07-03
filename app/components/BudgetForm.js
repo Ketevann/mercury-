@@ -47,7 +47,7 @@ class BudgetForm extends React.Component  {
         <div className="form-group row">
           <label htmlFor="example-text-input" className="col-2 col-form-label">Debt</label>
           <div className="col-10">
-            <input className="form-control" name="debt" type="number"  step="0.01" id="example-text-input" />
+            <input className="form-control" placeholder='0' name="debt" type="number"  step="0.01" id="example-text-input" />
           </div>
         </div>
         <div className="form-group row">
@@ -128,10 +128,7 @@ class BudgetForm extends React.Component  {
        </form>
        <button onClick={() => this.props.send()}>send</button>
        <button onClick={() => this.props.sendGiff()}>senssd</button>
-       {this.props.budget.budget !== null ?
 
-                        console.log(this.props.budget.budget.data, "dataaa")
- :null}
       </div>
 
     )
@@ -142,7 +139,10 @@ class BudgetForm extends React.Component  {
 
 
 
+// {this.props.budget.budget  ?
 
+//          <img src={this.props.budget.budget.data[0].images.downsized.url} />
+//  :null}
 export default connect(
  ({ modal, auth, budget }) => ({ modal: modal, user: auth, budget: budget }),
   {budgetCreate, send, sendGiff},

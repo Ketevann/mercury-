@@ -11,7 +11,7 @@ import {logout} from 'APP/app/reducers/auth'
 
 
 
-//import {PieChart} from 'react-easy-chart';
+import {BarChart} from 'react-easy-chart';
 
 
 class Expenses extends Component {
@@ -20,15 +20,28 @@ class Expenses extends Component {
   }
 
   render(){
+    let budgetArr=[]
     let budgeting = {}
     console.log("props in expenses", this.props)
     return(
       <div>
-        <h1> Budget </h1>
+       <h1>budget</h1>
+       {this.props.budget.budget?
+        Object.keys(this.props.budget.budget).map(key =>{
+           budgetArr.push({x: 'A', y: this.props.budget.budget[key] })
+        }) : null }
+        {console.log(budgetArr)}
+     { budgetArr.length ?
+       <BarChart
+    colorBars
+    height={150}
+    width={650}
+    data={budgetArr}
+  /> : null }
       </div>
       )
-    }
 
+  }
 }
 
 export default connect(

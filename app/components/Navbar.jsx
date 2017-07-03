@@ -45,8 +45,8 @@ class Navbar extends Component {
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?
                         <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
-                        :  <div><span className="whoami-user-name">{this.props.user && this.props.user.name}</span>
-                         <button type="button" className="btn" onClick={this.props.logout}>Logout</button></div> }
+                        :  <div><Link to="#" className="logout whoami-user-name">{this.props.user && this.props.user.name}</Link>
+                         <button type="button" className="logout btn" onClick={this.props.logout}>Logout</button></div> }
                     </ul>
                 </div>
             </div>
