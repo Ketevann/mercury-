@@ -4,11 +4,11 @@
 
 module.exports = db => db.define('goal', {
   description: {
-      type: Sequelize.STRING,
+      type: STRING,
       allowNull: true
   },
    importance:{
-      type: Sequelize.STRING,
+      type: STRING,
       allowNull: true
   },
 })
