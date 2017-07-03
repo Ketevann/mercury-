@@ -4,7 +4,7 @@
 
 module.exports = db => db.define('goal', {
   description: {
-      type: STRING,
+      type: TEXT,
       allowNull: true
   },
    importance:{
