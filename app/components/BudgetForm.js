@@ -21,7 +21,7 @@ class BudgetForm extends React.Component  {
       emergencies: evt.target.emergency.value,
       events: evt.target.events.value,
       food: evt.target.food.value,
-      health: evt.target.health.value,
+      healthcare: evt.target.healthcare.value,
       house: evt.target.house.value,
       insurance: evt.target.insurance.value,
       transportation: evt.target.transporation.value,
@@ -83,7 +83,7 @@ class BudgetForm extends React.Component  {
         <div className="form-group row">
           <label htmlFor="example-tel-input" className="col-2 col-form-label">Healthcare</label>
           <div className="col-10">
-            <input className="form-control" name="health" type="number" step="0.01" id="example-tel-input" />
+            <input className="form-control" name="healthcare" type="number" step="0.01" id="example-tel-input" />
           </div>
         </div>
         <div className="form-group row">

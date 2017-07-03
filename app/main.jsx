@@ -75,9 +75,9 @@ render(
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
         <Route path='/spending' component={Spending} onEnter={getTransac}/>
-         <Route path='/budget' component={Budget} onEnter={getExpenses}/>
+         <Route path='/budget' component={Budget} />
          <Route path="/addexpenses" component={BudgetForm} />
-        <Route path="/myexpenses" component={Expenses} />
+        <Route path="/myexpenses" component={Expenses} onEnter={getExpenses} />
          <Route path='/home' component={Front} />
 
       </Route>

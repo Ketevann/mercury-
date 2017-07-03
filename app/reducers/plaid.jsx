@@ -11,6 +11,7 @@ const initialPlaidState = {
 // --------------------------- actions --------------------------
 const GETACCESSTOKEN = 'GET_ACCESSTOKEN'
 const GETTRANSAC = 'GET_TRANSACTIONS'
+const CATEGORIES = 'CATEGORIES'
 
 // ------------------------ action creator ----------------------
 export const getAccessToken = accessToken => ({
@@ -91,11 +92,16 @@ export const fetchItems = (access_token) =>
 			})
 			.catch(err => console.error('Fetching items unsuccessful', err))
 
+export const getCat = categories => ({
+	type: CATEGORIES, categories
+})
+
 export const getCategories = () =>
 dispatch =>
 axios.get('/api/bla')
 .then(res => {
 console.log('ITEM', res.data)
+  dispatch(getCat(res.data))
 })
 .catch(err => console.error('Fetching items unsuccessful', err))
 
@@ -108,6 +114,9 @@ const reducer = (state = initialPlaidState, action) => {
 			return Object.assign({}, state, { accessToken: action.accessToken })
 		case GETTRANSAC:
 			return Object.assign({}, state, { transactions: action.transactions })
+		case CATEGORIES:
+		console.log("action************", action.categories )
+			return Object.assign({}, state, { transactions: action.categories.cat })
 		default:
 			return state
 	}

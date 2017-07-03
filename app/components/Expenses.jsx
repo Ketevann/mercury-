@@ -21,19 +21,29 @@ class Expenses extends Component {
 
   render(){
     let budgetArr=[]
-    let budgeting = []
-    console.log("props in expenses", this.props)
+    let budgeting = [], sum = 0, names =[]
+    {console.log("props in expenses", this.props, this.props.plaid.transactions)}
+    { this.props.plaid ?
+    this.props.plaid.transactions.map(val => {
+      return names = names.concat(val.hierarchy)
+    })
+  : null}
+  {console.log(names.slice(603, 800), names.length)
+
+  }
     return(
       <div>
-       <h1>budget</h1>
+
        {this.props.budget.budget?
         Object.keys(this.props.budget.budget).map(key =>{
           if (key!=='created_at' && key!=='updated_at' && key!=='user_id' && key!=='id')
+          sum += Number(this.props.budget.budget[key])
            budgetArr.push({x: key, y: Number(this.props.budget.budget[key]) })
         }) : null }
         {budgetArr.forEach(val =>{
           console.log(val)
         })}
+        <h1>Total Expenses: ${sum} </h1>
      { budgetArr.length ?
        <BarChart
 
@@ -77,6 +87,6 @@ return(
 }
 
 export default connect(
-   ({ modal, auth, budget }) => ({ modal: modal, user: auth, budget: budget }),
+   ({ modal, auth, budget, plaid }) => ({ modal: modal, user: auth, budget: budget, plaid }),
   {modalShow, logout},
 )(Expenses)
