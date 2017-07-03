@@ -14,7 +14,7 @@ api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
-
+   .use('/goals', require('./goal'))
 
   .use('/budget', require('./budget'))
   .use('/nodemailer', require('./nodemailer'))
