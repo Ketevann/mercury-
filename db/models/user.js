@@ -19,6 +19,14 @@ module.exports = db => db.define('users', {
   amount: {
     type: INTEGER
   },
+  budgetUpdates:{
+    type: ENUM('ON','OFF'),
+    defaultValue: 'ON'
+  },
+  prodUpdates:{
+    type: ENUM('ON','OFF'),
+    defaultValue: 'ON'
+  },
   //  isAdmin: {
   //     type: BOOLEAN,
   //     defaultValue: false

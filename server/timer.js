@@ -18,7 +18,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('56 * * * *', function(){
+var j = schedule.scheduleJob('32 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include:[User]}).then((token)=> {
@@ -52,7 +52,7 @@ var j = schedule.scheduleJob('56 * * * *', function(){
       secure: true, // secure:true for port 465, secure:false for port 587
       auth: {
         user: 'clairepfis@gmail.com',
-        pass: '********'
+        pass: 'simonrubinstein'
       }
     })
 
@@ -72,7 +72,7 @@ var j = schedule.scheduleJob('56 * * * *', function(){
     console.log('HAS A THING??',data.data[0])
     var mailOptions = {
         from: '"Mercury" <clairepfis@gmail.com>', // sender address
-      to: 'clairepfis@gmail.com', // list of receivers
+      to: 'clairepfis@gmail.com, howebs@yahoo.com', // list of receivers
       subject: fin, // Subject line
       text: 'fin', // plain text body
     html: `<${fin}img src="lets"/>`,

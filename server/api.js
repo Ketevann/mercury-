@@ -186,6 +186,26 @@ api.put('/addToUser', (req,res,next)=>{
   })
 })
 
+api.put('/budgetEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    budgetUpdates: req.body.budgetUpdates
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/prodEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    prodUpdates: req.body.prodUpdates
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
 

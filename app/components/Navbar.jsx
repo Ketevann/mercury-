@@ -34,13 +34,16 @@ class Navbar extends Component {
                     <li><img className="logo " src={'./logo3.png'} /></li>
                         <li><Link id="home" to="/home">Home</Link></li>
                         {this.props.user   ?
-                        <li><Link id="link" to="/link">Link Accounts</Link></li> :null }
+                        <li><Link id="link" to="/link">LA?</Link></li> :null }
                         {this.props.user  ?
-                        <li><Link id="link" to="/spending">Spending & Analysis</Link></li> : null}
+                        <li><Link id="link" to="/spending">Spending</Link></li> : null}
                         {this.props.user  ?
-                        <li><Link id="link" to="/budget">my Budget</Link></li> : null}
+                        <li><Link id="link" to="/budget">Budget</Link></li> : null}
                         {this.props.user  ?
-                        <li><a onClick={this.props.connectPlaid}>Open Plaid</a></li> : null}
+                        <li><a onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
+                        {this.props.user  ?
+                        <li><Link id="link" to="/emailSettings">Email Settings</Link></li> : null}
+                        
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?
