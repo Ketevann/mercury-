@@ -10,6 +10,7 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
+import Goals from './components/Goals'
 import Sidebar from './components/Sidebar'
 import Scorecard from './components/Scorecard'
 import FrontPage from './components/FrontPage'
@@ -81,6 +82,7 @@ render(
         <Route path='/home' component={Front} />
         <Route path='/about' component={About} />
         <Route path='/profile' component={Scorecard} />
+         <Route path='/goals' component={Goals} />
       </Route>
       {/*<Route path='/home' component={FrontPage} />
     
