@@ -33,9 +33,10 @@ module.exports = db => db.define('users', {
     set(val) {
       if(this.emails[0]==='')
         var fin = [val];
-      else
+      else{
         var fin = this.emails.slice()
         fin.push(val)
+      }
       this.setDataValue('emails', fin);
     }
   },

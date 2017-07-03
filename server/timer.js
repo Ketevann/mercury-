@@ -18,7 +18,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('32 * * * *', function(){
+var j = schedule.scheduleJob('12 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include:[User]}).then((token)=> {

@@ -106,7 +106,7 @@ class Email extends Component {
         <h4>Current Emails</h4>
         <ul>
         {
-          this.props.emails && this.props.emails.map((email)=>{
+          this.props.emails && this.props.emails[0]!=='' && this.props.emails.map((email)=>{
             console.log('doing this??')
             return(<li>{email}</li>)
           })
