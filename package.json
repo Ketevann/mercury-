@@ -69,6 +69,7 @@
     "pretty-error": "^2.0.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-easy-chart": "^0.1.13",
     "react-modal-dialog": "^4.0.7",
     "react-plaid": "^0.1.1",
     "react-popup": "^0.8.0",

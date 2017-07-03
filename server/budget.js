@@ -16,6 +16,7 @@ module.exports = require('express').Router()
     //}
   })
 .get('/', (req, res, next) => {
+  console.log("getting budhet")
   return Expenses.findOne({where:{
     user_id : req.user.id
   }
@@ -23,6 +24,7 @@ module.exports = require('express').Router()
   .then(budget => {
     if (budget === null) res.end()
       else{
+        console.log('sending budget')
         res.status(200).send(budget)
       }
     })

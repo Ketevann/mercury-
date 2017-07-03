@@ -40,13 +40,13 @@ class Navbar extends Component {
                         {this.props.user  ?
                         <li><Link id="link" to="/budget">my Budget</Link></li> : null}
                         {this.props.user  ?
-                        <li><a onClick={this.props.connectPlaid}>Open Plaid</a></li> : null}
+                        <li><Link to="#" onClick={this.props.connectPlaid}>Open Plaid</Link></li> : null}
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?
                         <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
-                        :  <div><span className="whoami-user-name">{this.props.user && this.props.user.name}</span>
-                         <button type="button" className="btn" onClick={this.props.logout}>Logout</button></div> }
+                        :  <div><a className="logout btn">{this.props.user && this.props.user.name}</a>
+                         <button type="button" className="logout btn" onClick={this.props.logout}>Logout</button></div> }
                     </ul>
                 </div>
             </div>

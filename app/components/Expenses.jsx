@@ -20,18 +20,7 @@ class Expenses extends Component {
     let budgeting = {}
     {console.log("props in expenses", this.props)}
     return(
-      <div>
-{this.props.budget.budget !== null ?
-
-<PieChart
-    padding={50}
-    labels
-    data={[
-      { key: 'childcare', value: `${this.props.budget.budget.childcare}`, color: '#aaac84' },
-      { key: 'education', value: `${this.props.budget.budget.education}`, color: '#dce7c5' },
-      { key: 'Comos', value: 50, color: '#e3a51a' }
-    ]}
-  />: null } </div>
+      <div> </div>
            )
     }
   }
