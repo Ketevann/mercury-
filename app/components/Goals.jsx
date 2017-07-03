@@ -1,56 +1,59 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
+import axios from 'axios'
+import { browserHistory } from "react-router"
 
-var goalItems = React.createClass({
-   render: function() {
-    var goalEntries = this.props.entries;
- 
-    function createGoals(item) {
-      return <li key={item.key}>{item.text}</li>
-    }
- 
-    var listItems = goalEntries.map(createGoals);
- 
-    return (
-      <ul className="theList">
-        {listItems}
-      </ul>
-    );
-  }
-});
+import store from '../store'
+
 
 export default class Goals extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { items: '' };
-
-    this.handleChange = this.handleChange.bind(this);
+    super(props)
+    this.state = store.getState()
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => {
+      this.setState(store.getState());
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(e) {
-    var itemArray = this.state.items;
+  handleSubmit(event) {
+    event.preventDefault();
+    var newGoal = event.target.goal.value;
+    var newDescription = event.target.description.value;
+    axios.post(`/api/goals/newgoal`, {  description: newDescription })
+      .then(res => {
+        console.log(res.data)
+        this.state.goals.push(res.data);
+        this.setState({ goals: this.state.goals })
+        var element1 = document.querySelector('#description');
+        element1.value = '';
+      })
 
-    itemArray.push(
-      {
-        text: this._inputElement.value,
-        key: Date.now()
-      }
-    );
+  }
 
-    this.setState({
-      items: itemArray
-    });
-
-    this._inputElement.value = "";
-
-    e.preventDefault();
-    // alert('A goal was added: ' + this.state.value);
-    // event.preventDefault();
+  handleClick(event) {
+    const goalId = event.target.value
+    axios.delete(`/api/goals/${goalId}`)
+      .then(res => {
+        const goals = this.state.goals.filter(goal => {
+          return goal.id != goalId
+        })
+        this.setState({ goals: goals })
+      })
   }
 
   render() {
