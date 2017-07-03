@@ -5,7 +5,7 @@
 
 module.exports = db => db.define('savings', {
     category: {
-        type: ENUM(, 'College Fund', 'Emergency', 'Retirement', 'Vacation', 'Car', 'House'),
+        type: ENUM('College Fund', 'Emergency', 'Retirement', 'Vacation', 'Car', 'House'),
         allowNull: false
     },
     amount: {
