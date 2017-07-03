@@ -32,6 +32,7 @@ handleSubmit(evt) {
         console.log('TOT', tot);
         return (
             <div>
+                <h1>Scorecard</h1>
                 <div className="form-container">
                     <h2>Select transaction dates:</h2>
                     <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
@@ -89,22 +90,6 @@ handleSubmit(evt) {
                         </div>
                         <div className="chart col-md-6">
                             <h6>Amount Spent by Category</h6>
-                            {/*<VictoryChart
-                        theme={VictoryTheme.material}
-                        domainPadding={20}
-                    >
-                        <VictoryAxis
-                            dependentAxis
-                            tickFormat={(x) => (`$${x}`)}
-                        />
-                        <VictoryBar
-                            //[{type:'dog',amount:10},{type:'cat',amount:7}]
-                            data={this.props.barChartTr}
-                            //data={this.props.barChartTr}
-                            x="type"
-                            y="amount"
-                        />
-                    </VictoryChart>*/}
                             <VictoryBar
                                 data={this.props.barChartTr}
                                 x="type"
@@ -130,30 +115,6 @@ handleSubmit(evt) {
                                 theme={VictoryTheme.material}
                                 />
                         </div>
-                        {/*<div className="chart col-md-4">
-                    <h2>Savings Progress</h2>
-                    <VictoryChart height={450}>
-                        <VictoryScatter
-                            style={{ data: { fill: "purple" } }}
-                            symbol="square"
-                            size={5}
-                            data={[
-                                { x: -4, y: -4 },
-                                { x: 4, y: 2, fill: "red" },
-                                { x: 1.8, y: 3 }
-                            ]} />
-                        <VictoryLine
-                            y={(data) => data.x} />
-                        <VictoryBar
-                            style={{ data: { fill: "orange" } }}
-                            data={[
-                                { x: 2, y: -3 },
-                                { x: -3, y: 4 },
-                                { x: 1, y: 3 }
-                            ]} />
-                    </VictoryChart>
-                </div>*/}
-
                     </div>
                 </div>
                 </div>

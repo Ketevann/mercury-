@@ -19,10 +19,10 @@ import Footer from './components/Footer'
 
 
 
-import {fetchTransactions} from './reducers/plaid.jsx'
+import { fetchTransactions } from './reducers/plaid.jsx'
 
 import Expenses from './components/Expenses'
-import {userExpenses} from './reducers/budget'
+import { userExpenses } from './reducers/budget'
 
 import BudgetForm from './components/BudgetForm'
 
@@ -51,7 +51,7 @@ const ExampleApp = connect(
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
       {children}
-            <Footer />
+      <Footer />
 
       {/*<Sidebar /> */}
 
@@ -74,15 +74,15 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
-        <Route path='/spending' component={Spending} onEnter={getTransac}/>
-         <Route path='/budget' component={Budget} />
-         <Route path="/addexpenses" component={BudgetForm} />
-        <Route path="/myexpenses" component={Expenses} onEnter={getExpenses}/>
-         <Route path='/home' component={Front} />
-
+        <Route path='/spending' component={Spending} onEnter={getTransac} />
+        <Route path='/budget' component={Budget} />
+        <Route path="/addexpenses" component={BudgetForm} />
+        <Route path="/myexpenses" component={Expenses} onEnter={getExpenses} />
+        <Route path='/home' component={Front} />
+        <Route path='/about' component={About} />
       </Route>
-      {/*<Route path='/home' component={FrontPage} />
-      <Route path='/about' component={About} />
+      {/*<Route path='/home' component={FrontPage} />*/}
+
       <Route path='*' component={NotFound} /> */}
     </Router>
   </Provider>,
