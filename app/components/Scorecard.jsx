@@ -33,18 +33,6 @@ handleSubmit(evt) {
         return (
             <div>
                 <h1>Scorecard</h1>
-                <div className="form-container">
-                    <h2>Select transaction dates:</h2>
-                    <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
-                        <label for="startDate">Start Date:  </label>
-                        <input className="pure-input-rounded" name="startDate" type="date" />
-                        <br />
-                        <label for="endDate">End Date:  </label>
-                        <input className="pure-input-rounded" name="endDate" type="date" />
-                        <br />
-                        <button className="pure-button" type="submit" className="btn">Submit</button>
-                    </form>
-                </div>
                 <div className="spendinghabits">
                     <div>
                         <h4> Monthly Budget </h4>

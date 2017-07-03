@@ -11,6 +11,7 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import Scorecard from './components/Scorecard'
 import FrontPage from './components/FrontPage'
 import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
@@ -46,7 +47,6 @@ const ExampleApp = connect(
   ({ user, children }) =>
     <div>
       {<nav>
-
       </nav>}
       <Navbar />
       {/* Render our children (whatever the router gives us) */}
@@ -80,9 +80,10 @@ render(
         <Route path="/myexpenses" component={Expenses} onEnter={getExpenses} />
         <Route path='/home' component={Front} />
         <Route path='/about' component={About} />
+        <Route path='/profile' component={Scorecard} />
       </Route>
-      {/*<Route path='/home' component={FrontPage} />*/}
-
+      {/*<Route path='/home' component={FrontPage} />
+    
       <Route path='*' component={NotFound} /> */}
     </Router>
   </Provider>,

@@ -14,7 +14,8 @@ class Front extends Component {
   render() {
     { console.log(this.props, 'props in Front') }
 
-    return (<div className="homepage">
+    return (
+    <div className="homepage">
       <h1>Mercury</h1>
       <div>
         <h3>Stop living paycheck to paycheck and control your life.</h3>
