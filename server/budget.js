@@ -19,9 +19,9 @@ module.exports = require('express').Router()
   })
 .get('/', (req, res, next) => {
   if (req.user) {
-  return User.findOne({
-    where: { id: req.user.id },
-     include: [Expenses]
+  return Expenses.findOne({
+    where: { user_id: req.user.id },
+
   })
 
   .then(budget => {
