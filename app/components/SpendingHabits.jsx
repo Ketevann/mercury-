@@ -66,9 +66,7 @@ handleSubmit(evt) {
                             </thead>
                             {
                                 transactions && transactions.map((item, index) => {
-
                                     return (
-
                                         <tbody>
                                             <tr>
                                                 <th scope="row">{index + 1}</th>
@@ -76,9 +74,7 @@ handleSubmit(evt) {
                                                 {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
                                                 <td>{item.amount}</td>
                                             </tr>
-
                                         </tbody>
-
                                     )
                                 })
                             }
@@ -122,7 +118,6 @@ handleSubmit(evt) {
                                 labels={(datum) => {
                                     console.log('DATUM', datum.y / 4700)
                                     return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
-
                                 } }
 
 

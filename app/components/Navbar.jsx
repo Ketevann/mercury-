@@ -27,7 +27,7 @@ class Navbar extends Component {
     {console.log(this.props, ' we have props', this.props.user)}
 
     return (
-        <nav  className="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav  className="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div className="container topnav">
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul role="full-horizontal" className="nav navbar-nav navbar-left">
