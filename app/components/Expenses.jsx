@@ -21,24 +21,16 @@ class Expenses extends Component {
 
   render(){
     let budgetArr=[]
-    let budgeting = [], sum = 0, names =[]
-    {console.log("props in expenses", this.props, this.props.plaid.transactions)}
-    { this.props.plaid ?
-    this.props.plaid.transactions.map(val => {
-      return names = names.concat(val.hierarchy)
-    })
-  : null}
-  {console.log(names.slice(603, 800), names.length)
-
-  }
+    let budgeting = [], sum = 0
+    console.log("props in expenses", this.props)
     return(
       <div>
 
        {this.props.budget.budget?
         Object.keys(this.props.budget.budget).map(key =>{
-          if (key!=='created_at' && key!=='updated_at' && key!=='user_id' && key!=='id')
+          if (key!=='created_at' && key!=='updated_at' && key!=='user_id' && key!=='id'){
           sum += Number(this.props.budget.budget[key])
-           budgetArr.push({x: key, y: Number(this.props.budget.budget[key]) })
+           budgetArr.push({x: key, y: Number(this.props.budget.budget[key]) })}
         }) : null }
         {budgetArr.forEach(val =>{
           console.log(val)
@@ -66,7 +58,7 @@ class Expenses extends Component {
       </thead>
 
       { Object.keys(this.props.budget.budget).map((key,index) =>{
-                   if (key!=='created_at' && key!=='updated_at' && key!=='user_id' && key!=='id'){
+           if (key!=='created_at' && key!=='updated_at' && key!=='user_id' && key!=='id'){
 return(
           <tbody>
             <tr>
@@ -87,6 +79,6 @@ return(
 }
 
 export default connect(
-   ({ modal, auth, budget, plaid }) => ({ modal: modal, user: auth, budget: budget, plaid }),
+   ({ modal, auth, budget, plaid }) => ({ modal: modal, user: auth, budget: budget }),
   {modalShow, logout},
 )(Expenses)

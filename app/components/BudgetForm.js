@@ -14,20 +14,17 @@ class BudgetForm extends React.Component  {
     evt.preventDefault()
 
     const newBudget = {
-      debt: evt.target.debt.value,
 
-      childcare: evt.target.childcare.value,
+
       education: evt.target.education.value,
       emergencies: evt.target.emergency.value,
-      events: evt.target.events.value,
       food: evt.target.food.value,
       healthcare: evt.target.healthcare.value,
-      house: evt.target.house.value,
-      insurance: evt.target.insurance.value,
+      bills: evt.target.bills.value,
       transportation: evt.target.transporation.value,
-      miscelaneous: evt.target.misc.value,
+      other: evt.target.other.value,
       entertainment: evt.target.ent.value,
-      month: evt.target.month.value
+
 
 
 
@@ -45,17 +42,12 @@ class BudgetForm extends React.Component  {
     return (<div>
       <form onSubmit={(evt) => this.handleSubmit(evt)}>
         <div className="form-group row">
-          <label htmlFor="example-text-input" className="col-2 col-form-label">Debt</label>
+          <label htmlFor="example-text-input" className="col-2 col-form-label">Bills</label>
           <div className="col-10">
-            <input className="form-control" placeholder='0' name="debt" type="number"  step="0.01" id="example-text-input" />
+            <input className="form-control" placeholder='0' name="bills" type="number"  step="0.01" id="example-text-input" />
           </div>
         </div>
-        <div className="form-group row">
-          <label htmlFor="example-text-input" className="col-2 col-form-label">Childcare</label>
-          <div className="col-10">
-            <input className="form-control" name="childcare" type="number"  step="0.01"  id="example-text-input" />
-          </div>
-        </div>
+
         <div className="form-group row">
           <label htmlFor="example-search-input"  className="col-2 col-form-label">Education</label>
           <div className="col-10">
@@ -107,9 +99,9 @@ class BudgetForm extends React.Component  {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-2 col-form-label">Miscelaneous</label>
+          <label className="col-2 col-form-label">Other</label>
           <div className="col-10">
-            <input className="form-control" name="misc" type="number" step="0.01" id="example-week-input" />
+            <input className="form-control" name="other" type="number" step="0.01" id="example-week-input" />
           </div>
         </div>
         <div className="form-group row">
@@ -118,12 +110,7 @@ class BudgetForm extends React.Component  {
             <input className="form-control" name="insurance" type="number" step="0.01" id="example-week-input" />
           </div>
         </div>
-        <div className="form-group row">
-          <label  className="col-2 col-form-label" type="text">Month</label>
-          <div className="col-10">
-            <input className="form-control" name="month" type="color" id="example-color-input" />
-          </div>
-        </div>
+
         <button type="submit" className="btn btn-primary">Submit</button>
        </form>
        <button onClick={() => this.props.send()}>send</button>

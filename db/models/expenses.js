@@ -4,10 +4,8 @@
 
 module.exports = db => db.define('expense', {
 
-  childcare: {
-    type: DECIMAL(10, 2)
-  },
-  debt: {
+
+  bills: {
     type: DECIMAL(10, 2)
   },
   education: {
@@ -16,22 +14,18 @@ module.exports = db => db.define('expense', {
   emergencies: {
     type: DECIMAL(10, 2)
   },
-  events: {
-    type: DECIMAL(10, 2)
-  },
+
   food: {
     type: DECIMAL(10, 2)
   },
   healthcare: {
     type: DECIMAL(10, 2)
   },
-  insurance: {
-    type: DECIMAL(10, 2)
-  },
+
   transportation: {
     type: DECIMAL(10, 2)
   },
-  miscelaneous: {
+  other: {
     type: DECIMAL(10, 2)
   },
   entertainment: {
