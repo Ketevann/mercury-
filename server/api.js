@@ -206,6 +206,16 @@ api.put('/prodEmail', (req,res,next)=>{
   })
 })
 
+api.put('/addEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    emails: req.body.email
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
 

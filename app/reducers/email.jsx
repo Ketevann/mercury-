@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-const initialState = {budgetUpdates: 'ON', prodUpdates: 'ON', thing: null, amount: null}
+const initialState = {budgetUpdates: 'ON', prodUpdates: 'ON', thing: null, amount: null, emails: ['']}
 
 const BUDGETUP = 'BUDGETUP'
 const PRODUP = 'PRODUP'
 const SETPROD = 'SETPROD'
+const ADDEMAIL = 'ADDEMAIL'
 
 const budgetUp = (status) => ({
   type: BUDGETUP,
@@ -18,6 +19,10 @@ const setProd = (status)=>({
   type: SETPROD,
   productInfo: status
 })
+const addEmail = (emails)=>({
+  type:ADDEMAIL,
+  emails: emails
+})
 
 const emailReducer = (email=initialState, action) => {
   switch (action.type) {
@@ -28,6 +33,9 @@ const emailReducer = (email=initialState, action) => {
     return Object.assign({}, email, {prodUpdates: action.prodUpdates})
   case SETPROD:
     return Object.assign({}, email, {thing: action.productInfo.thing, amount: action.productInfo.amount})
+  case ADDEMAIL:
+    console.log(action.emails)
+    return Object.assign({}, email, {emails: action.emails})
   default:
     return Object.assign({}, email)
 }
@@ -58,15 +66,23 @@ export const prodCont = (status) =>
     .catch(console.error())
   }
 
+export const emailAdder = (email) =>
+  dispatch =>{
+  return axios.put('/api/addEmail',email)
+    .then((res) => dispatch(addEmail(res.data.emails)))
+    .catch(console.error())
+  }
+
 export const emailSettings = () =>
   dispatch => {
     axios.get('/api/auth/whoami')
       .then(response => {
         const user = response.data
-        console.log('GOT THE USER', response.data.budgetUpdates)
+        console.log('GOT THE USER', response.data.emails)
         dispatch(budgetUp({budgetUpdates: response.data.budgetUpdates}))
         dispatch(prodUp({prodUpdates: response.data.prodUpdates}))
         dispatch(setProd({thing: response.data.thing, amount: response.data.amount}))
+        dispatch(addEmail(response.data.emails))
       })
       .catch(console.error())
   }

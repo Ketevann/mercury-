@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
-import {budgetEmail, prodEmail, prodCont} from '../reducers/email'
+import {budgetEmail, prodEmail, prodCont, emailAdder} from '../reducers/email'
 const axios = require('axios');
 
 class Email extends Component {
@@ -11,6 +11,7 @@ class Email extends Component {
     this.onBudgetClick = this.onBudgetClick.bind(this)
     this.onProdClick = this.onProdClick.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.onEmailSubmit = this.onEmailSubmit.bind(this)
   }
 
   onBudgetClick = (evt) =>{
@@ -36,6 +37,16 @@ class Email extends Component {
         evt.target.dollar.value = ''
         this.props.prodCont(info)
     }
+
+  onEmailSubmit = (evt) => {
+    evt.preventDefault();
+    var info = {
+            email: evt.target.email.value
+        }
+    console.log('in onEmailSubmit')
+    evt.target.email.value = ''
+    this.props.emailAdder(info)
+  }
 
   render(){
     console.log('PROPS',this.props)
@@ -86,13 +97,21 @@ class Email extends Component {
         <br/>
           <div>
         <h3>Add Contact Email</h3>
-                  <form>
+                  <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
                     <p>Email Address:</p>
                     <input type="text" name="email" />
                     <button className="pure-button" type="submit" className="btn">Submit</button>      
                 </form>
         </div>
         <h4>Current Emails</h4>
+        <ul>
+        {
+          this.props.emails && this.props.emails.map((email)=>{
+            console.log('doing this??')
+            return(<li>{email}</li>)
+          })
+        }
+        </ul>
       </div>
       )
   }
@@ -105,6 +124,7 @@ export default connect(
     return ({budgetUpdates: state.email.budgetUpdates,
             prodUpdates: state.email.prodUpdates,
             thing: state.email.thing,
-            amount: state.email.amount})},
-  {budgetEmail,prodEmail, prodCont},
+            amount: state.email.amount,
+            emails: state.email.emails})},
+  {budgetEmail,prodEmail, prodCont, emailAdder},
 )(Email)
