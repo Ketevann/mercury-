@@ -14,7 +14,7 @@ class Footer extends Component {
     render() {
         return (
 
-        <div className="container">
+        <div className="container footer">
 
           <div className="text-center center-block">
             <br />

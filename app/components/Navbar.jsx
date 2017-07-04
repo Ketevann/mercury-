@@ -33,20 +33,19 @@ class Navbar extends Component {
                     <ul role="full-horizontal" className="nav navbar-nav navbar-left">
                     <li><img className="logo " src={'./logo3.png'} /></li>
                         <li><Link id="home" to="/home">Home</Link></li>
-                        {this.props.user   ?
-                        <li><Link id="link" to="/link">Link Accounts</Link></li> :null }
+
                         {this.props.user  ?
                         <li><Link id="link" to="/spending">Spending & Analysis</Link></li> : null}
                         {this.props.user  ?
                         <li><Link id="link" to="/budget">my Budget</Link></li> : null}
                         {this.props.user  ?
-                        <li><Link to="" onClick={this.props.connectPlaid}>Open Plaid</Link></li> : null}
+                        <li><Link onClick={this.props.connectPlaid}>Open Plaid</Link></li> : null}
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?
-                        <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
+                        <li><Link href="#" onClick={() => this.handleClick()}> Login / Sign Up </Link></li>
                         :  <div><Link to="" className="logout btn">{this.props.user && this.props.user.name}</Link>
-                         <button type="button" className="logout btn" onClick={this.props.logout}>Logout</button></div> }
+                         <Link type="button" className="logout btn" onClick={this.props.logout}>Logout</Link></div> }
                     </ul>
                 </div>
             </div>

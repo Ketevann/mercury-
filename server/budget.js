@@ -11,7 +11,10 @@ module.exports = require('express').Router()
 
       return Expenses.create(req.body)
       .then(expenses => {
-        expenses.setUser(req.user.id)
+       return expenses.setUser(req.user.id)
+
+      })
+      .then( expenses =>{
         res.send(expenses)
       })
       .catch(next)

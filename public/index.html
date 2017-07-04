@@ -107,15 +107,27 @@ position:fixed;
   width: 150px;
 }
 .logo {
-  margin-left: -45px;
+  margin-left: -30px;
   margin-top: 12px;
   padding-right: 60px;
 
 }
+@media (max-width: 400px) {
+    .logo {
+
+        margin-left: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .signup {
+
+        margin-top: 0px;
+    }
+}
 .text{
   text-align: center;
   margin-top: 60px;
-  color:white
+  color:white;
 }
 .credentials {
   margin-top: 20px;
@@ -191,6 +203,37 @@ position:fixed;
   background: transparent;
   text-decoration: none;
 }
+@media (max-width: 400px) {
+    .logout {
+
+        margin-top: 240px;
+        margin-left: -160px;
+        padding-left: 40px;
+
+    }
+}
+@media (max-width: 400px) {
+    .navbar {
+
+       height: 300px;
+
+    }
+}
+@media (min-width:800px) {
+    .nav.navbar.navbar-inverse.navbar-fixed-top {
+
+       width: 100%;
+
+    }
+}
+@media (max-width: 400px) {
+     .header {
+
+       margin-top:300px;
+       padding:0px
+
+    }
+}
 
  #social-fb:hover {
      color: #3B5998;
@@ -208,10 +251,21 @@ position:fixed;
 
 
 .center-block{
-  margin-top: 450px;
+  margin-top: 500px;
  right:78px;
  margin-right: 78px;
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+
+  /*   */
+}
+.navbar-collapse{
+  display: flex;
+  align-items: center;
+}
+
     </style>
   </head>
   <body>
