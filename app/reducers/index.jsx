@@ -7,7 +7,9 @@ const rootReducer = combineReducers({
 
   modal: require('./modal').default,
 
-  budget: require('./budget').default
+  budget: require('./budget').default,
+
+  email: require('./email').default
 })
 
 export default rootReducer
