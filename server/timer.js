@@ -10,7 +10,7 @@ var giphy = require('giphy-api')();
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
+const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
 const client = new plaid.Client(
   PLAID_CLIENT_ID,
   PLAID_SECRET,
@@ -41,7 +41,7 @@ var j = schedule.scheduleJob('37 * * * *', function(){
     console.log(total,typeof total);
     console.log(total, token[0].user.thing )
     var message = (total<token[0].user.amount) ? `${token[0].user.name} was successful!` : `${token[0].user.name} was unsuccessful!`
-    var second = `${token[0].user.name} spent ${total} on ${token[0].user.thing} - goal was ${token[0].user.amount}` 
+    var second = `${token[0].user.name} spent ${total} on ${token[0].user.thing} - goal was ${token[0].user.amount}`
     var fin = message + " "+second;
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -94,6 +94,6 @@ var j = schedule.scheduleJob('37 * * * *', function(){
 })
   })
   })
-    
+
 
 module.exports = j;
