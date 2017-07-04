@@ -186,6 +186,50 @@ api.put('/addToUser', (req,res,next)=>{
   })
 })
 
+api.put('/budgetEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    budgetUpdates: req.body.budgetUpdates
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/prodEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    prodUpdates: req.body.prodUpdates
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/addEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    emails: req.body.email
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/removeEmail', (req,res,next)=>{
+  var user = req.user
+  var index = user.emails.indexOf(req.body.email)
+  var newemails = user.emails.slice();
+  newemails.splice(index,1);
+  user.update({
+    emails: newemails
+  })
+  .then((updated)=>{
+    console.log('UPDATED',updated)
+    res.send(updated)
+  })
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
 

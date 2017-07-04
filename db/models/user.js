@@ -2,7 +2,7 @@
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
 const bcrypt = require('bcryptjs')
-    , {STRING, VIRTUAL,BOOLEAN, ENUM, INTEGER} = require('sequelize')
+    , {STRING, VIRTUAL,BOOLEAN, ENUM, INTEGER, ARRAY} = require('sequelize')
 
 module.exports = db => db.define('users', {
   name: STRING,
@@ -18,6 +18,29 @@ module.exports = db => db.define('users', {
   },
   amount: {
     type: INTEGER
+  },
+  budgetUpdates:{
+    type: ENUM('ON','OFF'),
+    defaultValue: 'ON'
+  },
+  prodUpdates:{
+    type: ENUM('ON','OFF'),
+    defaultValue: 'ON'
+  },
+  emails:{
+    type: ARRAY(STRING),
+    defaultValue: [''],
+    set(val) {
+      if(Array.isArray(val))
+        fin = val
+      else if(this.emails[0]==='')
+        var fin = [val];
+      else{
+        var fin = this.emails.slice()
+        fin.push(val)
+      }
+      this.setDataValue('emails', fin);
+    }
   },
   //  isAdmin: {
   //     type: BOOLEAN,

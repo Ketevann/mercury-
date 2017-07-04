@@ -3,7 +3,7 @@ import React from 'react'
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
-
+import {emailSettings} from './reducers/email'
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
@@ -16,6 +16,7 @@ import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
 import Front from './components/Front'
 import Footer from './components/Footer'
+import Email from './components/Email'
 
 
 
@@ -39,6 +40,9 @@ import LinkAccounts from './components/LinkAccounts'
 
 const getTransac = () => {
   store.dispatch(fetchTransactions());
+}
+const getInitalEmailSettings = () => {
+  store.dispatch(emailSettings())
 }
 const ExampleApp = connect(
   ({ auth, modal }) => ({ user: auth, modal })
@@ -79,7 +83,7 @@ render(
          <Route path="/addexpenses" component={BudgetForm} />
         <Route path="/myexpenses" component={Expenses} onEnter={getExpenses}/>
          <Route path='/home' component={Front} />
-
+         <Route path='/emailSettings' component={Email} onEnter={getInitalEmailSettings} />
       </Route>
       {/*<Route path='/home' component={FrontPage} />
       <Route path='/about' component={About} />
