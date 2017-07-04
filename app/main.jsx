@@ -3,6 +3,7 @@ import React from 'react'
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
+import axios from 'axios'
 
 import store from './store'
 import Jokes from './components/Jokes'
@@ -28,7 +29,7 @@ import { userExpenses } from './reducers/budget'
 
 import BudgetForm from './components/BudgetForm'
 
-
+import { receiveGoals } from './action-creators/goals'
 
 
 import About from './components/About'
@@ -37,7 +38,23 @@ import About from './components/About'
 
 import LinkAccounts from './components/LinkAccounts'
 
+const onAppEnter = () => {
 
+  const pGoals = axios.get('/api/goals');
+
+
+  return Promise
+    .all([pGoals])
+    .then(responses => responses.map(r => r.data))
+    .then(([goals]) => {
+      store.dispatch(receiveGoals(goals));
+    });
+};
+
+const onGoalsEnter = () => {
+  const goals = axios.get('/api/goals');
+  store.dispatch(receiveGoals(goals));
+}
 
 const getTransac = () => {
   store.dispatch(fetchTransactions());
@@ -72,9 +89,9 @@ const getExpenses = () => {
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={ExampleApp} onEnter={onAppEnter} >
         <IndexRedirect to="/home" />
-        <Route path='/goals' component={Goals} />
+        <Route path='/goals' component={Goals} onEnter={onGoalsEnter} />
         <Route path="/link" component={LinkAccounts} />
         <Route path='/spending' component={Spending} onEnter={getTransac} />
         <Route path='/budget' component={Budget} />

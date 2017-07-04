@@ -32,7 +32,6 @@ export default class Goals extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var newGoal = event.target.goal.value;
     var newDescription = event.target.description.value;
     axios.post(`/api/goals/newgoal`, {  description: newDescription })
       .then(res => {
@@ -58,18 +57,43 @@ export default class Goals extends React.Component {
 
   render() {
     return (
-      <div className="goalsMain">
-        <h2>Your Goals</h2>
-        <goalItems entries={this.state.items} />
-        <div className="header">
-          <form onSubmit={this.handleSubmit}>
-            <input ref={(a) => this._inputElement = a}
-              placeholder="Enter Goal">
-            </input>
-            <button type="submit">+</button>
-          </form>
-        </div>
-      </div>
+           <div className='goalsMain'>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>DESCRIPTION</th>
+                                <th>IMPORTANCE</th>
+                                <th>DELETE</th>
+                            </tr>
+                            {this.state.goals.map(goal =>
+                                <tr key={goal.id}>
+                                    <td>{goal.id}</td>
+                                    <td>
+                                        <Link to={`/goals/${goal.id}`}>
+                                            {goal.description}
+                                        </Link>
+                                    </td>
+                                    <td>{goal.importance}</td>
+                                    <td><button value={goal.id} onClick={this.handleClick}>
+                                        X
+                                        </button>
+                                    </td>
+                                </tr>)}
+                        </tbody>
+                    </table>
+                </div>
+                {/*Temporary form. Make form its own component/container combo.*/}
+                <form id="form" onSubmit={this.handleSubmit}>
+                    <div className="text"> Add New goal </div>
+                    <div>
+                    <label> Description: </label>
+                    <input name='description' id='description' onChange={this.handleChange} placeholder="Description"/>
+                    </div>
+                    <button>Submit</button>
+                </form>
+            </div>
     );
   }
 }
