@@ -8,6 +8,7 @@ import store from '../store'
 import { getCategories } from '../reducers/plaid'
 
 class Spending extends Component {
+
     constructor(props) {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,6 +24,7 @@ class Spending extends Component {
     }
 
     render() {
+        if (!this.props.user) return null
         console.log('PROPS', this.props)
         let transactions = this.props.transac.transactions
         if (transactions !== undefined)
@@ -48,6 +50,8 @@ class Spending extends Component {
                 </div>
                 <div className="spendinghabits">
                     <div>
+
+
                         <h4> Monthly Budget </h4>
                         <h5>${this.props.monthlyBudget}</h5>
                         <h4> Total Spent</h4>
@@ -196,6 +200,7 @@ export default connect(
         transac: state.plaid.transactions,
         barChartTr: barChart(state.plaid.transactions),
         monthlyBudget: 3000,
+        user : state.auth
 
 
     }), { fetchTransactions })(Spending)

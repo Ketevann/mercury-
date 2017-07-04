@@ -15,15 +15,15 @@ class BudgetForm extends React.Component  {
 
     const newBudget = {
 
-
-      education: evt.target.education.value,
-      emergencies: evt.target.emergency.value,
       food: evt.target.food.value,
-      healthcare: evt.target.healthcare.value,
       bills: evt.target.bills.value,
+      healthcare: evt.target.healthcare.value,
+      emergencies: evt.target.emergency.value,
       transportation: evt.target.transporation.value,
-      other: evt.target.other.value,
+      education: evt.target.education.value,
       entertainment: evt.target.ent.value,
+      other: evt.target.other.value
+
 
 
 
@@ -34,6 +34,14 @@ class BudgetForm extends React.Component  {
     console.log(this.props.budgetCreate)
 
     this.props.budgetCreate(newBudget)
+     evt.target.food.value = ""
+     evt.target.bills.value = ""
+     evt.target.healthcare.value = ""
+       evt.target.emergency.value = ""
+     evt.target.transporation.value = ""
+    evt.target.education.value = ""
+     evt.target.ent.value = ""
+      other: evt.target.other.value = ""
   }
 
 
