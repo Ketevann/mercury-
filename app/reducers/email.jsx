@@ -73,6 +73,13 @@ export const emailAdder = (email) =>
     .catch(console.error())
   }
 
+export const emailRemover = (email) =>
+  dispatch =>{
+  return axios.put('/api/removeEmail',email)
+    .then((res) => dispatch(addEmail(res.data.emails)))
+    .catch(console.error())
+  }
+
 export const emailSettings = () =>
   dispatch => {
     axios.get('/api/auth/whoami')

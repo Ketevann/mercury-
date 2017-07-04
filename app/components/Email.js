@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
-import {budgetEmail, prodEmail, prodCont, emailAdder} from '../reducers/email'
+import {budgetEmail, prodEmail, prodCont, emailAdder, emailRemover} from '../reducers/email'
 const axios = require('axios');
 
 class Email extends Component {
@@ -12,6 +12,7 @@ class Email extends Component {
     this.onProdClick = this.onProdClick.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onEmailSubmit = this.onEmailSubmit.bind(this)
+    this.onButtonClick = this.onButtonClick.bind(this)
   }
 
   onBudgetClick = (evt) =>{
@@ -47,6 +48,9 @@ class Email extends Component {
     evt.target.email.value = ''
     this.props.emailAdder(info)
   }
+  onButtonClick = (evt) => {
+    this.props.emailRemover({email: evt.target.value})
+  }
 
   render(){
     console.log('PROPS',this.props)
@@ -60,15 +64,14 @@ class Email extends Component {
           <p style={{'padding-top':'0px'}}>Enable Specified Purchase Updates:</p>
         </div>
         <div className="col-sm-1">
-          <select value={this.props.budgetUpdates} onClick={(evt)=>{
+          <select value={this.props.budgetUpdates} onChange={(evt)=>{
             console.log('knows we clicked?')
             this.onBudgetClick(evt)}}>
             <option value="ON">ON</option>
             <option value="OFF">OFF</option>
           </select>
         <br/>
-          <select value={this.props.prodUpdates} onClick={(evt)=>{
-            this.onProdClick(evt)}}>
+          <select onChange={(evt)=>{this.onProdClick(evt)}} value={this.props.prodUpdates} >
             <option value="ON">ON</option>
             <option value="OFF">OFF</option>
           </select>
@@ -103,12 +106,15 @@ class Email extends Component {
                     <button className="pure-button" type="submit" className="btn">Submit</button>      
                 </form>
         </div>
-        <h4>Current Emails</h4>
-        <ul>
+        <h4>   Current Emails</h4>
+        <ul style={{'list-style': 'none'}}>
         {
           this.props.emails && this.props.emails[0]!=='' && this.props.emails.map((email)=>{
             console.log('doing this??')
-            return(<li>{email}</li>)
+            return(
+              <div>
+              <li><button className="btn" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}>X</button> {email}</li>
+              </div>)
           })
         }
         </ul>
@@ -126,5 +132,5 @@ export default connect(
             thing: state.email.thing,
             amount: state.email.amount,
             emails: state.email.emails})},
-  {budgetEmail,prodEmail, prodCont, emailAdder},
+  {budgetEmail,prodEmail, prodCont, emailAdder, emailRemover},
 )(Email)

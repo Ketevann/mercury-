@@ -18,7 +18,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('12 * * * *', function(){
+var j = schedule.scheduleJob('37 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include:[User]}).then((token)=> {
@@ -29,9 +29,7 @@ var j = schedule.scheduleJob('12 * * * *', function(){
   }, function (error, transactionsResponse) {
     if (error != null) {
       console.log(JSON.stringify(error))
-      return response.json({
-        error: error
-      })
+      return 'error'
     }
     console.log('Transactions:',transactionsResponse)
     console.log('pulled ' + transactionsResponse.transactions.length + ' transactions')

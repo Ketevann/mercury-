@@ -31,7 +31,9 @@ module.exports = db => db.define('users', {
     type: ARRAY(STRING),
     defaultValue: [''],
     set(val) {
-      if(this.emails[0]==='')
+      if(Array.isArray(val))
+        fin = val
+      else if(this.emails[0]==='')
         var fin = [val];
       else{
         var fin = this.emails.slice()

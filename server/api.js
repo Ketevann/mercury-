@@ -216,6 +216,20 @@ api.put('/addEmail', (req,res,next)=>{
   })
 })
 
+api.put('/removeEmail', (req,res,next)=>{
+  var user = req.user
+  var index = user.emails.indexOf(req.body.email)
+  var newemails = user.emails.slice();
+  newemails.splice(index,1);
+  user.update({
+    emails: newemails
+  })
+  .then((updated)=>{
+    console.log('UPDATED',updated)
+    res.send(updated)
+  })
+})
+
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
 
