@@ -4,7 +4,9 @@
 
 module.exports = db => db.define('expense', {
 
-
+  category: {
+    type: ENUM('food', 'bills', 'transporation', 'healtchare','education' ,'emergencies')
+  },
   food: {
     type: DECIMAL(10, 2)
   },
@@ -33,6 +35,6 @@ module.exports = db => db.define('expense', {
 
 })
 module.exports.associations = (Expense, { User }) => {
-  Expense.belongsTo(User)
+ // Expense.belongsTo(User)
 }
 

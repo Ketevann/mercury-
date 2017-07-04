@@ -64,11 +64,9 @@ class Expenses extends Component {
             data={budgetArr}
           /> : null}
         {this.props.plaid.transactions.transactions ?
-
           this.props.plaid.transactions.transactions.map(obj => {
             found = false
             console.log(obj.category, 'name', obj.amount)
-
             Object.keys(categories).map(keys => {
               if (obj.category) {
                 categories[keys].map((values, index) => {
@@ -76,7 +74,7 @@ class Expenses extends Component {
                     found = true
                     console.log("tureeeeieieieiiei", values, obj.category[0], categories.hasOwnProperty(keys))
                     if (cat.hasOwnProperty(keys) === false) {
-                      cat[keys] = obj.amount
+                        cat[keys] = obj.amount
 
                       console.log('matches')
                     }

@@ -63,36 +63,36 @@ class Spending extends Component {
                             <h3>Spending Habits</h3>
                         </div>
                         <div className="transaction">
-                    <h3 > Monthly Transactions </h3>
-                </div>
+                            <h3 > Monthly Transactions </h3>
+                        </div>
                         {tot ?
                             <div>
-                            <div className="chart col-md-4">
-                                <h6>Amount Spent by Category</h6>
-                                <VictoryBar
-                                    data={this.props.barChartTr}
-                                    x="type"
-                                    y="amount"
-                                    labels={(datum) => datum.x}
-                                    theme={VictoryTheme.material}
-                                />
-                            </div>
-                            <div className="chart col-md-4">
-                                <h6>Percent Spent by Category</h6>
-                                <VictoryPie
-                                    data={this.props.barChartTr}
-                                    x="type"
-                                    y="amount"
-                                    labels={(datum) => {
-                                        console.log('DATUM', datum.y / 4700)
-                                        return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
-                                    }}
-                                    theme={VictoryTheme.material}
-                                />
-                            </div>
+                                <div className="chart col-md-4">
+                                    <h6>Amount Spent by Category</h6>
+                                    <VictoryBar
+                                        data={this.props.barChartTr}
+                                        x="type"
+                                        y="amount"
+                                        labels={(datum) => datum.x}
+                                        theme={VictoryTheme.material}
+                                    />
+                                </div>
+                                <div className="chart col-md-4">
+                                    <h6>Percent Spent by Category</h6>
+                                    <VictoryPie
+                                        data={this.props.barChartTr}
+                                        x="type"
+                                        y="amount"
+                                        labels={(datum) => {
+                                            console.log('DATUM', datum.y / 4700)
+                                            return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
+                                        }}
+                                        theme={VictoryTheme.material}
+                                    />
+                                </div>
 
 
-                 </div>: null} </div>
+                            </div> : null} </div>
                 </div>
                 <br></br>
 
@@ -200,7 +200,7 @@ export default connect(
         transac: state.plaid.transactions,
         barChartTr: barChart(state.plaid.transactions),
         monthlyBudget: 3000,
-        user : state.auth
+        user: state.auth
 
 
     }), { fetchTransactions })(Spending)
