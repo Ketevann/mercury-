@@ -133,7 +133,7 @@ api.post('/item', function (request, response, next) {
 })
 
 api.post('/transactions', function (request, response, next) {
-
+  console.log("in transactions!!!!!")
   let startDate = request.body.startDate
   let endDate = request.body.endDate
 
