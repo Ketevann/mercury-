@@ -58,25 +58,25 @@ export default class Goals extends React.Component {
   render() {
     return (
       <div className='goalsMain'>
-        <div id="myDIV" class="header">
+        <div id="myDIV" className="header">
           <h2>My Goals</h2>
         </div>    
-          <ul id="myUL">
-            <li>Save 20% of my income</li>
-            <li className="checked">Pay bills</li>
-            <li>Learn what a 401k is</li>
-            <li>Pay off my student loans</li>
-            <li>Start a vacation fund</li>
-          </ul>
-          <form id="form" onSubmit={this.handleSubmit}>
-            <div className="text"> Add New goal </div>
-            <div>
-              <label> Description: </label>
-              <input name='description' id='description' onChange={this.handleChange} placeholder="Description" />
-            </div>
-            <button>Submit</button>
+        <ul id="myUL">
+          <li>Save 20% of my income</li>
+          <li className="checked">Pay bills</li>
+          <li>Learn what a 401k is</li>
+          <li>Pay off my student loans</li>
+          <li>Start a vacation fund</li>
+        </ul>
+        <div >
+          <form onSubmit={this.addItem}>
+            <input ref={(a) => this._inputElement = a}
+              placeholder="Enter Goal">
+            </input>
+            <button type="submit">+</button>
           </form>
         </div>
-        );
+      </div>
+    );
   }
 }
