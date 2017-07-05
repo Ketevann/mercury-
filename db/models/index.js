@@ -19,6 +19,7 @@ const app = require('APP')
        Expense: require('./expenses'),
       // Savings: require('./savings'),
       // Debt: require('./debt'),
+      Goal: require('./goal'),
       Thing: require('./thing'),
       Favorite: require('./favorite'),
       AccessToken: require('./accessTokens')

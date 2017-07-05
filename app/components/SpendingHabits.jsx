@@ -176,4 +176,6 @@ export default connect(
         user: state.auth
 
 
+
     }), { fetchTransactions })(Spending)
+

@@ -12,7 +12,7 @@ export default class FrontPage extends Component {
         return (
             <div >
 
-                <body className="home">
+                <body className="homepage">
                     <header id="top" className="header">
                         <div className="text-vertical-center">
                             <h1>Mercury</h1>
