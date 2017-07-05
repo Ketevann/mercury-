@@ -53,7 +53,7 @@ class View extends React.Component {
                   <br></br>
                   <input className="credentials" name="password" type="password" placeholder="Password" required />
                   <br></br>
-     
+
                     <input type="submit" value="Login" />
                 </form>
                 <h5> <a href="#" onClick={()=> this.props.forgot() }>Forgot Password?</a></h5>
@@ -62,7 +62,7 @@ class View extends React.Component {
                      <input name="email" placeholder="Email" required />
 
                      <input name="password" type="password" placeholder="New Password" required />
-                      <input  type="submit" value="Change Password" />
+                      <input className= "btn" type="submit" value="Change Password" />
                     </form>:null }
               </div> :
               <div>
@@ -84,7 +84,7 @@ class View extends React.Component {
                     <br></br>
                   <input className="credentials" name="password" type="password" placeholder="Password" required />
                   <br></br>
-                    <input type="submit" value="Login" />
+                    <input className= "btn" type="submit" value="Sign Up" />
                   </form></div> }
                 <br></br>
                  <a href="/api/auth/login/google"> <button className="google"></button> </a>
