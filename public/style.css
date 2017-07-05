@@ -71,9 +71,9 @@ body{
   clear:both;
 }
 .homepage {
-  background-image: url("./pexel1.jpg");
-background-repeat: no-repeat;
-      background-size: cover;
+  background-image: url("./backg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 
 position:fixed;
     padding:0;
