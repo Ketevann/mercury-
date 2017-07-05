@@ -174,6 +174,21 @@ api.post('/putTokenInDB', (req, res, next) => {
     })
 })
 
+api.post('/putTokenInDB', (req, res, next) => {
+  console.log('IN API')
+  console.log('REQ BODY AT', typeof req.body.accessToken)
+  var user = req.body.user;
+  AccessToken.create(
+    {
+      accessToken: req.body.accessToken,
+      user_id: user.id
+
+    })
+    .then((accessToken) => {
+      res.send(accessToken);
+    })
+})
+
 api.put('/addToUser', (req,res,next)=>{
   console.log('HIT THIS ROUTE?')
   var user = req.user
