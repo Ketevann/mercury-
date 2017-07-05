@@ -15,7 +15,8 @@ handleSubmit(evt) {
         evt.preventDefault()
         const dates = {
             startDate: evt.target.startDate.value,
-            endDate: evt.target.endDate.value
+            endDate: evt.target.endDate.value,
+            projectionDate: evt.target.projectionDate.value
         }
         this.props.fetchTransactions(dates.startDate, dates.endDate)
     }
@@ -40,7 +41,10 @@ handleSubmit(evt) {
                         <br />
                         <label for="endDate">End Date:  </label>
                         <input className="pure-input-rounded" name="endDate" type="date" />
-                        <br />
+                        <br /><br />
+                        <h4>Select Projection Date:</h4>
+                        <input className="pure-input-rounded" name="projectionDate" type="date" />
+                    <br />
                         <button className="pure-button" type="submit" className="btn">Submit</button>
                     </form>
                 </div>
@@ -160,8 +164,6 @@ handleSubmit(evt) {
 
                 )
     }
-
-
 }
 const barChart = (items) => {
                     console.log('ITEMS', items)

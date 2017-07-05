@@ -22,13 +22,6 @@ export const getTransactions = transactions => ({
 })
 
 // ------------------------- dispatchers ------------------------
-/*export const fetchAccessToken = (public_token) =>
-	dispatch => 
-		axios.post('/api/get_access_token', {public_token: public_token})
-			.then(res => {
-				dispatch(getAccessToken(res.data))
-			})
-			.catch(err => console.error('Fetching access token unsuccessful', err))*/
 
 export const fetchAccessToken = (public_token) =>
 	dispatch => {
@@ -36,18 +29,17 @@ export const fetchAccessToken = (public_token) =>
 		var accessToken = axios.post('/api/get_access_token', { public_token: public_token })
 
 		Promise.all([user, accessToken]).spread((user, accessToken) => {
-			console.log('USER ', user.data, accessToken.data)
 			return axios.post('/api/putTokenInDB',
 				{
 					user: user.data,
 					accessToken: accessToken.data
 				})
+				.then(res => {
+					return axios.get('/api/accounts')
+						.then(res => console.log("WTF", res))
+				})
+				.catch(err => console.error('Fetching access token unsuccessful', err))
 		})
-			.then((accessToken) => {
-
-				console.log(thing)
-			})
-			.catch(err => console.error('Fetching access token unsuccessful', err))
 	}
 
 export const connectPlaid = () =>
