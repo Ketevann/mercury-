@@ -4,14 +4,17 @@ import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar, Vict
 //import PieChart from './PieChart'
 import { connect } from 'react-redux'
 import { fetchTransactions } from '../reducers/plaid'
+import store from '../store'
+import { getCategories } from '../reducers/plaid'
 
 class Spending extends Component {
+
     constructor(props) {
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-handleSubmit(evt) {
+    handleSubmit(evt) {
         evt.preventDefault()
         const dates = {
             startDate: evt.target.startDate.value,
@@ -21,6 +24,7 @@ handleSubmit(evt) {
     }
 
     render() {
+        if (!this.props.user) return null
         console.log('PROPS', this.props)
         let transactions = this.props.transac.transactions
         if (transactions !== undefined)
@@ -46,50 +50,79 @@ handleSubmit(evt) {
                 </div>
                 <div className="spendinghabits">
                     <div>
+
+
                         <h4> Monthly Budget </h4>
                         <h5>${this.props.monthlyBudget}</h5>
                         <h4> Total Spent</h4>
                         {tot && <h5>${tot.toFixed(2)}</h5>}
                         <h4> Amount Left </h4>
                         {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
-                        <div className="transaction">
-                            <h3 > Monthly Transactions </h3>
-                        </div>
-                        <table className="table table-bordered">
-                            <thead className="habits" >
-                                <tr>
-                                    <th>#</th>
-                                    <th>Location</th>
-                                    <th>Type</th>
-                                    <th>Cost</th>
-                                </tr>
-                            </thead>
-                            {
-                                transactions && transactions.map((item, index) => {
 
-                                    return (
-
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">{index + 1}</th>
-                                                <td>{item.name}</td>
-                                                {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
-                                                <td>{item.amount}</td>
-                                            </tr>
-
-                                        </tbody>
-
-                                    )
-                                })
-                            }
-
-                        </table>
                         <div className="text">
                             <h3>Spending Habits</h3>
                         </div>
-                        <div className="chart col-md-6">
-                            <h6>Amount Spent by Category</h6>
-                            {/*<VictoryChart
+                        <div className="transaction">
+                            <h3 > Monthly Transactions </h3>
+                        </div>
+                        {tot ?
+                            <div>
+                                <div className="chart col-md-4">
+                                    <h6>Amount Spent by Category</h6>
+                                    <VictoryBar
+                                        data={this.props.barChartTr}
+                                        x="type"
+                                        y="amount"
+                                        labels={(datum) => datum.x}
+                                        theme={VictoryTheme.material}
+                                    />
+                                </div>
+                                <div className="chart col-md-4">
+                                    <h6>Percent Spent by Category</h6>
+                                    <VictoryPie
+                                        data={this.props.barChartTr}
+                                        x="type"
+                                        y="amount"
+                                        labels={(datum) => {
+                                            console.log('DATUM', datum.y / 4700)
+                                            return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
+                                        }}
+                                        theme={VictoryTheme.material}
+                                    />
+                                </div>
+
+
+                            </div> : null} </div>
+                </div>
+                <br></br>
+
+                <table className="table table-bordered">
+                    <thead className="habits" >
+                        <tr>
+                            <th>#</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    {
+                        transactions && transactions.map((item, index) => {
+                            return (
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{index + 1}</th>
+                                        <td>{item.name}</td>
+                                        {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
+                                        <td>{item.amount}</td>
+                                    </tr>
+                                </tbody>
+                            )
+                        })
+                    }
+
+                </table>
+                <button onClick={() => store.dispatch(getCategories())}>BLA</button>
+                {/*<VictoryChart
                         theme={VictoryTheme.material}
                         domainPadding={20}
                     >
@@ -105,32 +138,7 @@ handleSubmit(evt) {
                             y="amount"
                         />
                     </VictoryChart>*/}
-                            <VictoryBar
-                                data={this.props.barChartTr}
-                                x="type"
-                                y="amount"
-                                labels={(datum) => datum.x}
-                                theme={VictoryTheme.material}
-                                />
-                        </div>
-                        <div className="chart col-md-6">
-                            <h6>Percent Spent by Category</h6>
-                            <VictoryPie
-                                data={this.props.barChartTr}
-                                x="type"
-                                y="amount"
-                                labels={(datum) => {
-                                    console.log('DATUM', datum.y / 4700)
-                                    return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
-
-                                } }
-
-
-
-                                theme={VictoryTheme.material}
-                                />
-                        </div>
-                        {/*<div className="chart col-md-4">
+                {/*<div className="chart col-md-4">
                     <h2>Savings Progress</h2>
                     <VictoryChart height={450}>
                         <VictoryScatter
@@ -153,36 +161,33 @@ handleSubmit(evt) {
                             ]} />
                     </VictoryChart>
                 </div>*/}
+            </div>
 
-                    </div>
-                </div>
-                </div>
-
-                )
+        )
     }
 
 
 }
 const barChart = (items) => {
-                    console.log('ITEMS', items)
+    console.log('ITEMS', items)
     var toLoop = items.transactions
     var loopLength = items.total_transactions
     console.log('LOOPSTUFF', toLoop, loopLength)
     var things = {}
-                var arr = []
+    var arr = []
     if (toLoop !== undefined) {
         for (var i = 0; i < loopLength; i++) {
             var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
             if (toLoop[i].amount > 0 && name !== 'Transfer') {
-                    things[name] = things[name] || 0
+                things[name] = things[name] || 0
                 things[name] += toLoop[i].amount
             }
             console.log(things)
         }
         console.log('things!!!', things)
         for (var val in things) {
-                    console.log(val)
-            arr.push({type: val, amount: things[val] })
+            console.log(val)
+            arr.push({ type: val, amount: things[val] })
         }
         //return arr;
         return arr
@@ -192,9 +197,12 @@ const barChart = (items) => {
 
 export default connect(
     state => ({
-                    transac: state.plaid.transactions,
+        transac: state.plaid.transactions,
         barChartTr: barChart(state.plaid.transactions),
-        monthlyBudget: 3000
+        monthlyBudget: 3000,
+        user: state.auth
 
-    }), {fetchTransactions})(Spending)
+
+
+    }), { fetchTransactions })(Spending)
 

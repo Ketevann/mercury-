@@ -3,7 +3,10 @@ import React from 'react'
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
+
 import axios from 'axios'
+
+import {emailSettings} from './reducers/email'
 
 import store from './store'
 import Jokes from './components/Jokes'
@@ -19,6 +22,7 @@ import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
 import Front from './components/Front'
 import Footer from './components/Footer'
+import Email from './components/Email'
 
 
 
@@ -58,6 +62,9 @@ const onGoalsEnter = () => {
 
 const getTransac = () => {
   store.dispatch(fetchTransactions());
+}
+const getInitalEmailSettings = () => {
+  store.dispatch(emailSettings())
 }
 const ExampleApp = connect(
   ({ auth, modal }) => ({ user: auth, modal })
@@ -100,6 +107,8 @@ render(
         <Route path='/home' component={Front} />
         <Route path='/about' component={About} />
         <Route path='/profile' component={Scorecard} />
+
+         <Route path='/emailSettings' component={Email} onEnter={getInitalEmailSettings} />
 
       </Route>
       {/*<Route path='/home' component={FrontPage} />

@@ -9,10 +9,10 @@ class Budget extends Component {
     super()
   }
   render(){
-
+    {console.log('ptop', this.props)}
     return (<div className="budget">
-    <Link to="/addexpenses"><button className="budgetbutton btn">Edit Expenses</button></Link>
-    <Link to="/myexpenses"><button className="budgetbutton btn">My Expenses</button></Link>
+    <Link to="/addexpenses"><button className="budgetbutton btn">Edit Budget</button></Link>
+    <Link to="/myexpenses"><button className="budgetbutton btn">My Budget</button></Link>
 
     </div>)
   }
@@ -20,6 +20,6 @@ class Budget extends Component {
 
 
 export default connect(
-   ({ modal, auth }) => ({ modal: modal, user: auth }),
+   ({ modal, auth, budget, plaid }) => ({ modal: modal, user: auth, budget, plaid }),
   null,
 )(Budget)

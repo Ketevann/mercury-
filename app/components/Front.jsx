@@ -11,6 +11,7 @@ class Front extends Component {
   constructor(props) {
     super()
   }
+
   render() {
     { console.log(this.props, 'props in Front') }
 
@@ -25,6 +26,7 @@ class Front extends Component {
           {this.props.modal.signup ? <View /> : null}
         </div>
       </div>)
+
   }
 }
 

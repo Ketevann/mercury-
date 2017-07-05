@@ -6,10 +6,7 @@ const CREATEBUDGET = 'CREATEBUDGET'
 const GETGIF = 'GETGIF'
 
 
-const create = (budget) => {
-  console.log("3434343")
-
-  return {type: CREATEBUDGET, budget} }
+const create = (budget) => ({type: CREATEBUDGET, budget})
 const sendGif = (data) => ({type: GETGIF, data})
 
 

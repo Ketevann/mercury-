@@ -31,7 +31,7 @@ sidebar {
   position: fixed;
   right: 0;
   top: 0;
-  padding-top:100px; 
+  padding-top:100px;
   padding-bottom: 0px !important;
   padding-right: 10px;
   padding-left: 10px;
@@ -65,7 +65,7 @@ sidebar {
       border-left: 3px solid #00bc8c; }
       @media only screen and (min-width : 320px) {
   .container, .container-fluid {
-    padding-left: 100px; 
+    padding-left: 100px;
   }
 }
 .home{
@@ -104,13 +104,13 @@ sidebar {
 .text-vertical-center h1 {
    font-size: 6em;
    font-weight: 800;
-  
+
 }
 .text-vertical-center h3 {
    font-size: 2em;
    font-weight: 400;
    padding-top: 10px;
- 
+
 }
 
 .btn-dark {
@@ -161,36 +161,36 @@ h4{
           white-space: nowrap;
           position: relative;
       }
-      
+
       .custom-menu {
           display: inline-block;
           width: auto;
           vertical-align: middle;
           -webkit-font-smoothing: antialiased;
       }
-      
+
       .custom-menu .pure-menu-link,
       .custom-menu .pure-menu-heading {
           color: white;
       }
-      
+
       .custom-menu .pure-menu-link:hover,
       .custom-menu .pure-menu-heading:hover {
           background-color: transparent;
       }
-      
+
       .custom-menu-top {
           position: relative;
           padding-top: .5em;
           padding-bottom: .5em;
       }
-      
+
       .custom-menu-brand {
           display: block;
           text-align: center;
           position: relative;
       }
-      
+
       .custom-menu-toggle {
           width: 44px;
           height: 44px;
@@ -200,7 +200,7 @@ h4{
           right: 0;
           display: none;
       }
-      
+
       .custom-menu-toggle .bar {
           background-color: white;
           display: block;
@@ -215,28 +215,28 @@ h4{
           -ms-transition: all 0.5s;
           transition: all 0.5s;
       }
-      
+
       .custom-menu-toggle .bar:first-child {
           -webkit-transform: translateY(-6px);
           -moz-transform: translateY(-6px);
           -ms-transform: translateY(-6px);
           transform: translateY(-6px);
       }
-      
+
       .custom-menu-toggle.x .bar {
           -webkit-transform: rotate(45deg);
           -moz-transform: rotate(45deg);
           -ms-transform: rotate(45deg);
           transform: rotate(45deg);
       }
-      
+
       .custom-menu-toggle.x .bar:first-child {
           -webkit-transform: rotate(-45deg);
           -moz-transform: rotate(-45deg);
           -ms-transform: rotate(-45deg);
           transform: rotate(-45deg);
       }
-      
+
       .custom-menu-screen {
           background-color: rgba(0, 0, 0, 0.5);
           -webkit-transition: all 0.5s;
@@ -249,25 +249,25 @@ h4{
           top: 0;
           z-index: -1;
       }
-      
+
       .custom-menu-tucked .custom-menu-screen {
           -webkit-transform: translateY(-44px);
           -moz-transform: translateY(-44px);
           -ms-transform: translateY(-44px);
           transform: translateY(-44px);
       }
-      
+
       @media (max-width: 62em) {
-      
+
           .custom-menu {
               display: block;
           }
-      
+
           .custom-menu-toggle {
               display: block;
               display: none\9;
           }
-      
+
           .custom-menu-bottom {
               position: absolute;
               width: 100%;
@@ -275,7 +275,7 @@ h4{
               background-color: #808080;
               z-index: 100;
           }
-      
+
           .custom-menu-bottom .pure-menu-link {
               opacity: 1;
               -webkit-transform: translateX(0);
@@ -287,7 +287,7 @@ h4{
               -ms-transition: all 0.5s;
               transition: all 0.5s;
           }
-      
+
           .custom-menu-bottom.custom-menu-tucked .pure-menu-link {
               -webkit-transform: translateX(-140px);
               -moz-transform: translateX(-140px);
@@ -296,13 +296,14 @@ h4{
               opacity: 0;
               opacity: 1\9;
           }
-      
+
           .pure-menu-horizontal.custom-menu-tucked {
               z-index: -1;
               top: 45px;
               position: absolute;
               overflow: hidden;
           }
+
       }/* Include the padding and border in an element's total width and height */
 * {
     box-sizing: border-box;
@@ -421,3 +422,5 @@ input {
 .addBtn:hover {
     background-color: #58EED1;
 }
+
+

@@ -6,7 +6,7 @@ const envvar = require('envvar')
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
+const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
 const db = require('../db')
 const AccessToken = db.model('accessToken');
 
@@ -154,6 +154,7 @@ api.post('/transactions', function (request, response, next) {
           })
         }
         console.log('pulled ' + transactionsResponse.transactions.length + ' transactions')
+
         response.json(transactionsResponse)
       })
     })
@@ -182,6 +183,62 @@ api.put('/addToUser', (req,res,next)=>{
     amount: req.body.amount
   })
   .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.get('/bla', (req, res, next) =>{
+  console.log("GEEEET")
+   var categories
+   client.getCategories(function(err, response) {
+            // Handle err
+              categories = response.categories
+res.send({cat:categories})
+            })
+            console.log('categories********', categories )
+
+})
+
+api.put('/budgetEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    budgetUpdates: req.body.budgetUpdates
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/prodEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    prodUpdates: req.body.prodUpdates
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/addEmail', (req,res,next)=>{
+  var user = req.user
+  user.update({
+    emails: req.body.email
+  })
+  .then((updated)=>{
+    res.send(updated)
+  })
+})
+
+api.put('/removeEmail', (req,res,next)=>{
+  var user = req.user
+  var index = user.emails.indexOf(req.body.email)
+  var newemails = user.emails.slice();
+  newemails.splice(index,1);
+  user.update({
+    emails: newemails
+  })
+  .then((updated)=>{
+    console.log('UPDATED',updated)
     res.send(updated)
   })
 })

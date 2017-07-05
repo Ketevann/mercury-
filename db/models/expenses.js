@@ -4,44 +4,46 @@
 
 module.exports = db => db.define('expense', {
 
-  childcare: {
-    type: DECIMAL(10, 2)
-  },
-  debt: {
-    type: DECIMAL(10, 2)
-  },
-  education: {
-    type: DECIMAL(10, 2)
-  },
-  emergencies: {
-    type: DECIMAL(10, 2)
-  },
-  events: {
-    type: DECIMAL(10, 2)
+  category: {
+    type: ENUM('food', 'bills', 'transporation', 'healtchare','education' ,'emergencies')
   },
   food: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue :0
+  },
+  bills: {
+    type: DECIMAL(10, 2),
+    defaultValue: 0
+
   },
   healthcare: {
-    type: DECIMAL(10, 2)
-  },
-  insurance: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   transportation: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
-  miscelaneous: {
-    type: DECIMAL(10, 2)
+  education: {
+    type: DECIMAL(10, 2),
+    defaultValue: 0
+  },
+  emergencies: {
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   entertainment: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
-
+  other: {
+    type: DECIMAL(10, 2),
+    defaultValue: 0
+  }
 
 
 })
 module.exports.associations = (Expense, { User }) => {
-    Expense.belongsTo(User)
+ // Expense.belongsTo(User)
 }
 

@@ -27,28 +27,35 @@ class Navbar extends Component {
     {console.log(this.props, ' we have props', this.props.user)}
 
     return (
-        <nav  className="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div className="container topnav">
+        <nav  className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div className=" wrapper container topnav">
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul role="full-horizontal" className="nav navbar-nav navbar-left">
                     <li><img className="logo " src={'./logo3.png'} /></li>
                         <li><Link id="home" to="/home">Home</Link></li>
-                        {this.props.user   ?
-                        <li><Link id="link" to="/link">Link Accounts</Link></li> :null }
+
+
                         {this.props.user  ?
-                        <li><Link id="link" to="/spending">Spending & Analysis</Link></li> : null}
+                        <li><Link id="link" to="/spending">Spending</Link></li> : null}
                         {this.props.user  ?
-                        <li><Link id="link" to="/budget">my Budget</Link></li> : null}
+                        <li><Link id="link" to="/budget">Budget</Link></li> : null}
+
+                       {this.props.user  ?
+                        <li><a onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
                         {this.props.user  ?
+
                         <li><a onClick={this.props.connectPlaid}>Open Plaid</a></li> : null}
                         {this.props.user  ?
                         <li><Link id="goals" to="/goals">Goals</Link></li> : null}
+
+                        <li><Link id="link" to="/emailSettings">Email Settings</Link></li> : null}
+
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                      {!this.props.user ?
-                        <li><a href="#" onClick={() => this.handleClick()}> Login / Sign Up </a></li>
-                        :  <div><span className="whoami-user-name">{this.props.user && this.props.user.name}</span>
-                         <button type="button" className="btn" onClick={this.props.logout}>Logout</button></div> }
+                        <li><Link href="#" onClick={() => this.handleClick()}> Login / Sign Up </Link></li>
+                        :  <div><Link to="" className="logout btn">{this.props.user && this.props.user.name}</Link>
+                         <Link type="button" className="logout btn" onClick={this.props.logout}>Logout</Link></div> }
                     </ul>
                 </div>
             </div>
