@@ -1,4 +1,5 @@
 var schedule = require('node-schedule');
+var asyncLoop = require('node-async-loop');
 var axios = require('axios');
 var nodemailer = require('nodemailer');
 const db = require('../db')
@@ -19,7 +20,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('13 * * * *', function(){
+var j = schedule.scheduleJob('43 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include: [
@@ -27,27 +28,30 @@ var j = schedule.scheduleJob('13 * * * *', function(){
       {model: Expenses}
     ]}
   ]}
-  ).then((token)=> {
-  	console.log('token?',token[0])
-  	client.getTransactions(token[0].accessToken, '2017-06-01','2017-06-30' , {
+  ).then((tokens)=> {
+  	console.log('token?',tokens.length)
+  asyncLoop(tokens, function (token, next){
+  	client.getTransactions(token.accessToken, '2017-06-01','2017-06-30' , {
     count: 250,
     offset: 0,
   }, function (error, transactionsResponse) {
+    console.log('immediate i')
     if (error != null) {
       console.log(JSON.stringify(error))
       return 'error'
     }
     var keyword = '';
-    if(token[0].user.budgetUpdates==='ON'){
-      var budget = (+token[0].user.expense.food)+(+token[0].user.expense.bills)+(+token[0].user.expense.healthcare)+(+token[0].user.expense.transportation)+
-      (+token[0].user.expense.education)+(+token[0].user.expense.emergencies)+(+token[0].user.expense.entertainment)+(+token[0].user.expense.other);
+    console.log('i before budget!')
+    if(token.user.budgetUpdates==='ON'){
+      var budget = (+token.user.expense.food)+(+token.user.expense.bills)+(+token.user.expense.healthcare)+(+token.user.expense.transportation)+
+      (+token.user.expense.education)+(+token.user.expense.emergencies)+(+token.user.expense.entertainment)+(+token.user.expense.other);
     
       var totalSum = transactionsResponse.transactions.reduce((total,val)=>{
         if(val.amount>0)
           return total+val.amount;
         else return total
       },0)
-      var budgetStr = (budget>=totalSum) ? `${token[0].user.name} met their budget!` : `${token[0].user.name} did not meet their budget!`
+      var budgetStr = (budget>=totalSum) ? `${token.user.name} met their budget!` : `${token.user.name} did not meet their budget!`
       console.log('BUDGET',budget)
       console.log('totalSum',totalSum)
    }
@@ -57,19 +61,19 @@ var j = schedule.scheduleJob('13 * * * *', function(){
 
     //console.log('Transactions:',transactionsResponse)
     //console.log('pulled ' + transactionsResponse.transactions.length + ' transactions')
-    if(token[0].user.prodUpdates==='ON'&&token[0].user.thing!==null){
+    if(token.user.prodUpdates==='ON'&&token.user.thing!==null){
     var total = transactionsResponse.transactions.reduce((total,val)=>{
-    	if(val.name===token[0].user.thing)
+    	if(val.name===token.user.thing)
     		return total+val.amount;
     	else return total
     },0)
-    var message = (total<token[0].user.amount) ? `${token[0].user.name} bought too much ${token[0].user.thing}!` : `${token[0].user.name} did not buy too much ${token[0].user.thing}!`
-    keyword = token[0].user.thing;
+    var message = (total<token.user.amount) ? `${token.user.name} bought too much ${token.user.thing}!` : `${token.user.name} did not buy too much ${token.user.thing}!`
+    keyword = token.user.thing;
   }
   else{
     var message = ''
   }
-  if(keyword==='' && token[0].user.budgetUpdates==='ON')
+  if(keyword==='' && token.user.budgetUpdates==='ON')
     keyword = (budget>=totalSum)? 'success' : 'failure'
     //console.log(total,typeof total);
     //console.log(total, token[0].user.thing )
@@ -107,9 +111,9 @@ var j = schedule.scheduleJob('13 * * * *', function(){
     var chosen = data.data[Math.floor(length*Math.random())]
     var mailOptions = {
         from: '"Mercury" <mercurybudget@gmail.com>', // sender address
-      to: token[0].user.emails.join(', '), // list of receivers
+      to: token.user.emails.join(', '), // list of receivers
       subject: totalMessage,
-      text: '',
+      text: 'b',
     html: '<img src="cid:lets"/>',
     attachments: [{
         filename: 'image.gif',
@@ -126,12 +130,23 @@ var j = schedule.scheduleJob('13 * * * *', function(){
       /*req.end()
       transporter.close()
       res.send('WHYYYYYY')*/
-    })
-    }).catch((error)=>console.log(error))
-  }
+    }) //closes sendmail
+    }).catch((error)=>console.log(error)) //closes giphy
+  }//closes if total message is not null
+})//closes transactions
+next()
+},function (err)
+{
+    if (err)
+    {
+        console.error('Error: ' + err.message);
+        return;
+    }
+ 
+    console.log('Finished!');
 })
-  })
-  })
+  })//closes token
+  })//closes timer
 
 
 module.exports = j;
