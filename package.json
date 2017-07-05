@@ -74,6 +74,7 @@
     "pretty-error": "^2.0.2",
     "react": "^15.4.2",
     "react-dom": "^15.3.2",
+    "react-faux-dom": "^2.7.1",
     "react-horizontal-bar-chart": "^0.3.2",
     "react-modal-dialog": "^4.0.7",
     "react-plaid": "^0.1.1",
