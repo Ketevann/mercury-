@@ -3,14 +3,16 @@ import { browserHistory } from 'react-router'
 const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 import Promise from 'bluebird'
 const initialPlaidState = {
-	currentUser: {},
 	accessToken: '',
-	transactions: {}
+	transactions: {},
+	startDate: '',
+	endDate: ''
 }
 
 // --------------------------- actions --------------------------
 const GETACCESSTOKEN = 'GET_ACCESSTOKEN'
 const GETTRANSAC = 'GET_TRANSACTIONS'
+const SENDDATES = 'SEND_DATES'
 
 // ------------------------ action creator ----------------------
 export const getAccessToken = accessToken => ({
@@ -21,6 +23,9 @@ export const getTransactions = transactions => ({
 	type: GETTRANSAC, transactions
 })
 
+export const sendDates = transactions => ({
+	type: SENDDATES, dates
+})
 // ------------------------- dispatchers ------------------------
 
 export const fetchAccessToken = (public_token) =>
@@ -38,14 +43,8 @@ export const fetchAccessToken = (public_token) =>
 					return axios.get('/api/accounts')
 				})
 				.then(res => {
-					console.log('KETTI')
 					return axios.post('/api/putAccountsInDB', res.data.accounts)
 				})
-				// .then(res => {
-				// 	console.log("WTF", res.data)
-				// 	return axios.post('/api/putAccountsInDB')
-
-				//})
 				.catch(err => console.error('Fetching access token unsuccessful', err))
 		})
 	}
@@ -91,7 +90,6 @@ export const fetchItems = (access_token) =>
 				console.log('ITEM', res.data)
 			})
 			.catch(err => console.error('Fetching items unsuccessful', err))
-
 
 // ------------------------------- reducers ---------------------------------
 const reducer = (state = initialPlaidState, action) => {

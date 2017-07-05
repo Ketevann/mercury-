@@ -5,6 +5,7 @@ import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar, Vict
 import { connect } from 'react-redux'
 import { fetchTransactions, fetchAccounts } from '../reducers/plaid'
 
+
 class Spending extends Component {
     constructor(props) {
         super(props)
@@ -202,5 +203,4 @@ export default connect(
         transac: state.plaid.transactions,
         barChartTr: barChart(state.plaid.transactions),
         monthlyBudget: 3000
-
     }), { fetchTransactions })(Spending)
