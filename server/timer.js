@@ -19,7 +19,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('07 * * * *', function(){
+var j = schedule.scheduleJob('13 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include: [
@@ -109,8 +109,8 @@ var j = schedule.scheduleJob('07 * * * *', function(){
         from: '"Mercury" <mercurybudget@gmail.com>', // sender address
       to: token[0].user.emails.join(', '), // list of receivers
       subject: totalMessage,
-      text: '  ', // Subject line
-    html: '<img src="lets"/>',
+      text: '',
+    html: '<img src="cid:lets"/>',
     attachments: [{
         filename: 'image.gif',
         path: chosen.images.downsized.url,
