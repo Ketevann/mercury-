@@ -13,7 +13,7 @@ import { fetchTransactions } from '../reducers/plaid'
 
 
 
-import { BarChart } from 'react-easy-chart';
+// import { BarChart } from 'react-easy-chart';
 
 
 

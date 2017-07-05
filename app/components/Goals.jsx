@@ -58,14 +58,14 @@ export default class Goals extends React.Component {
   render() {
     return (
       <div className='goalsMain'>
-        <div id="myDIV" className="header">
+        <div id="myDIV" className="goalsHeader">
           <h1>My Goals</h1>
         </div>    
-        <ul id="myUL">
+        <ul id="myUL" className="goalsList">
           <li>Save 20% of my income</li>
-          <li >Pay bills</li>
           <li className="checked">Learn what a 401k is</li>
           <li>Pay off my student loans</li>
+           <li className="checked">Pay bills</li>
           <li>Start a vacation fund</li>
         </ul>
         <div >

@@ -17,7 +17,7 @@ class Front extends Component {
 
     return (
       <div className="homepage">
-        <h2 className="tex header "> >Stop living paycheck to paycheck and control your life!</h2>
+        <h2 className="text header"> Stop living paycheck to paycheck and control your life!</h2>
         <h4 className="text ">Mercury helps you see all your accounts at one place</h4>
         <h4 className="hometext "> understand where your money goes, reduce unwanted spending, and save for future goals</h4>
         <div className="btn-group" role="group" aria-label="Basic example">

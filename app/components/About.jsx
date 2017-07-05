@@ -12,12 +12,12 @@ export default class About extends Component {
         return (
             <div >
 
-                <body className="home">
+                <body className="homepage">
                     
                     <header id="top" className="header">
                         <div className="text-vertical-center">
                             <h1>About Mercury</h1>
-                            <h3>We bring together everything from balances and bills to your credit score and more. It’s your whole budget in one place.</h3>
+                            <h3>Mercury is a web-based personal financial management service that allows you to access all of their financial information in one place. You can track bank, credit card, investment, and loan balances and transactions as well as create budgets and set financial goals.</h3>
                            
                         </div>
                     </header>
