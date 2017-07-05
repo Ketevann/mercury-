@@ -9,29 +9,36 @@ module.exports = require('express').Router()
 .post('/', (req, res, next) => {
     //if (req.user.role === 'admin') {
 
-      return Expenses.create(req.body)
+       Expenses.create(req.body)
       .then(expenses => {
-       return expenses.setUser(req.user.id)
-
+        User.findOne({where:{
+        id: req.user.id}
       })
-      .then( expenses =>{
+        .then(user =>{
+           user.setExpense(expenses.id)
+          .then( expenses =>{
         res.send(expenses)
       })
+        })
+
+
+      })
+
       .catch(next)
     //}
   })
 .get('/', (req, res, next) => {
   if (req.user) {
-  return Expenses.findOne({
-    where: { user_id: req.user.id },
-
+  return User.findOne({
+    where: { id: req.user.id },
+    include: [Expenses]
   })
 
   .then(budget => {
     if (budget === null) res.end()
       else{
         console.log("budger,", budget)
-        res.status(200).send(budget)
+        res.status(200).send(budget.expense)
       }
     })
 

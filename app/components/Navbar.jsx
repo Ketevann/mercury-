@@ -28,20 +28,19 @@ class Navbar extends Component {
 
     return (
         <nav  className="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div className="container topnav">
+            <div className=" wrapper container topnav">
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul role="full-horizontal" className="nav navbar-nav navbar-left">
                     <li><img className="logo " src={'./logo3.png'} /></li>
                         <li><Link id="home" to="/home">Home</Link></li>
 
-                        {this.props.user   ?
-                        <li><Link id="link" to="/link">LA?</Link></li> :null }
+
                         {this.props.user  ?
                         <li><Link id="link" to="/spending">Spending</Link></li> : null}
                         {this.props.user  ?
                         <li><Link id="link" to="/budget">Budget</Link></li> : null}
-                        {this.props.user  ?
-                        <li><Link onClick={this.props.connectPlaid}>Open Plaid</Link></li> : null}
+
+                       {this.props.user  ?
                         <li><a onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
                         {this.props.user  ?
                         <li><Link id="link" to="/emailSettings">Email Settings</Link></li> : null}
