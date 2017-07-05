@@ -59,12 +59,12 @@ export default class Goals extends React.Component {
     return (
       <div className='goalsMain'>
         <div id="myDIV" className="header">
-          <h2>My Goals</h2>
+          <h1>My Goals</h1>
         </div>    
         <ul id="myUL">
           <li>Save 20% of my income</li>
-          <li className="checked">Pay bills</li>
-          <li>Learn what a 401k is</li>
+          <li >Pay bills</li>
+          <li className="checked">Learn what a 401k is</li>
           <li>Pay off my student loans</li>
           <li>Start a vacation fund</li>
         </ul>
@@ -73,7 +73,7 @@ export default class Goals extends React.Component {
             <input ref={(a) => this._inputElement = a}
               placeholder="Enter Goal">
             </input>
-            <button type="submit">+</button>
+            <button type="submit" className="addBtn">+</button>
           </form>
         </div>
       </div>
