@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { VictoryPie, VictoryChart, VictoryScatter, VictoryLine, VictoryBar, VictoryTheme, VictoryAxis } from 'victory'
 //import PieChart from './PieChart'
 import { connect } from 'react-redux'
-import { fetchTransactions } from '../reducers/plaid'
+import { fetchTransactions, fetchAccounts } from '../reducers/plaid'
 
 class Spending extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class Spending extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-handleSubmit(evt) {
+    handleSubmit(evt) {
         evt.preventDefault()
         const dates = {
             startDate: evt.target.startDate.value,
@@ -20,6 +20,8 @@ handleSubmit(evt) {
         }
         this.props.fetchTransactions(dates.startDate, dates.endDate)
     }
+
+    handleClick()
 
     render() {
         console.log('PROPS', this.props)
@@ -44,9 +46,12 @@ handleSubmit(evt) {
                         <br /><br />
                         <h4>Select Projection Date:</h4>
                         <input className="pure-input-rounded" name="projectionDate" type="date" />
-                    <br />
+                        <br />
                         <button className="pure-button" type="submit" className="btn">Submit</button>
                     </form>
+                </div>
+                <div>
+                    <h4>Based on your spending and saving habits from {this.props.startDate} to {this.props.endDate}, hello</h4>
                 </div>
                 <div className="spendinghabits">
                     <div>
@@ -160,31 +165,31 @@ handleSubmit(evt) {
 
                     </div>
                 </div>
-                </div>
+            </div>
 
-                )
+        )
     }
 }
 const barChart = (items) => {
-                    console.log('ITEMS', items)
+    console.log('ITEMS', items)
     var toLoop = items.transactions
     var loopLength = items.total_transactions
     console.log('LOOPSTUFF', toLoop, loopLength)
     var things = {}
-                var arr = []
+    var arr = []
     if (toLoop !== undefined) {
         for (var i = 0; i < loopLength; i++) {
             var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
             if (toLoop[i].amount > 0 && name !== 'Transfer') {
-                    things[name] = things[name] || 0
+                things[name] = things[name] || 0
                 things[name] += toLoop[i].amount
             }
             console.log(things)
         }
         console.log('things!!!', things)
         for (var val in things) {
-                    console.log(val)
-            arr.push({type: val, amount: things[val] })
+            console.log(val)
+            arr.push({ type: val, amount: things[val] })
         }
         //return arr;
         return arr
@@ -194,8 +199,8 @@ const barChart = (items) => {
 
 export default connect(
     state => ({
-                    transac: state.plaid.transactions,
+        transac: state.plaid.transactions,
         barChartTr: barChart(state.plaid.transactions),
         monthlyBudget: 3000
 
-    }), {fetchTransactions})(Spending)
+    }), { fetchTransactions })(Spending)

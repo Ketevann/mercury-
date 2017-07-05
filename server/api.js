@@ -9,6 +9,7 @@ const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
 const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
 const db = require('../db')
 const AccessToken = db.model('accessToken');
+const Accounts = db.model('accounts');
 
 api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))
@@ -33,7 +34,7 @@ const client = new plaid.Client(
 
 
 
-api.get('/timer', function(req, res, next) {
+api.get('/timer', function (req, res, next) {
   console.log('timer!!!')
   res.send('In the timer route!!')
 })
@@ -94,6 +95,19 @@ api.get('/accounts', function (request, response, next) {
         })
       })
     })
+})
+
+api.post('/putAccountsInDB', (req, res, next) => {
+  req.body.forEach(oneAccount => {
+    Accounts.create(
+      {
+        accountId: oneAccount.account_id,
+        user_id: req.user.dataValues.id,
+        accountType: oneAccount.subtype
+      }
+    )
+    .then(console.log())
+  })
 })
 
 api.post('/item', function (request, response, next) {
@@ -189,16 +203,16 @@ api.post('/putTokenInDB', (req, res, next) => {
     })
 })
 
-api.put('/addToUser', (req,res,next)=>{
+api.put('/addToUser', (req, res, next) => {
   console.log('HIT THIS ROUTE?')
   var user = req.user
   user.update({
     thing: req.body.thing,
     amount: req.body.amount
   })
-  .then((updated)=>{
-    res.send(updated)
-  })
+    .then((updated) => {
+      res.send(updated)
+    })
 })
 
 // No routes matched? 404.

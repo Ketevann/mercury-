@@ -36,8 +36,16 @@ export const fetchAccessToken = (public_token) =>
 				})
 				.then(res => {
 					return axios.get('/api/accounts')
-						.then(res => console.log("WTF", res))
 				})
+				.then(res => {
+					console.log('KETTI')
+					return axios.post('/api/putAccountsInDB', res.data.accounts)
+				})
+				// .then(res => {
+				// 	console.log("WTF", res.data)
+				// 	return axios.post('/api/putAccountsInDB')
+
+				//})
 				.catch(err => console.error('Fetching access token unsuccessful', err))
 		})
 	}
