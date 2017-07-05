@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { modalShow } from "../reducers/modal"
 import store from '../store'
 import { logout } from 'APP/app/reducers/auth'
+import { fetchTransactions } from '../reducers/plaid'
+
 
 
 
@@ -38,13 +40,75 @@ var categories = {
 
 class Expenses extends Component {
 
+    constructor(props) {
+        super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(evt) {
+      console.log("bla")
+        evt.preventDefault()
+        const dates = {
+            startDate: evt.target.startDate.value,
+            endDate: evt.target.endDate.value
+        }
+        this.props.fetchTransactions(dates.startDate, dates.endDate)
+    }
+
+
   render() {
     let budgetArr = []
-    let plaidArr = [], sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
-    { this.props.transactions ? transaction = this.props.transactions.transactions : null }
+    let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
+
     console.log("props in expenses", this.props)
+
+
+    if (!this.props.user) return null
+        console.log('PROPS', this.props)
+
+        transactions = this.props.transactions.transactions
+        if (transactions !== undefined){
+          console.log("TRAAANSSSVVV")
+            var tot = this.props.barChartTr.reduce((total, val) => {
+                console.log('VAL+TOTAL', val.amount, total)
+                return total + val.amount
+            }
+
+                , 0)}
+        console.log('TOT', tot);
+
+
     return (
       <div>
+
+      <div className="form-container">
+                    <h2>Select transaction dates:</h2>
+                    <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
+                        <label for="startDate">Start Date:  </label>
+                        <input className="pure-input-rounded" name="startDate" type="date" />
+                        <br />
+                        <label for="endDate">End Date:  </label>
+                        <input className="pure-input-rounded" name="endDate" type="date" />
+                        <br />
+                        <button className="pure-button" type="submit" className="btn">Submit</button>
+                    </form>
+                </div>
+       <div>
+
+
+                        <h4> Monthly Budget </h4>
+                        <h5>${this.props.monthlyBudget}</h5>
+                        <h4> Total Spent</h4>
+                        {tot && <h5>${tot.toFixed(2)}</h5>}
+                        <h4> Amount Left </h4>
+                        {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
+                        <div className="text">
+                            <h3>Spending Habits</h3>
+                        </div>
+                        </div>
+
+
+
         {this.props.budget.budget ?
           Object.keys(this.props.budget.budget).map(key => {
             if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id') {
@@ -97,7 +161,8 @@ class Expenses extends Component {
           })
          : null }
          {console.log(combine, 'combine', cat, 'cat')}
-        {Object.keys(combine).map(key => {
+         {this.props.plaid.transactions.transactions ?
+        Object.keys(combine).map(key => {
           if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
             if(Number(cat[key])>0)
           sum2 += Number(cat[key])
@@ -105,9 +170,10 @@ class Expenses extends Component {
         }
         console.log('sun', sum2)
         })
-      }
+     : null }
       <h1>Total Expenses: ${sum2.toFixed(2)} </h1>
-        {plaidArr.length ?
+      {console.log(plaidArr, "111111")}
+        {plaidArr.length > 0 ?
           <BarChart
             axes
             grid
@@ -117,6 +183,7 @@ class Expenses extends Component {
             data={plaidArr}
           /> : null}
         {console.log(cat, 'cat********')}
+         <h3 > Budget Expenses </h3>
 
         {this.props.budget.budget ?
           <table className="table table-bordered">
@@ -140,13 +207,71 @@ class Expenses extends Component {
               }
             })}
           </table> : null}
+           <h3 >  Expenses </h3>
+          <table className="table table-bordered">
+                    <thead className="habits" >
+                        <tr>
+                            <th>#</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    {
+                        transactions && transactions.map((item, index) => {
+                            return (
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{index + 1}</th>
+                                        <td>{item.name}</td>
+                                        {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
+                                        <td>{item.amount}</td>
+                                    </tr>
+                                </tbody>
+                            )
+                        })
+                    }
+
+                </table>
+
       </div>
     )
 
   }
 }
 
+const barChart = (items) => {
+    console.log('ITEMS', items)
+    var toLoop = items.transactions
+    var loopLength = items.total_transactions
+    console.log('LOOPSTUFF', toLoop, loopLength)
+    var things = {}
+    var arr = []
+    if (toLoop !== undefined) {
+        for (var i = 0; i < loopLength; i++) {
+            var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
+            if (toLoop[i].amount > 0 && name !== 'Transfer') {
+                things[name] = things[name] || 0
+                things[name] += toLoop[i].amount
+            }
+            console.log(things)
+        }
+        console.log('things!!!', things)
+        for (var val in things) {
+            console.log(val)
+            arr.push({ type: val, amount: things[val] })
+        }
+        //return arr;
+        return arr
+    }
+    return 'failed'
+}
+
 export default connect(
-  ({ modal, auth, budget, plaid }) => ({ modal: modal, user: auth, budget: budget, plaid }),
-  { modalShow, logout },
+  ({ modal, auth, budget, plaid }) => ({ modal: modal, transactions: plaid.transactions,user: auth, budget: budget, plaid, monthlyBudget: 3000, barChartTr: barChart(plaid.transactions),
+ }),
+  { modalShow, logout, fetchTransactions },
 )(Expenses)
+
+
+

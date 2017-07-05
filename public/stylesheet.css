@@ -1,4 +1,4 @@
-      .form-group {
+  .form-group {
         width: 200px;
       }
 
@@ -104,20 +104,6 @@ position:fixed;
         margin-top: 0px;
     }
 }
-@media (min-width: 400px) {
-    .navbar {
-
-        height: 30px
-    }
-}
-
-@media (min-width: 400px) {
-    .navbar {
-
-        height: 30px
-    }
-}
-
 .text{
   text-align: center;
   margin-top: 60px;
@@ -206,18 +192,10 @@ position:fixed;
 
     }
 }
-@media (max-width: 990px) {
+@media (max-width: 400px) {
     .navbar {
 
-       height: 100px;
-
-    }
-}
-
-@media (max-width: 990px) {
-    .logout {
-      text-align: center;
-       margin-right:160px;
+       height: 300px;
 
     }
 }
@@ -251,7 +229,6 @@ position:fixed;
  }
 
 
-
 .center-block{
   margin-top: 500px;
  right:78px;
@@ -267,6 +244,3 @@ position:fixed;
   display: flex;
   align-items: center;
 }
- .navbar-collapse{
-   display:flex
- }

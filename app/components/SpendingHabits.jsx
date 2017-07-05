@@ -15,6 +15,7 @@ class Spending extends Component {
     }
 
     handleSubmit(evt) {
+        conso.e.log("blaa")
         evt.preventDefault()
         const dates = {
             startDate: evt.target.startDate.value,
@@ -58,41 +59,13 @@ class Spending extends Component {
                         {tot && <h5>${tot.toFixed(2)}</h5>}
                         <h4> Amount Left </h4>
                         {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
-
                         <div className="text">
                             <h3>Spending Habits</h3>
                         </div>
                         <div className="transaction">
                             <h3 > Monthly Transactions </h3>
                         </div>
-                        {tot ?
-                            <div>
-                                <div className="chart col-md-4">
-                                    <h6>Amount Spent by Category</h6>
-                                    <VictoryBar
-                                        data={this.props.barChartTr}
-                                        x="type"
-                                        y="amount"
-                                        labels={(datum) => datum.x}
-                                        theme={VictoryTheme.material}
-                                    />
-                                </div>
-                                <div className="chart col-md-4">
-                                    <h6>Percent Spent by Category</h6>
-                                    <VictoryPie
-                                        data={this.props.barChartTr}
-                                        x="type"
-                                        y="amount"
-                                        labels={(datum) => {
-                                            console.log('DATUM', datum.y / 4700)
-                                            return `${datum.x}: ${Math.floor(datum.y / tot * 100)}%`
-                                        }}
-                                        theme={VictoryTheme.material}
-                                    />
-                                </div>
-
-
-                            </div> : null} </div>
+                         </div>
                 </div>
                 <br></br>
 
