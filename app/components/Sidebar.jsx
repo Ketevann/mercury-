@@ -9,18 +9,9 @@ export default function Sidebar(props) {
                 <h1>
                     My Money:
                  </h1>
+                     <h5>${this.props.monthlyBudget}</h5>
             </section>
             <hr />
-            <section>
-                <h4 className="menu-item">
-                    Checking:
-                 </h4>
-            </section>
-            <section>
-                <h4 className="menu-item">
-                    Savings:
-        </h4>
-            </section>
             <section>
                 <h1>
                     My Debt:

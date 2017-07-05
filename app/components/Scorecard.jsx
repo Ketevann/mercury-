@@ -44,35 +44,7 @@ handleSubmit(evt) {
                         <div className="transaction">
                             <h3 > Monthly Transactions </h3>
                         </div>
-                        <table className="table table-bordered">
-                            <thead className="habits" >
-                                <tr>
-                                    <th>#</th>
-                                    <th>Location</th>
-                                    <th>Type</th>
-                                    <th>Cost</th>
-                                </tr>
-                            </thead>
-                            {
-                                transactions && transactions.map((item, index) => {
-
-                                    return (
-
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">{index + 1}</th>
-                                                <td>{item.name}</td>
-                                                {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
-                                                <td>{item.amount}</td>
-                                            </tr>
-
-                                        </tbody>
-
-                                    )
-                                })
-                            }
-
-                        </table>
+                   
                         <div className="text">
                             <h3>Spending Habits</h3>
                         </div>
