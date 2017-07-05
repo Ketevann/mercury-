@@ -8,28 +8,37 @@ module.exports = db => db.define('expense', {
     type: ENUM('food', 'bills', 'transporation', 'healtchare','education' ,'emergencies')
   },
   food: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue :0
   },
   bills: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
+
   },
   healthcare: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   transportation: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   education: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   emergencies: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   entertainment: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   },
   other: {
-    type: DECIMAL(10, 2)
+    type: DECIMAL(10, 2),
+    defaultValue: 0
   }
 
 
