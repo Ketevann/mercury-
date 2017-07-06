@@ -32,8 +32,7 @@ class Navbar extends Component {
             <ul role="full-horizontal" className="nav navbar-nav navbar-left">
               <li><img className="logo " src={'./logo3.png'} /></li>
               <li><Link id="home" to="/home">Home</Link></li>
-              {this.props.user ?
-                <li><Link id="link" to="/spending">Spending</Link></li> : null}
+
               {this.props.user ?
                 <li><Link id="link" to="/budget">Budget</Link></li> : null}
               {this.props.user ?
