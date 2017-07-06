@@ -45,13 +45,13 @@ var j = schedule.scheduleJob('27 * * * *', function(){
     if(token.user.budgetUpdates==='ON'){
       var budget = (+token.user.expense.food)+(+token.user.expense.bills)+(+token.user.expense.healthcare)+(+token.user.expense.transportation)+
       (+token.user.expense.education)+(+token.user.expense.emergencies)+(+token.user.expense.entertainment)+(+token.user.expense.other);
-    
+
       var totalSum = transactionsResponse.transactions.reduce((total,val)=>{
         if(val.amount>0)
           return total+val.amount;
         else return total
       },0)
-      var budgetStr = (budget>=totalSum) ? `${token.user.name} met their budget!` : `${token.user.name} did not meet their budget!`
+      var budgetStr = (budget>=totalSum) ? `${token.user.name} was under budget!` : `${token.user.name} was over budget!`
       console.log('BUDGET',budget)
       console.log('totalSum',totalSum)
    }
@@ -68,7 +68,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
     	else return total
     },0)
     console.log('total!',token.user.thing,total,token.user.amount)
-    var message = (total<token.user.amount) ? `${token.user.name} did not buy too much ${token.user.thing}!` : `${token.user.name} bought too much ${token.user.thing}!`
+    var message = (total<token.user.amount) ? `${token.user.name} did not overspend on ${token.user.thing}!` : `${token.user.name} overspent on ${token.user.thing}!`
     keyword = token.user.thing;
   }
   else{
@@ -143,7 +143,7 @@ next()
         console.error('Error: ' + err.message);
         return;
     }
- 
+
     console.log('Finished!');
 })
   })//closes token

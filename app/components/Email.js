@@ -57,7 +57,7 @@ class Email extends Component {
 
     return (
       <div className="email">
-        <h3 >Email Settings</h3>
+        <h3 >Add Your Friends and Let Them Know about Your Success!</h3>
         <div className="row">
         <div className="col-sm-3">
           <p style={{'margin-bottom':'0px'}}>Enable Budget Updates:</p>
@@ -75,6 +75,9 @@ class Email extends Component {
             <option value="OFF">OFF</option>
           </select>
         </div>
+        <div className='col-sm-4'>
+          <img className="coolemail" src={'https://media.giphy.com/media/aOften89vRbG/giphy.gif'}/>
+        </div>
         </div>
         <div>
         <h3>Specified Purchase Details</h3>
@@ -85,12 +88,17 @@ class Email extends Component {
                   <div className='row'>
                   <div className='col-sm-3'>
                     <p>Purchase Location:</p>
-                    <p>Dollar Amount per Month:</p>
+                    <input  type="text" name="thing" placeholder={this.props.thing} />
+                    <br></br>
+                    <p className="dollar">Dollar Amount per Month:</p>
+                     <input type="text" name="dollar" placeholder={this.props.amount} />
+                     <br></br>
+                     <br></br>
                     <button className="pure-button" type="submit" className="btn">Submit</button>
                   </div>
                   <div className='col-sm-1'>
-                    <input type="text" name="thing" placeholder={this.props.thing} />
-                    <input type="text" name="dollar" placeholder={this.props.amount} />
+
+
                   </div>
                   </div>
                 </form>
@@ -110,7 +118,7 @@ class Email extends Component {
             console.log('doing this??')
             return(
               <div>
-              <li><button className="btn" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}>X</button> {email}</li>
+              <li className="emaillist"><button className=" glyphicon glyphicon-remove" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}></button> {email}</li>
               </div>)
           })
         }

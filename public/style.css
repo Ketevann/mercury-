@@ -561,6 +561,20 @@ body {
 .email{
     padding-top: 50px;
     padding-left:40px;
+    margin-bottom :85px;
+}
+
+.coolemail{
+    position: absolute;
+    left: 200px;
+}
+
+.emaillist{
+    margin-left: -40px;
+}
+
+.dollar{
+    margin-top:10px;
 }
 
 .addBtn:hover {
