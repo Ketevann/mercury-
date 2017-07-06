@@ -20,7 +20,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('43 * * * *', function(){
+var j = schedule.scheduleJob('27 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include: [
@@ -67,7 +67,8 @@ var j = schedule.scheduleJob('43 * * * *', function(){
     		return total+val.amount;
     	else return total
     },0)
-    var message = (total<token.user.amount) ? `${token.user.name} bought too much ${token.user.thing}!` : `${token.user.name} did not buy too much ${token.user.thing}!`
+    console.log('total!',token.user.thing,total,token.user.amount)
+    var message = (total<token.user.amount) ? `${token.user.name} did not buy too much ${token.user.thing}!` : `${token.user.name} bought too much ${token.user.thing}!`
     keyword = token.user.thing;
   }
   else{
@@ -113,7 +114,7 @@ var j = schedule.scheduleJob('43 * * * *', function(){
         from: '"Mercury" <mercurybudget@gmail.com>', // sender address
       to: token.user.emails.join(', '), // list of receivers
       subject: totalMessage,
-      text: 'b',
+      text: '',
     html: '<img src="cid:lets"/>',
     attachments: [{
         filename: 'image.gif',
