@@ -250,7 +250,6 @@ position:fixed;
         width: 200px;
       }
 
-
       .modalDialog {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
@@ -508,12 +507,11 @@ position:fixed;
     text-align: center
 
 }
-form {
-    margin-top:20px;
-    padding: 40px;
-}
 
-.expense, .email{
+.email{
+    padding-left:20px;
+}
+.expense, {
     padding:40px;
 }
 #emailsetting{
@@ -542,7 +540,7 @@ body {
    clear: both;
 }
 
-.expense, form{
+.expense{
     margin-bottom: 70px;
 }
 
@@ -553,4 +551,14 @@ body {
 .mybudget{
     position: absolute;
     left:400px;
+}
+
+.expense, .budgetform{
+    margin-bottom: 80px;
+    padding-left:40px;
+    padding-top: 50px;
+}
+.email{
+    padding-top: 50px;
+    padding-left:40px;
 }

@@ -205,7 +205,10 @@ class Expenses extends Component {
             })}
           </table> : null}
            <h3 >  Expenses </h3>
-          <table className="table table-bordered">
+
+                    {
+                        transactions ?
+                        <table className="table table-bordered">
                     <thead className="habits" >
                         <tr>
                             <th>#</th>
@@ -214,8 +217,7 @@ class Expenses extends Component {
                             <th>Cost</th>
                         </tr>
                     </thead>
-                    {
-                        transactions && transactions.map((item, index) => {
+                        { transactions.map((item, index) => {
                             return (
                                 <tbody>
                                     <tr>
@@ -227,9 +229,9 @@ class Expenses extends Component {
                                 </tbody>
                             )
                         })
-                    }
+                    }  </table> : null }
 
-                </table>
+
                 <div>       </div>
 
       </div>

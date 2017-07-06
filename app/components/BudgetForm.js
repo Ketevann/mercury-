@@ -47,8 +47,8 @@ class BudgetForm extends React.Component  {
 
   render() {
     {console.log(" budget prop", this.props)}
-    return (<div>
-      <form onSubmit={(evt) => this.handleSubmit(evt)}>
+    return (<div className="budgetform">
+      <form  onSubmit={(evt) => this.handleSubmit(evt)}>
         <div className="form-group row">
           <label htmlFor="example-text-input" className="col-2 col-form-label">Bills</label>
           <div className="col-10">
@@ -106,8 +106,6 @@ class BudgetForm extends React.Component  {
 
         <button type="submit" className="btn btn-primary">Submit</button>
        </form>
-       <button onClick={() => this.props.send()}>send</button>
-       <button onClick={() => this.props.sendGiff()}>senssd</button>
 
       </div>
 
