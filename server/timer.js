@@ -10,7 +10,7 @@ var giphy = require('giphy-api')();
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
+const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
 const client = new plaid.Client(
   PLAID_CLIENT_ID,
   PLAID_SECRET,
@@ -18,7 +18,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('37 * * * *', function(){
+var j = schedule.scheduleJob('56 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include:[User]}).then((token)=> {

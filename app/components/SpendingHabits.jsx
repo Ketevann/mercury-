@@ -15,7 +15,7 @@ class Spending extends Component {
     }
 
     handleSubmit(evt) {
-        conso.e.log("blaa")
+        console.log("blaa")
         evt.preventDefault()
         const dates = {
             startDate: evt.target.startDate.value,
