@@ -21,7 +21,7 @@ api
 
 // We store the access_token in memory - in production, store it in a secure
 // persistent data store
-// const ACCESS_TOKEN = null
+//const ACCESS_TOKEN = 'access-development-8d91f539-03cc-40dd-8833-cf30e1f23370'
 
 
 const client = new plaid.Client(
