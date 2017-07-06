@@ -50,7 +50,8 @@ class View extends React.Component {
                     <br></br>
                     <input className="credentials" name="password" type="password" placeholder="Password" required />
                     <br></br>
-                    <input type="submit" value="Login" />
+                    <br></br>
+                    <input className="btn" type="submit" value="Login" />
                   </form>
                   <h5> <a href="#" onClick={() => this.props.forgot()}>Forgot Password?</a></h5>
                   {this.props.modal.forgotPassword ?
@@ -78,6 +79,8 @@ class View extends React.Component {
                     <br></br>
                     <input className="credentials" name="password" type="password" placeholder="Password" required />
                     <br></br>
+                     <br></br>
+
                     <input className="btn" type="submit" value="Sign Up" />
                   </form></div>}
               <br></br>

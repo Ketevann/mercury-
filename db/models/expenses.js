@@ -4,9 +4,7 @@
 
 module.exports = db => db.define('expense', {
 
-  category: {
-    type: ENUM('food', 'bills', 'transporation', 'healtchare','education' ,'emergencies')
-  },
+
   food: {
     type: DECIMAL(10, 2),
     defaultValue :0

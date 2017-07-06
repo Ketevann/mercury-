@@ -57,7 +57,7 @@ class Email extends Component {
 
     return (
       <div className="email">
-        <h3 id="emailsetting">Email Settings</h3>
+        <h3 >Email Settings</h3>
         <div className="row">
         <div className="col-sm-3">
           <p style={{'margin-bottom':'0px'}}>Enable Budget Updates:</p>
@@ -70,14 +70,12 @@ class Email extends Component {
             <option value="ON">ON</option>
             <option value="OFF">OFF</option>
           </select>
-        <br/>
           <select onChange={(evt)=>{this.onProdClick(evt)}} value={this.props.prodUpdates} >
             <option value="ON">ON</option>
             <option value="OFF">OFF</option>
           </select>
         </div>
         </div>
-        <br/>
         <div>
         <h3>Specified Purchase Details</h3>
                   <form onSubmit={(evt)=>{
@@ -97,7 +95,6 @@ class Email extends Component {
                   </div>
                 </form>
         </div>
-        <br/>
           <div>
         <h3>Add Contact Email</h3>
                   <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
