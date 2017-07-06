@@ -11,8 +11,9 @@ class Budget extends Component {
   render(){
     {console.log('ptop', this.props)}
     return (<div className="budget">
-    <Link to="/addexpenses"><button className="budgetbutton btn">Edit Budget</button></Link>
-    <Link to="/myexpenses"><button className="budgetbutton btn">My Budget</button></Link>
+    <Link to="/addexpenses"><button className="addexpense budgetbutton btn">Edit Budget</button></Link>
+    <span></span>
+    <Link to="/myexpenses"><button className="mybudget budgetbutton btn">My Budget</button></Link>
 
     </div>)
   }

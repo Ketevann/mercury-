@@ -68,7 +68,6 @@ class Expenses extends Component {
 
         transactions = this.props.transactions.transactions
         if (transactions !== undefined){
-          console.log("TRAAANSSSVVV")
             var tot = this.props.barChartTr.reduce((total, val) => {
                 console.log('VAL+TOTAL', val.amount, total)
                 return total + val.amount
@@ -79,7 +78,7 @@ class Expenses extends Component {
 
 
     return (
-      <div>
+      <div className="expense">
 
       <div className="form-container">
                     <h2>Select transaction dates:</h2>
@@ -93,9 +92,7 @@ class Expenses extends Component {
                         <button className="pure-button" type="submit" className="btn">Submit</button>
                     </form>
                 </div>
-       <div>
-
-
+                      <div className="montlybudget">
                         <h4> Monthly Budget </h4>
                         <h5>${this.props.monthlyBudget}</h5>
                         <h4> Total Spent</h4>
@@ -233,6 +230,7 @@ class Expenses extends Component {
                     }
 
                 </table>
+                <div>       </div>
 
       </div>
     )
