@@ -81,7 +81,7 @@ position:fixed;
 .budgetbutton{
   margin-top: 100px;
   padding:50px;
- margin-left: 45px;
+ margin-left: 150px;
 }
 .btn-warning {
   margin-top: 160px;
@@ -549,4 +549,8 @@ body {
 .addexpense{
     position: absolute;
     left:500px;
+}
+.mybudget{
+    position: absolute;
+    left:400px;
 }
