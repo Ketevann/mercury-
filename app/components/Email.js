@@ -54,10 +54,10 @@ class Email extends Component {
 
   render(){
     console.log('PROPS',this.props)
-    
+
     return (
-      <div>
-        <h3>Email Settings</h3>
+      <div className="email">
+        <h3 id="emailsetting">Email Settings</h3>
         <div className="row">
         <div className="col-sm-3">
           <p style={{'margin-bottom':'0px'}}>Enable Budget Updates:</p>
@@ -93,8 +93,8 @@ class Email extends Component {
                   <div className='col-sm-1'>
                     <input type="text" name="thing" placeholder={this.props.thing} />
                     <input type="text" name="dollar" placeholder={this.props.amount} />
-                  </div> 
-                  </div>       
+                  </div>
+                  </div>
                 </form>
         </div>
         <br/>
@@ -103,7 +103,7 @@ class Email extends Component {
                   <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
                     <p>Email Address:</p>
                     <input type="text" name="email" />
-                    <button className="pure-button" type="submit" className="btn">Submit</button>      
+                    <button className="pure-button" type="submit" className="btn">Submit</button>
                 </form>
         </div>
         <h4>   Current Emails</h4>
