@@ -40,6 +40,8 @@ class Navbar extends Component {
                 <li><a onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
               {this.props.user ?
                 <li><Link id="link" to="/emailSettings">Email Settings</Link></li> : null}
+              {this.props.user ?
+                <li><Link id="link" to="/goals">Goals</Link></li> : null}
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {!this.props.user ?

@@ -562,3 +562,68 @@ body {
     padding-top: 50px;
     padding-left:40px;
 }
+
+.addBtn:hover {
+   background-color: #58EED1;
+}
+
+.addBtn {
+   padding: 10px;
+   text-align: center;
+   font-size: 16px;
+   cursor: pointer;
+   transition: 0.3s;
+   background-color: #0066FF;
+   color: #FFF;
+   border: 2px solid #0055FF;
+   border-radius: 5px;
+}
+
+/* Remove margins and padding from the list */
+.goalsList {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+
+}/* Style the list items */
+.goalsList li {
+   cursor: pointer;
+   position: relative;
+ 
+   font-size: 18px;
+   transition: 0.2s;
+   color: #333;
+   background-color: #ccfff5
+;
+   padding: 15px;
+   margin-bottom: 15px;
+   border-radius: 5px;    /* make the list items unselectable */
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}/* Set all odd list items to a different color (zebra-stripes) */
+.goalsList li:nth-child(odd) {
+   background: #f9f9f9
+;
+}/* Darker background-color on hover */
+.goalsList li:hover {
+   background: #ddd;
+}/* When clicked on, add a background color and strike out text */
+.goalsList li.checked {
+   background: #888;
+   color: #fff;
+   text-decoration: line-through;
+}/* Add a "checked" mark when clicked on */
+.goalsList li.checked::before {
+   content: '';
+   position: absolute;
+   border-color: #fff;
+   border-style: solid;
+   border-width: 0 2px 2px 0;
+   top: 10px;
+   left: 16px;
+   transform: rotate(45deg);
+   height: 15px;
+   width: 7px;
+}
