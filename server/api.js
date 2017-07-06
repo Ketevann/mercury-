@@ -6,7 +6,7 @@ const envvar = require('envvar')
 const PLAID_CLIENT_ID = require('../newCredentials').PLAID_CLIENT_ID
 const PLAID_SECRET = require('../newCredentials').PLAID_SECRET
 const PLAID_PUBLIC_KEY = require('../newCredentials').PLAID_PUBLIC_KEY
-const PLAID_ENV = envvar.string('PLAID_ENV', 'sandbox')
+const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
 const db = require('../db')
 const AccessToken = db.model('accessToken');
 

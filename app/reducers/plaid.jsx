@@ -56,7 +56,7 @@ export const connectPlaid = () =>
 		Plaid.create({
 			apiVersion: 'v2',
 			clientName: 'Mercury',
-			env: 'sandbox',
+			env: 'development',
 			product: ['auth'],
 			key: PLAID_PUBLIC_KEY,
 			onSuccess: (public_token) => {
