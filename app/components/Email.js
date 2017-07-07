@@ -94,7 +94,7 @@ class Email extends Component {
                      <input type="text" name="dollar" placeholder={this.props.amount} />
                      <br></br>
                      <br></br>
-                    <button className="pure-button" type="submit" className="btn">Submit</button>
+                    <button className="pure-button btn" type="submit">Submit</button>
                   </div>
                   <div className='col-sm-1'>
 
@@ -118,7 +118,7 @@ class Email extends Component {
             console.log('doing this??')
             return(
               <div>
-              <li className="emaillist"><button className=" glyphicon glyphicon-remove" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}></button> {email}</li>
+              <li className="emaillist"><button className="btn glyphicon glyphicon-remove" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}></button> {email}</li>
               </div>)
           })
         }

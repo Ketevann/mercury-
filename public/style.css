@@ -113,14 +113,7 @@ position:fixed;
 .credentials {
   margin-top: 20px;
 }
-.table-bordered{
-  font-family:  Helvetica, sans-serif;
-  width: 90%;
-  border-radius: 10px;
-  opacity: 1px
 
-
-}
 .habits{
   background-color: #333;
   color: whitesmoke;
@@ -511,7 +504,9 @@ position:fixed;
 .email{
     padding-left:20px;
 }
-.expense, {
+.expense {
+    width: 90%;
+    margin-bottom: 70px;
     padding:40px;
 }
 #emailsetting{
@@ -642,7 +637,7 @@ body {
    height: 15px;
    width: 7px;
 }
-=======
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:700);
 
 #holder{
@@ -709,4 +704,14 @@ a.nounderline:link
 {  
  text-decoration:none;  
 } 
+
+.table-bordered{
+  font-family:  Helvetica, sans-serif;
+  width: 90%;
+  border-radius: 10px;
+  opacity: 1px
+
+}
+
+
 

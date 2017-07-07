@@ -183,7 +183,7 @@ class Expenses extends Component {
          <h3 > Budget Expenses </h3>
 
         {this.props.budget.budget ?
-          <table className="table table-bordered">
+          <table className="table table-bordered special">
             <thead className="habits" >
               <tr>
                 <th>#</th>
@@ -208,7 +208,7 @@ class Expenses extends Component {
 
                     {
                         transactions ?
-                        <table className="table table-bordered">
+                        <table className="table table-bordered special">
                     <thead className="habits" >
                         <tr>
                             <th>#</th>
