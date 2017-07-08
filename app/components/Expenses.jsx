@@ -40,69 +40,70 @@ var categories = {
 
 class Expenses extends Component {
 
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
-    }
+  }
 
-    handleSubmit(evt) {
-      console.log("bla")
-        evt.preventDefault()
-        const dates = {
-            startDate: evt.target.startDate.value,
-            endDate: evt.target.endDate.value
-        }
-        this.props.fetchTransactions(dates.startDate, dates.endDate)
+  handleSubmit(evt) {
+    console.log("bla")
+    evt.preventDefault()
+    const dates = {
+      startDate: evt.target.startDate.value,
+      endDate: evt.target.endDate.value
     }
+    this.props.fetchTransactions(dates.startDate, dates.endDate)
+  }
 
 
   render() {
     let budgetArr = []
-    let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
+    let plaidArr = [], transactions, sum = 0, sum2 = 0, cat = {}, transaction, found = false, combine = {}, val
 
     console.log("props in expenses", this.props)
 
 
     if (!this.props.user) return null
-        console.log('PROPS', this.props)
+    console.log('PROPS', this.props)
 
-        transactions = this.props.transactions.transactions
-        if (transactions !== undefined){
-            var tot = this.props.barChartTr.reduce((total, val) => {
-                console.log('VAL+TOTAL', val.amount, total)
-                return total + val.amount
-            }
+    transactions = this.props.transactions.transactions
+    if (transactions !== undefined) {
+      var tot = this.props.barChartTr.reduce((total, val) => {
+        console.log('VAL+TOTAL', val.amount, total)
+        return total + val.amount
+      }
 
-                , 0)}
-        console.log('TOT', tot);
+        , 0)
+    }
+    console.log('TOT', tot);
 
 
     return (
       <div className="expense">
 
-      <div className="form-container">
-                    <h2>Select transaction dates:</h2>
-                    <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
-                        <label for="startDate">Start Date:  </label>
-                        <input className="pure-input-rounded" name="startDate" type="date" />
-                        <br />
-                        <label for="endDate">End Date:  </label>
-                        <input className="pure-input-rounded" name="endDate" type="date" />
-                        <br />
-                        <button className="pure-button" type="submit" className="btn">Submit</button>
-                    </form>
-                </div>
-                      <div className="montlybudget">
-                        <h4> Monthly Budget </h4>
-                        <h5>${this.props.monthlyBudget}</h5>
-                        <h4> Total Spent</h4>
-                        {tot && <h5>${tot.toFixed(2)}</h5>}
-                        <h4> Amount Left </h4>
-                        {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
-                        <div className="text">
-                            <h3>Spending Habits</h3>
-                        </div>
-                        </div>
+        <div className="form-container">
+          <h2>Select transaction dates:</h2>
+          <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
+            <label for="startDate">Start Date:  </label>
+            <input className="pure-input-rounded" name="startDate" type="date" />
+            <br />
+            <label for="endDate">End Date:  </label>
+            <input className="pure-input-rounded" name="endDate" type="date" />
+            <br />
+            <button className="pure-button" type="submit" className="btn">Submit</button>
+          </form>
+        </div>
+        <div className="montlybudget">
+          <h4> Monthly Budget </h4>
+          <h5>${this.props.monthlyBudget}</h5>
+          <h4> Total Spent</h4>
+          {tot && <h5>${tot.toFixed(2)}</h5>}
+          <h4> Amount Left </h4>
+          {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
+          <div className="text">
+            <h3>Spending Habits</h3>
+          </div>
+        </div>
 
 
 
@@ -123,7 +124,7 @@ class Expenses extends Component {
             height={300}
             width={900}
             data={budgetArr}
-          /> : null}
+            /> : null}
         {this.props.plaid.transactions.transactions ?
           this.props.plaid.transactions.transactions.map(obj => {
             found = false
@@ -149,27 +150,27 @@ class Expenses extends Component {
           })
           : null}
 
-          {this.props.budget.budget ?
+        {this.props.budget.budget ?
 
-            Object.keys(this.props.budget.budget).map(key =>{
-            if (cat.hasOwnProperty(key)=== false)
+          Object.keys(this.props.budget.budget).map(key => {
+            if (cat.hasOwnProperty(key) === false)
               combine[key] = 0
             else combine[key] = cat[key]
           })
-         : null }
-         {console.log(combine, 'combine', cat, 'cat')}
-         {this.props.plaid.transactions.transactions ?
-        Object.keys(combine).map(key => {
-          if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
-            if(Number(cat[key])>0)
-          sum2 += Number(cat[key])
-          plaidArr.push({ x: key, y: cat[key] })
-        }
-        console.log('sun', sum2)
-        })
-     : null }
-      <h1>Total Expenses: ${sum2.toFixed(2)} </h1>
-      {console.log(plaidArr, "111111")}
+          : null}
+        {console.log(combine, 'combine', cat, 'cat')}
+        {this.props.plaid.transactions.transactions ?
+          Object.keys(combine).map(key => {
+            if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id') {
+              if (Number(cat[key]) > 0)
+                sum2 += Number(cat[key])
+              plaidArr.push({ x: key, y: cat[key] })
+            }
+            console.log('sun', sum2)
+          })
+          : null}
+        <h1>Total Expenses: ${sum2.toFixed(2)} </h1>
+        {console.log(plaidArr, "111111")}
         {plaidArr.length > 0 ?
           <BarChart
             axes
@@ -178,9 +179,9 @@ class Expenses extends Component {
             height={300}
             width={900}
             data={plaidArr}
-          /> : null}
+            /> : null}
         {console.log(cat, 'cat********')}
-         <h3 > Budget Expenses </h3>
+        <h3 > Budget Expenses </h3>
 
         {this.props.budget.budget ?
           <table className="table table-bordered">
@@ -204,35 +205,35 @@ class Expenses extends Component {
               }
             })}
           </table> : null}
-           <h3 >  Expenses </h3>
+        <h3 >  Expenses </h3>
 
-                    {
-                        transactions ?
-                        <table className="table table-bordered">
-                    <thead className="habits" >
-                        <tr>
-                            <th>#</th>
-                            <th>Location</th>
-                            <th>Type</th>
-                            <th>Cost</th>
-                        </tr>
-                    </thead>
-                        { transactions.map((item, index) => {
-                            return (
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{index + 1}</th>
-                                        <td>{item.name}</td>
-                                        {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
-                                        <td>{item.amount}</td>
-                                    </tr>
-                                </tbody>
-                            )
-                        })
-                    }  </table> : null }
+        {
+          transactions ?
+            <table className="table table-bordered">
+              <thead className="habits" >
+                <tr>
+                  <th>#</th>
+                  <th>Location</th>
+                  <th>Type</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              {transactions.map((item, index) => {
+                return (
+                  <tbody>
+                    <tr>
+                      <th scope="row">{index + 1}</th>
+                      <td>{item.name}</td>
+                      {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
+                      <td>{item.amount}</td>
+                    </tr>
+                  </tbody>
+                )
+              })
+              }  </table> : null}
 
 
-                <div>       </div>
+        <div>       </div>
 
       </div>
     )
@@ -241,35 +242,36 @@ class Expenses extends Component {
 }
 
 const barChart = (items) => {
-    console.log('ITEMS', items)
-    var toLoop = items.transactions
-    var loopLength = items.total_transactions
-    console.log('LOOPSTUFF', toLoop, loopLength)
-    var things = {}
-    var arr = []
-    if (toLoop !== undefined) {
-        for (var i = 0; i < loopLength; i++) {
-            var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
-            if (toLoop[i].amount > 0 && name !== 'Transfer') {
-                things[name] = things[name] || 0
-                things[name] += toLoop[i].amount
-            }
-            console.log(things)
-        }
-        console.log('things!!!', things)
-        for (var val in things) {
-            console.log(val)
-            arr.push({ type: val, amount: things[val] })
-        }
-        //return arr;
-        return arr
+  console.log('ITEMS', items)
+  var toLoop = items.transactions
+  var loopLength = items.total_transactions
+  console.log('LOOPSTUFF', toLoop, loopLength)
+  var things = {}
+  var arr = []
+  if (toLoop !== undefined) {
+    for (var i = 0; i < loopLength; i++) {
+      var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
+      if (toLoop[i].amount > 0 && name !== 'Transfer') {
+        things[name] = things[name] || 0
+        things[name] += toLoop[i].amount
+      }
+      console.log(things)
     }
-    return 'failed'
+    console.log('things!!!', things)
+    for (var val in things) {
+      console.log(val)
+      arr.push({ type: val, amount: things[val] })
+    }
+    //return arr;
+    return arr
+  }
+  return 'failed'
 }
 
 export default connect(
-  ({ modal, auth, budget, plaid }) => ({ modal: modal, transactions: plaid.transactions,user: auth, budget: budget, plaid, monthlyBudget: 3000, barChartTr: barChart(plaid.transactions),
- }),
+  ({ modal, auth, budget, plaid }) => ({
+    modal: modal, transactions: plaid.transactions, user: auth, budget: budget, plaid, monthlyBudget: 3000, barChartTr: barChart(plaid.transactions),
+  }),
   { modalShow, logout, fetchTransactions },
 )(Expenses)
 

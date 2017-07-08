@@ -20,7 +20,7 @@ const client = new plaid.Client(
   plaid.environments[PLAID_ENV]
 )
 
-var j = schedule.scheduleJob('27 * * * *', function(){
+var j = schedule.scheduleJob('25 * * * *', function(){
   console.log('Please work????')
   console.log('client', client)
   AccessToken.findAll({include: [
@@ -31,7 +31,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
   ).then((tokens)=> {
   	console.log('token?',tokens.length)
   asyncLoop(tokens, function (token, next){
-  	client.getTransactions(token.accessToken, '2017-06-01','2017-06-30' , {
+  	client.getTransactions(token.accessToken, '2017-07-01','2017-07-07' , {
     count: 250,
     offset: 0,
   }, function (error, transactionsResponse) {

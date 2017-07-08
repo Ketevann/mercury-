@@ -113,14 +113,7 @@ position:fixed;
 .credentials {
   margin-top: 20px;
 }
-.table-bordered{
-  font-family:  Helvetica, sans-serif;
-  width: 90%;
-  border-radius: 10px;
-  opacity: 1px
 
-
-}
 .habits{
   background-color: #333;
   color: whitesmoke;
@@ -363,7 +356,8 @@ position:fixed;
   font-family:  Helvetica, sans-serif;
   width: 90%;
   border-radius: 10px;
-  opacity: 1px
+  opacity: 1px;
+  width: 90%;
 
 
 }
@@ -554,14 +548,19 @@ body {
 }
 
 .expense, .budgetform{
+  margin-top: 40px;
     margin-bottom: 80px;
-    padding-left:40px;
+    padding-left:60px;
     padding-top: 50px;
 }
 .email{
     padding-top: 50px;
-    padding-left:40px;
-    margin-bottom :85px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    width: 720px;
 }
 
 .coolemail{
@@ -643,3 +642,10 @@ a.nounderline:link
 {  
  text-decoration:none;  
 } 
+
+.table-bordered{
+  font-family:  Helvetica, sans-serif;
+  width: 90%;
+  border-radius: 10px;
+  opacity: 1px;
+}
