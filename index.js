@@ -34,6 +34,7 @@ if (!reasonableName.test(pkg.name)) {
 // Note that this needs to be in your home directory, not the project's root directory
 const env = process.env
     , secretsFile = resolve(require('homedir')(), `.${pkg.name}.env`)
+    console.log("shalalalalalalla", env.GOOGLE_CLIENT_ID)
 
 try {
   Object.assign(env, require(secretsFile))

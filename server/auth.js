@@ -5,7 +5,10 @@ const secrets = require('../mercury.js')
 const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
-const cors = require('cors')
+
+
+
+
 /*************************
  * Auth strategies
  *
@@ -62,8 +65,8 @@ OAuth.setupStrategy({
   provider: 'google',
   strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    clientID: secrets.GOOGLE_CLIENT_ID,
-    clientSecret: secrets.GOOGLE_CLIENT_SECRET,
+    clientID: env.GOOGLE_CLIENT_ID,
+    clientSecret: env.GOOGLE_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
@@ -194,5 +197,6 @@ auth.post('/logout', (req, res) => {
   res.redirect('/api/auth/whoami')
 })
 
+console.log(env.GOOGLE_CLIENT_ID, "GOOFLE ID!!!", env)
 
 module.exports = auth
