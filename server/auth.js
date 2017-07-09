@@ -197,6 +197,6 @@ auth.post('/logout', (req, res) => {
   res.redirect('/api/auth/whoami')
 })
 
-console.log(env.GOOGLE_CLIENT_ID, "GOOFLE ID!!!", env)
+console.log(env.PLAID_CLIENT_ID, "GOOFLE ID!!!")
 
 module.exports = auth
