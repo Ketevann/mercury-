@@ -4,7 +4,7 @@ const debug = require('debug')(`${app.name}:auth`)
 const api = module.exports = require('express').Router()
 const plaid = require('plaid')
 const envvar = require('envvar')
-const PLAID_CLIENT_ID = env.plaid.client_id
+const PLAID_CLIENT_ID = env.PLAID_CLIENT_ID
 const PLAID_SECRET = env.PLAID_SECRET
 const PLAID_PUBLIC_KEY = env.PLAID_PUBLIC_KEY
 const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
