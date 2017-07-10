@@ -10,11 +10,12 @@ const User = db.model('users');
 const Expenses = db.model('expense')
 const plaid = require('plaid')
 const envvar = require('envvar')
-var giphy = require('giphy-api')();
+var giphy = require('giphy-api')()
 const PLAID_CLIENT_ID = env.PLAID_CLIENT_ID
 const PLAID_SECRET = env.PLAID_SECRET
 const PLAID_PUBLIC_KEY = env.PLAID_PUBLIC_KEY
 const PLAID_ENV = envvar.string('PLAID_ENV', 'development')
+console.log("im timer plaid client", PLAID_SECRET)
 const client = new plaid.Client(
   PLAID_CLIENT_ID,
   PLAID_SECRET,
