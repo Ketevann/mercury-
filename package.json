@@ -11,7 +11,7 @@
     "validate": "check-node-version --node '>= 7.0.0'",
     "setup": "./bin/setup",
     "prep": "npm run validate && npm run setup",
-    "postinstall": "npm run prep ./node_modules/bower/bin/bower install",
+    "postinstall": "npm run prep && npm run build &&./node_modules/bower/bin/bower install",
     "build": "webpack",
     "build-watch": "npm run build -- -w",
     "build-branch": "bin/build-branch.sh",
@@ -92,9 +92,7 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "victory": "^0.21.0",
-    "xoauth2": "^1.2.0"
-  },
-  "devDependencies": {
+    "xoauth2": "^1.2.0",
     "babel": "^6.5.2",
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.2.2",
@@ -120,5 +118,8 @@
     "volleyball": "^1.4.1",
     "webpack": "^2.2.1",
     "webpack-livereload-plugin": "^0.10.0"
+  },
+  "devDependencies": {
+
   }
 }
