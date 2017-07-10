@@ -1,7 +1,7 @@
 const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-const secrets = require('../mercury.js')
+//const secrets = require('../mercury.js')
 const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
@@ -41,8 +41,8 @@ OAuth.setupStrategy({
   provider: 'facebook',
   strategy: require('passport-facebook').Strategy,
   config: {
-    clientID: secrets.FACEBOOK_CLIENT_ID,
-    clientSecret: secrets.FACEBOOK_CLIENT_SECRET,
+    clientID: env.FACEBOOK_CLIENT_ID,
+    clientSecret: env.FACEBOOK_CLIENT_SECRET,
     callbackURL: `${app.baseUrl}/api/auth/login/facebook`,
   },
   passport
@@ -197,6 +197,6 @@ auth.post('/logout', (req, res) => {
   res.redirect('/api/auth/whoami')
 })
 
-console.log(env.PLAID_CLIENT_ID, "GOOFLE ID!!!")
+console.log(env.PLAID_CLIENT_ID, "GOOFLE ID!!!", env)
 
 module.exports = auth
