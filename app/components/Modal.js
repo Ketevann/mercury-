@@ -27,7 +27,7 @@ class View extends React.Component {
   render() {
     { console.log(" modeeelslsl", this.props) }
     return (
-      <div onClick={this.handleClick}>{
+      <div className="modal" onClick={this.handleClick}>{
         this.props.modal.showModal ?
           <ModalContainer onClose={this.handleClose}>
             <ModalDialog className="dialog" onClose={this.handleClose}>
@@ -84,7 +84,7 @@ class View extends React.Component {
                     <input className="btn" type="submit" value="Sign Up" />
                   </form></div>}
               <br></br>
-              <a href="/api/auth/login/google"> <button className="google"></button> </a>
+              <a href="/auth/login/google"> <button className="google"></button> </a>
             </ModalDialog>
           </ModalContainer>
           : null}

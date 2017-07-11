@@ -72,7 +72,7 @@ class View extends React.Component {
                     <input type="submit" value="Login" />
                   </form></div> }
                 <br></br>
-                 <a href="/api/auth/login/google"> <button className="google"></button> </a>
+                 <a href="/auth/login/google"> <button className="google"></button> </a>
           </ModalDialog>
         </ModalContainer>
                 : null}
