@@ -64,7 +64,7 @@ OAuth.setupStrategy({
   config: {
     clientID: secrets.GOOGLE_CLIENT_ID,
     clientSecret: secrets.GOOGLE_CLIENT_SECRET,
-    callbackURL: `${app.baseUrl}/auth/login/google`,
+    callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
 })
