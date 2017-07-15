@@ -16,7 +16,6 @@ import Budget from './components/Budget'
 import Front from './components/Front'
 import Footer from './components/Footer'
 import Email from './components/Email'
-import Goals from './components/Goals'
 
 
 import {fetchTransactions} from './reducers/plaid.jsx'
@@ -83,7 +82,6 @@ render(
         <Route path="/myexpenses" component={Expenses} onEnter={getExpenses} />
          <Route path='/home' component={Front} />
          <Route path='/emailSettings' component={Email} onEnter={getInitalEmailSettings} />
-         <Route path='/goals' component={Goals}/>
       </Route>
       {/*<Route path='/home' component={FrontPage} />
       <Route path='/about' component={About} />
