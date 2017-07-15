@@ -34,11 +34,11 @@ export const getTransactions = transactions => ({
 export const fetchAccessToken = (public_token) =>
 	dispatch => {
 		var user = axios.get('/api/auth/whoami')
-		var accessToken = axios.post('/api/get_access_token', { public_token: public_token })
+		var accessToken = axios.post('/api/plaid/get_access_token', { public_token: public_token })
 
 		Promise.all([user, accessToken]).spread((user, accessToken) => {
 			console.log('USER ', user.data, accessToken.data)
-			return axios.post('/api/putTokenInDB',
+			return axios.post('/api/plaid/putTokenInDB',
 				{
 					user: user.data,
 					accessToken: accessToken.data
@@ -68,7 +68,7 @@ export const connectPlaid = () =>
 
 export const fetchAccounts = (access_token) =>
 	dispatch =>
-		axios.get('/api/accounts')
+		axios.get('/api/plaid/accounts')
 			.then(res => {
 				console.log('ACCT INFO', res.data)
 			})
@@ -76,7 +76,7 @@ export const fetchAccounts = (access_token) =>
 
 export const fetchTransactions = (startDate, endDate) =>
 	dispatch =>
-		axios.post('/api/transactions', { startDate: startDate, endDate: endDate })
+		axios.post('/api/plaid/transactions', { startDate: startDate, endDate: endDate })
 			.then(res => {
 				console.log('TRANSANCTIONS', res.data)
 				dispatch(getTransactions(res.data))
@@ -86,7 +86,7 @@ export const fetchTransactions = (startDate, endDate) =>
 
 export const fetchItems = (access_token) =>
 	dispatch =>
-		axios.post('/api/item')
+		axios.post('/api/plaid/item')
 			.then(res => {
 				console.log('ITEM', res.data)
 			})

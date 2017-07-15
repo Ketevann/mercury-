@@ -138,7 +138,6 @@ class Expenses extends Component {
                   }
                   else cat[keys] += val
                 }
-
               }
             })
             if (!found) {
@@ -150,7 +149,6 @@ class Expenses extends Component {
           : null}
 
           {this.props.budget.budget ?
-
             Object.keys(this.props.budget.budget).map(key =>{
             if (cat.hasOwnProperty(key)=== false)
               combine[key] = 0
@@ -272,6 +270,3 @@ export default connect(
  }),
   { modalShow, logout, fetchTransactions },
 )(Expenses)
-
-
-

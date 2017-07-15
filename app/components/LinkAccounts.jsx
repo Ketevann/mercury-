@@ -24,7 +24,7 @@ class LinkAccounts extends Component {
             thing: evt.target.thing.value,
             amount: evt.target.dollar.value
         }
-        axios.put('/api/addToUser',info).then((thing)=>{console.log('success!')})
+        axios.put('/api/email/addToUser',info).then((thing)=>{console.log('success!')})
     }
 
     render() {

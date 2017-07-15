@@ -76,7 +76,7 @@ class Email extends Component {
           </select>
         </div>
         <div className='col-sm-4'>
-          <img className="coolemail" src={'https://media.giphy.com/media/aOften89vRbG/giphy.gif'}/>
+
         </div>
         </div>
         <div>
