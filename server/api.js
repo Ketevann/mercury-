@@ -16,7 +16,6 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
 
-  .use('/plaid', require('./plaid'))
   .use('/email', require('./email'))
   .use('/timer', require('./time'))
 
@@ -29,5 +28,7 @@ api
 // persistent data store
 
 // No routes matched? 404.
+
+
 api.use((req, res) => res.status(404).end())
 

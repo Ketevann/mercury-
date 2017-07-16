@@ -1,7 +1,7 @@
 const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-const secrets = env
+const secrets = require('../mercury')
 const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
@@ -64,7 +64,7 @@ OAuth.setupStrategy({
   config: {
     clientID: secrets.GOOGLE_CLIENT_ID,
     clientSecret: secrets.GOOGLE_CLIENT_SECRET,
-    callbackURL: `https://tranquil-crag-29667.herokuapp.com/api/auth/login/google`,
+    callbackURL: `${app.baseUrl}/api/auth/login/google`,
   },
   passport
 })

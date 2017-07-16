@@ -23,15 +23,13 @@ const client = new plaid.Client(
 )
 
 var j = schedule.scheduleJob('27 * * * *', function(){
-  console.log('Please work????')
-  console.log('client', client)
+
   AccessToken.findAll({include: [
     {model: User, include: [
       {model: Expenses}
     ]}
   ]}
   ).then((tokens)=> {
-  	console.log('token?',tokens.length)
   asyncLoop(tokens, function (token, next){
   	client.getTransactions(token.accessToken, '2017-06-01','2017-06-30' , {
     count: 250,
@@ -43,7 +41,6 @@ var j = schedule.scheduleJob('27 * * * *', function(){
       return 'error'
     }
     var keyword = '';
-    console.log('i before budget!')
     if(token.user.budgetUpdates==='ON'){
       var budget = (+token.user.expense.food)+(+token.user.expense.bills)+(+token.user.expense.healthcare)+(+token.user.expense.transportation)+
       (+token.user.expense.education)+(+token.user.expense.emergencies)+(+token.user.expense.entertainment)+(+token.user.expense.other);
@@ -54,8 +51,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
         else return total
       },0)
       var budgetStr = (budget>=totalSum) ? `${token.user.name} was under budget!` : `${token.user.name} was over budget!`
-      console.log('BUDGET',budget)
-      console.log('totalSum',totalSum)
+
    }
    else{
       var budgetStr = '';
@@ -69,7 +65,6 @@ var j = schedule.scheduleJob('27 * * * *', function(){
     		return total+val.amount;
     	else return total
     },0)
-    console.log('total!',token.user.thing,total,token.user.amount)
     var message = (total<token.user.amount) ? `${token.user.name} did not overspend on ${token.user.thing}!` : `${token.user.name} overspent on ${token.user.thing}!`
     keyword = token.user.thing;
   }
@@ -78,11 +73,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
   }
   if(keyword==='' && token.user.budgetUpdates==='ON')
     keyword = (budget>=totalSum)? 'success' : 'failure'
-    //console.log(total,typeof total);
-    //console.log(total, token[0].user.thing )
-    //var message = (total<token[0].user.amount) ? `${token[0].user.name} was successful!` : `${token[0].user.name} was unsuccessful!`
-    //var second = `${token[0].user.name} spent ${total} on ${token[0].user.thing} - goal was ${token[0].user.amount}`
-    //var fin = message + " "+second;
+
   var totalMessage = budgetStr+' '+message
   if(totalMessage!==" "){
     let transporter = nodemailer.createTransport({
@@ -96,20 +87,11 @@ var j = schedule.scheduleJob('27 * * * *', function(){
       }
     })
 
-    // setup email data with unicode symbols
-    // let mailOptions = {
-    //   from: '"Fred Foo bread junior 👻" <*****@gmail.com>', // sender address
-    //   to: 'ninbaratwli@gmail.com', // list of receivers
-    //   subject: 'Hello ✔', // Subject line
-    //   text: 'got bread ?', // plain text body
-    //   html: '<b>got bread  ?</b>' // html body
-    // }
-    //console.log('to pass:',token[0].user.thing )
+
     giphy.search(keyword) // 'flamingo is a keyword to search for
 		.then(function (data) {
     // Res contains gif data!
-    //console.log('found a gif!!!')
-    //console.log('HAS A THING??',data.data[0])
+
     var length = data.data.length;
     var chosen = data.data[Math.floor(length*Math.random())]
     var mailOptions = {
@@ -130,9 +112,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
         return console.log(error);
       }
       console.log('Message %s sent: %s', info.messageId, info.response);
-      /*req.end()
-      transporter.close()
-      res.send('WHYYYYYY')*/
+
     }) //closes sendmail
     }).catch((error)=>console.log(error)) //closes giphy
   }//closes if total message is not null
