@@ -12,10 +12,7 @@ class Front extends Component {
     super()
   }
   render(){
-    {console.log(this.props, 'props in Front')}
-
     return (<div className="homepage">
-
       <h2 className="tex header "> SPEND YOUR MONEY WISELY</h2>
       <h4  className="text ">Mercury helps you keep track of your budget and spending</h4>
       <h4 className="hometext "> and alerts you when you go off-track</h4>

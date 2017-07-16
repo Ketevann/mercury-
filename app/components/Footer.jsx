@@ -7,14 +7,12 @@ const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 import { connectPlaid, fetchAccounts, fetchTransactions, fetchItems } from '../reducers/plaid'
 
 class Footer extends Component {
-    constructor(props, context) {
-        super(props, context)
+  constructor(props, context) {
+    super(props, context)
 
     }
     render() {
         return (
-
-
           <div className=" footer">
             <br />
             <div id="icons">
@@ -23,10 +21,9 @@ class Footer extends Component {
             <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" className="fa fa-google-plus-square fa-3x social" /></a>
             <a href="mailto:mercurybudget@gmail.com"><i id="social-em" className="fa fa-envelope-square fa-3x social" /></a></div>
           </div>
-
         )
     }
 }
 
 export default connect(
-    state => ({}), {  })(Footer)
+    state => ({}), {})(Footer)

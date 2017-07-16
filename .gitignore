@@ -17,4 +17,5 @@ mercury.js
 giffy.js
 
 .DS_Store
-
+appT/*
+nodemailer.js

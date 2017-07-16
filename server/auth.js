@@ -1,7 +1,7 @@
 const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
-const secrets = require('../mercury.js')
+const secrets = require('../mercury')
 const { User, OAuth } = require('APP/db')
 console.log('*********', User)
 const auth = require('express').Router()
