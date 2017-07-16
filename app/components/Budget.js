@@ -9,7 +9,6 @@ class Budget extends Component {
     super()
   }
   render() {
-    { console.log('ptop', this.props) }
     return (
       <div className="budget">
         <div className="expenses-btns">

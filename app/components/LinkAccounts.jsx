@@ -18,26 +18,23 @@ class LinkAccounts extends Component {
 
     onSubmit = (evt) => {
         evt.preventDefault();
-        console.log('in!', evt.target.thing.value, evt.target.dollar.value);
 
         var info = {
             thing: evt.target.thing.value,
             amount: evt.target.dollar.value
         }
-        axios.put('/api/addToUser',info).then((thing)=>{console.log('success!')})
+        axios.put('/api/email/addToUser',info).then((thing)=>{console.log('success!')})
     }
 
     render() {
         return (
             <div className="linkedaccounts">
-
                 <button className="transbutton btn" onClick={this.props.connectPlaid}>Open Plaid</button>
                 <button className="transbutton btn" onClick={this.props.fetchAccounts}>Get Accounts</button>
                 <button className="transbutton btn" onClick={this.props.fetchTransactions}>Get Transactions</button>
                 <button className="transbutton btn" onClick={this.props.fetchItems}>Get Items</button>
                 {this.state.plaidData.map(({ institution }) => <div>{institution.name} - {institution.type}</div>)}
                 <form onSubmit={(evt)=>{
-                    console.log('in??')
                     this.onSubmit(evt)
                 }}>
                     <label>

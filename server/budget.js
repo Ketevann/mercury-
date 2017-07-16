@@ -20,10 +20,7 @@ module.exports = require('express').Router()
         res.send(expenses)
       })
         })
-
-
       })
-
       .catch(next)
     //}
   })
@@ -33,15 +30,12 @@ module.exports = require('express').Router()
     where: { id: req.user.id },
     include: [Expenses]
   })
-
   .then(budget => {
     if (budget === null) res.end()
       else{
-        console.log("budger,", budget)
         res.status(200).send(budget.expense)
       }
     })
-
   .catch(next)
 }
 else res.end()

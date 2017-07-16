@@ -20,11 +20,9 @@ class Navbar extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
   handleClick() {
-    console.log('in click', this.props.modal)
     store.dispatch(this.props.modalShow(this.props.modal))
   }
   render() {
-    { console.log(this.props, ' we have props', this.props.user) }
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className=" wrapper container topnav">
@@ -32,15 +30,13 @@ class Navbar extends Component {
             <ul role="full-horizontal" className="nav navbar-nav navbar-left">
               <li><img className="logo " src={'./logo3.png'} /></li>
               <li><Link id="home" to="/home">Home</Link></li>
-
               {this.props.user ?
                 <li><Link id="link" to="/budget">Budget</Link></li> : null}
               {this.props.user ?
                 <li><a onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
               {this.props.user ?
                 <li><Link id="link" to="/emailSettings">Email Settings</Link></li> : null}
-              {this.props.user ?
-                <li><Link id="link" to="/goals">Goals</Link></li> : null}
+
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {!this.props.user ?
@@ -50,7 +46,6 @@ class Navbar extends Component {
             </ul>
           </div>
         </div>
-        {console.log(this.props.modal.showModal, ' in navbar')}
         {this.props.modal.showModal ? <View /> : null}
       </nav>
 

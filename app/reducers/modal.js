@@ -28,8 +28,6 @@ export const forgot = () => ({type: FORGOT })
 
 
 const modalReducer = (modal=inistialState, action) => {
-  console.log("herreee")
-  //var newmodal = Object.assign({},modal);
   switch (action.type) {
   case SHOWMODAL:
 
@@ -52,7 +50,6 @@ const modalReducer = (modal=inistialState, action) => {
 
     return Object.assign({}, modal, {forgotPassword: true})
   }
-  console.log(modal, 'modal')
   return modal
 }
 
