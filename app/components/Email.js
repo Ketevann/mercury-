@@ -51,7 +51,7 @@ class Email extends Component {
   render(){
     return (
       <div className="email">
-        <h3 >Add Your Friends and Let Them Know about Your Success!</h3>
+        <h3 className="emailheader">Add Your Friends and Let Them Know about Your Success!</h3>
         <div className="row">
         <div className="col-sm-3">
           <p style={{'margin-bottom':'0px'}}>Enable Budget Updates:</p>
@@ -60,12 +60,12 @@ class Email extends Component {
         <div className="col-sm-1">
           <select value={this.props.budgetUpdates} onChange={(evt)=>{
             this.onBudgetClick(evt)}}>
-            <option value="ON">ON</option>
-            <option value="OFF">OFF</option>
+            <option className="form-control email" value="ON">ON</option>
+            <option className="form-control email" value="OFF">OFF</option>
           </select>
           <select onChange={(evt)=>{this.onProdClick(evt)}} value={this.props.prodUpdates} >
-            <option value="ON">ON</option>
-            <option value="OFF">OFF</option>
+            <option className="form-control email" value="ON">ON</option>
+            <option className="form-control email" value="OFF">OFF</option>
           </select>
         </div>
         <div className='col-sm-4'>
@@ -79,10 +79,10 @@ class Email extends Component {
                   <div className='row'>
                   <div className='col-sm-3'>
                     <p>Purchase Location:</p>
-                    <input  type="text" name="thing" placeholder={this.props.thing} />
+                    <input className="form-control email" type="text" name="thing" placeholder={this.props.thing} />
                     <br></br>
                     <p className="dollar">Dollar Amount per Month:</p>
-                     <input type="text" name="dollar" placeholder={this.props.amount} />
+                     <input className="form-control email" type="text" name="dollar" placeholder={this.props.amount} />
                      <br></br>
                      <br></br>
                     <button className="pure-button" type="submit" className="btn">Submit</button>
@@ -93,10 +93,10 @@ class Email extends Component {
                 </form>
         </div>
           <div>
-        <h3>Add Contact Email</h3>
+        <h3 className="emailheader">Add Contact Email</h3>
                   <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
                     <p>Email Address:</p>
-                    <input type="text" name="email" />
+                    <input className="form-control email"  type="text" name="email" />
                     <button className="pure-button" type="submit" className="btn">Submit</button>
                 </form>
         </div>

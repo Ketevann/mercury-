@@ -56,6 +56,7 @@ class Expenses extends Component {
 
 
   render() {
+
     let budgetArr = []
     let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
 
@@ -68,8 +69,11 @@ class Expenses extends Component {
         return total + val.amount
       }
 , 0)}
-
-
+var height=300, width=900
+//  if ($(window).width() < 780){
+//   height =200
+//   width = 400
+// }
     return (
       <div className="expense">
       <div className="form-container">
@@ -110,8 +114,8 @@ class Expenses extends Component {
             axes
             grid
             colorBars
-            height={300}
-            width={900}
+            height={height}
+            width={width}
             data={budgetArr}
           />
           </div>
