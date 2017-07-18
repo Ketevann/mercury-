@@ -89,8 +89,7 @@ var height=300, width=900
         </form>
                 </div>
                       <div className="montlybudget">
-                        <h4> Monthly Budget </h4>
-                        <h5>${this.props.monthlyBudget}</h5>
+
                         <h4> Total Spent</h4>
                         {tot && <h5>${tot.toFixed(2)}</h5>}
                         <h4> Amount Left </h4>
@@ -108,6 +107,11 @@ var height=300, width=900
           }) : null}
 
         <h1>Total Budget Expenses: ${sum} </h1>
+        {$(window).width() < 780 ?
+          height =200
+          : null}
+          {$(window).width() < 780 ?
+          width = 400 :null}
         {budgetArr.length ?
           <div id="chart">
           <BarChart
