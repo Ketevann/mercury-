@@ -56,6 +56,7 @@ class Expenses extends Component {
 
 
   render() {
+
     let budgetArr = []
     let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
 
@@ -68,8 +69,11 @@ class Expenses extends Component {
         return total + val.amount
       }
 , 0)}
-
-
+var height=300, width=900
+//  if ($(window).width() < 780){
+//   height =200
+//   width = 400
+// }
     return (
       <div className="expense">
       <div className="form-container">
@@ -85,8 +89,7 @@ class Expenses extends Component {
         </form>
                 </div>
                       <div className="montlybudget">
-                        <h4> Monthly Budget </h4>
-                        <h5>${this.props.monthlyBudget}</h5>
+
                         <h4> Total Spent</h4>
                         {tot && <h5>${tot.toFixed(2)}</h5>}
                         <h4> Amount Left </h4>
@@ -104,15 +107,23 @@ class Expenses extends Component {
           }) : null}
 
         <h1>Total Budget Expenses: ${sum} </h1>
+        {$(window).width() < 780 ?
+          height =200
+          : null}
+          {$(window).width() < 780 ?
+          width = 400 :null}
         {budgetArr.length ?
+          <div id="chart">
           <BarChart
             axes
             grid
             colorBars
-            height={300}
-            width={900}
+            height={height}
+            width={width}
             data={budgetArr}
-          /> : null}
+          />
+          </div>
+           : null}
         {this.props.plaid.transactions.transactions ?
           this.props.plaid.transactions.transactions.map(obj => {
             found = false
