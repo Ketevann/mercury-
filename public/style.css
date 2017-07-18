@@ -1,34 +1,5 @@
 
-      .modalDialog {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 99999;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
 
-.modalDialog:target {
-  opacity:1;
-  pointer-events: auto;
-}
-
-.modalDialog > div {
-  width: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: black;
-  color: black;
-
-}
 .google{
   background-image: url('./button.png');
     width: 205px;
@@ -40,11 +11,7 @@
 .whoami-user-name{
   color: whitesmoke
 }
-.navbar {
-      width: 100vw;
-      display: flex;
 
-}
 .dialog {
   background-color: black
 }
@@ -87,18 +54,18 @@ position:fixed;
   margin-top: 160px;
   width: 150px;
 }
-.logo {
+/*.logo {
   margin-left: -30px;
   margin-top: 12px;
   padding-right: 60px;
 
-}
-@media (max-width: 400px) {
+}*/
+/*@media (max-width: 400px) {
     .logo {
 
         margin-left: 10px;
     }
-}
+}*/
 @media (max-width: 400px) {
     .signup {
 
@@ -179,12 +146,20 @@ position:fixed;
   padding-bottom: 0px;
   color:white
 }
-.logout{
-  color:#fff;
+ .logout{
+
   background: transparent;
   text-decoration: none;
+  margin-top:7px;
+  color: red;
 }
-@media (max-width: 400px) {
+#name, #logbtn {
+  color:gray;
+}
+#logbtn:hover{
+  color:white;
+}
+/*@media (max-width: 400px) {
     .logout {
 
         margin-top: 240px;
@@ -192,29 +167,10 @@ position:fixed;
         padding-left: 40px;
 
     }
-}
-@media (max-width: 400px) {
-    .navbar {
+}*/
 
-       height: 300px;
 
-    }
-}
-@media (min-width:800px) {
-    .nav.navbar.navbar-inverse.navbar-fixed-top {
 
-       width: 100%;
-
-    }
-}
-@media (max-width: 400px) {
-     .header {
-
-       margin-top:300px;
-       padding:0px
-
-    }
-}
 
  #social-fb:hover {
      color: #3B5998;
@@ -235,16 +191,7 @@ position:fixed;
  right:78px;
  margin-right: 78px;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
 
-  /*   */
-}
-.navbar-collapse{
-  display: flex;
-  align-items: center;
-}
 
  .form-group {
         width: 200px;
@@ -280,55 +227,13 @@ position:fixed;
   color: black;
 
 }
-.google{
-  background-image: url('./button.png');
-    width: 205px;
-    height: 49px;
-    border: none;
-    background-color: white;
 
-}
 .whoami-user-name{
   color: whitesmoke
 }
-.navbar {
-      width: 100vw;
-      display: flex;
 
-}
-.dialog {
-  background-color: black
-}
 
-.alignleft {
-	float: left;
-}
-.alignright {
-	float: right;
-  margin-bottom:50px;
-  padding-right:10px;
-
-}
-.clear {
-  clear:both;
-}
-.homepage {
-  background-image: url("./pexel1.jpg");
-background-repeat: no-repeat;
-      background-size: cover;
-
-position:fixed;
-    padding:0;
-    margin:0;
-
-    top:0;
-    left:0;
-
-    width: 100vw;
-    height: 100%;
-      text-align: center;
-
-}
+.
 .btn-warning {
   margin-top: 160px;
   width: 150px;
@@ -437,20 +342,8 @@ position:fixed;
 
     }
 }
-@media (max-width: 400px) {
-    .navbar {
 
-       height: 300px;
 
-    }
-}
-@media (min-width:800px) {
-    .nav.navbar.navbar-inverse.navbar-fixed-top {
-
-       width: 100%;
-
-    }
-}
 @media (max-width: 400px) {
      .header {
 
@@ -479,16 +372,9 @@ position:fixed;
  right:78px;
  margin-right: 78px;
 }
-.navbar {
-  display: flex;
-  justify-content: space-between;
 
   /*   */
-}
-.navbar-collapse{
-  display: flex;
-  align-items: center;
-}
+
 .footer {
  position:fixed;
    left:0px;
@@ -497,6 +383,7 @@ position:fixed;
    width:100%;
    background:#333;
    padding: 10px;
+
 }
 
 #icons{
@@ -504,7 +391,9 @@ position:fixed;
     width:200px;
     position: absolute;
     bottom: 10px;
+    position:absolute;
     text-align: center
+
 
 }
 
@@ -594,6 +483,137 @@ body {
    border-radius: 5px;
 }
 
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+
+#holder{
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  background: white;
+  padding: 10px;
+  width: 250px;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-65%);
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.25);
+  border-radius: 2px;
+}
+.budget-button {
+  background: #3D4C53;
+  margin : 20px auto;
+  width : 200px;
+  height : 50px;
+  overflow: hidden;
+  text-align : center;
+  transition : .2s;
+  cursor : pointer;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+.btnTwo {
+  position : relative;
+  width : 200px;
+  height : 100px;
+  margin-top: -95px;
+  padding-top: 2px;
+  background : #26A69A;
+  left : -250px;
+  transition : .3s;
+}
+.btnText {
+  color : white;
+  transition : .3s;
+  margin-top: 17px;
+}
+.btnText2 {
+  margin-top : 63px;
+  margin-right : -130px;
+  color : #FFF;
+}
+.budget-button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
+  left: -130px;
+}
+.budget-button:hover .btnText{ /*When hovering over .button change .btnText*/
+  margin-left : 65px;
+}
+.budget-button:active { /*Clicked and held*/
+  box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+}
+
+.expenses-btns {
+    margin-top : 100px;
+}
+
+a.nounderline:link
+{
+ text-decoration:none;
+}
+
+
+
+
+body {
+   min-height: 400px;
+  margin-bottom:70px;
+   clear: both;
+}
+
+.expense{
+    margin-bottom: 70px;
+}
+
+.addexpense{
+    position: absolute;
+    left:500px;
+}
+.mybudget{
+    position: absolute;
+    left:400px;
+}
+
+.expense, .budgetform{
+    margin-bottom: 80px;
+    padding-left:40px;
+    padding-top: 50px;
+}
+.email{
+    padding-top: 50px;
+    padding-left:40px;
+    margin-bottom :85px;
+}
+
+.coolemail{
+    position: absolute;
+    left: 200px;
+}
+
+.emaillist{
+    margin-left: -40px;
+}
+
+.dollar{
+    margin-top:10px;
+}
+
+
+.addBtn:hover {
+   background-color: #58EED1;
+}
+
+.addBtn {
+   padding: 10px;
+   text-align: center;
+   font-size: 16px;
+   cursor: pointer;
+   transition: 0.3s;
+   background-color: #0066FF;
+   color: #FFF;
+   border: 2px solid #0055FF;
+   border-radius: 5px;
+}
+
 /* Remove margins and padding from the list */
 .goalsList {
    margin: 0;
@@ -604,7 +624,7 @@ body {
 .goalsList li {
    cursor: pointer;
    position: relative;
- 
+
    font-size: 18px;
    transition: 0.2s;
    color: #333;
@@ -705,8 +725,55 @@ body {
     margin-top : 100px;
 }
 
-a.nounderline:link  
-{  
- text-decoration:none;  
-} 
+a.nounderline:link
+{
+ text-decoration:none;
+}
 
+
+
+body {
+          padding-top: 50px;
+          position: relative;
+      }
+
+      pre {
+          tab-size: 8;
+      }
+
+      @media screen and (max-width: 668px) {
+          .side-collapse-container{
+              width:100%;
+              position:relative;
+              left:0;
+              transition:left .4s;
+          }
+          .side-collapse-container.out{
+              left:200px;
+          }
+          .side-collapse {
+              top:50px;
+              bottom:0;
+              left:0;
+              width:200px;
+              position:fixed;
+              overflow:hidden;
+              transition:width .4s;
+          }
+          .side-collapse.in {
+              width:0;
+          }
+      }
+@media screen and (max-width: 668px){
+  #icons {
+    position: relative;
+    right:25%;
+  }
+}
+
+@media screen and (max-width: 668px){
+.expenses-btns {
+  margin-top:280px;
+  padding: 10px;
+}
+}

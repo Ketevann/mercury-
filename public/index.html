@@ -4,11 +4,9 @@
    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./stylesheet.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Architects+Daughter|Arima+Madurai|Bad+Script|Bahiana|Bellefair|Cabin+Sketch|Chewy|Cinzel+Decorative|Fredericka+the+Great|Gloria+Hallelujah|Handlee|Indie+Flower|Josefin+Sans|Jura|Love+Ya+Like+A+Sister|Merienda+One|Oregano|Pacifico|Philosopher|Reem+Kufi|Shadows+Into+Light|Shadows+Into+Light+Two" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="/bootstrap.min.css" rel="stylesheet">
-    <link href="/simple-sidebar.css" rel="stylesheet">
     <link href="/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
@@ -22,13 +20,37 @@
   </head>
   <body>
     <div id=main></div>
-
-    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+
+
+
     <script async defer src=/bundle.js></script>
+<script>
 
+$(document).ready(function() {
+            console.log("WW")
 
+  $(document).on('click', '.navbar-toggle', function(e) {
+        var $el = $(this);
+         console.log(this)
+        var $parent = $(this).offsetParent(".dropdown-menu");
+        console.log('parent', parent)
+        $(this).parent("li").toggleClass('open');
+
+        if(!$parent.parent().hasClass('nav')) {
+          console.log('has nac', $el.next(), '**')
+            $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+             console.log('has nac', $el.next(), '*1w*')
+        }
+
+        $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+        return false;
+    });
+});
+</script>
   </body>
 </html>
 

@@ -105,6 +105,7 @@ class Expenses extends Component {
 
         <h1>Total Budget Expenses: ${sum} </h1>
         {budgetArr.length ?
+          <div id="chart">
           <BarChart
             axes
             grid
@@ -112,7 +113,9 @@ class Expenses extends Component {
             height={300}
             width={900}
             data={budgetArr}
-          /> : null}
+          />
+          </div>
+           : null}
         {this.props.plaid.transactions.transactions ?
           this.props.plaid.transactions.transactions.map(obj => {
             found = false
