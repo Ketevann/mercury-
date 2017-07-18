@@ -13,16 +13,13 @@ const sendGif = (data) => ({type: GETGIF, data})
 
 
 const budgetReducer = (budget=initialState, action) => {
-  console.log("in budget", action)
   //var newmodal = Object.assign({},modal);
   switch (action.type) {
   case CREATEBUDGET:
-  console.log('budgwew4rwrwrwrwet', action.budget)
     return Object.assign({}, budget, {budget: action.budget})
 
 
   case GETGIF:
-  console.log(action, "#$#lololo$#", budget, action.data)
     return Object.assign({}, budget, {budget: action.data})
   }
 

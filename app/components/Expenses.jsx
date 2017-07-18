@@ -45,56 +45,51 @@ class Expenses extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleSubmit(evt) {
-      console.log("bla")
-        evt.preventDefault()
-        const dates = {
-            startDate: evt.target.startDate.value,
-            endDate: evt.target.endDate.value
-        }
-        this.props.fetchTransactions(dates.startDate, dates.endDate)
+  handleSubmit(evt) {
+    evt.preventDefault()
+    const dates = {
+      startDate: evt.target.startDate.value,
+      endDate: evt.target.endDate.value
     }
+    this.props.fetchTransactions(dates.startDate, dates.endDate)
+  }
 
 
   render() {
+
     let budgetArr = []
     let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
 
-    console.log("props in expenses", this.props)
 
 
     if (!this.props.user) return null
-        console.log('PROPS', this.props)
-
-        transactions = this.props.transactions.transactions
-        if (transactions !== undefined){
-            var tot = this.props.barChartTr.reduce((total, val) => {
-                console.log('VAL+TOTAL', val.amount, total)
-                return total + val.amount
-            }
-
-                , 0)}
-        console.log('TOT', tot);
-
-
+    transactions = this.props.transactions.transactions
+    if (transactions !== undefined){
+      var tot = this.props.barChartTr.reduce((total, val) => {
+        return total + val.amount
+      }
+, 0)}
+var height=300, width=900
+//  if ($(window).width() < 780){
+//   height =200
+//   width = 400
+// }
     return (
       <div className="expense">
-
       <div className="form-container">
-                    <h2>Select transaction dates:</h2>
-                    <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
-                        <label for="startDate">Start Date:  </label>
-                        <input className="pure-input-rounded" name="startDate" type="date" />
-                        <br />
-                        <label for="endDate">End Date:  </label>
-                        <input className="pure-input-rounded" name="endDate" type="date" />
-                        <br />
-                        <button className="pure-button" type="submit" className="btn">Submit</button>
-                    </form>
+        <h2>Select transaction dates:</h2>
+        <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
+            <label for="startDate">Start Date:  </label>
+            <input className="pure-input-rounded" name="startDate" type="date" />
+            <br />
+            <label for="endDate">End Date:  </label>
+            <input className="pure-input-rounded" name="endDate" type="date" />
+            <br />
+            <button className="pure-button" type="submit" className="btn">Submit</button>
+        </form>
                 </div>
                       <div className="montlybudget">
-                        <h4> Monthly Budget </h4>
-                        <h5>${this.props.monthlyBudget}</h5>
+
                         <h4> Total Spent</h4>
                         {tot && <h5>${tot.toFixed(2)}</h5>}
                         <h4> Amount Left </h4>
@@ -103,9 +98,6 @@ class Expenses extends Component {
                             <h3>Spending Habits</h3>
                         </div>
                         </div>
-
-
-
         {this.props.budget.budget ?
           Object.keys(this.props.budget.budget).map(key => {
             if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id') {
@@ -115,15 +107,23 @@ class Expenses extends Component {
           }) : null}
 
         <h1>Total Budget Expenses: ${sum} </h1>
+        {$(window).width() < 780 ?
+          height =200
+          : null}
+          {$(window).width() < 780 ?
+          width = 400 :null}
         {budgetArr.length ?
+          <div id="chart">
           <BarChart
             axes
             grid
             colorBars
-            height={300}
-            width={900}
+            height={height}
+            width={width}
             data={budgetArr}
-          /> : null}
+          />
+          </div>
+           : null}
         {this.props.plaid.transactions.transactions ?
           this.props.plaid.transactions.transactions.map(obj => {
             found = false
@@ -138,6 +138,7 @@ class Expenses extends Component {
                   }
                   else cat[keys] += val
                 }
+
               }
             })
             if (!found) {
@@ -149,13 +150,13 @@ class Expenses extends Component {
           : null}
 
           {this.props.budget.budget ?
+
             Object.keys(this.props.budget.budget).map(key =>{
             if (cat.hasOwnProperty(key)=== false)
               combine[key] = 0
             else combine[key] = cat[key]
           })
          : null }
-         {console.log(combine, 'combine', cat, 'cat')}
          {this.props.plaid.transactions.transactions ?
         Object.keys(combine).map(key => {
           if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
@@ -163,11 +164,9 @@ class Expenses extends Component {
           sum2 += Number(cat[key])
           plaidArr.push({ x: key, y: cat[key] })
         }
-        console.log('sun', sum2)
         })
      : null }
       <h1>Total Expenses: ${sum2.toFixed(2)} </h1>
-      {console.log(plaidArr, "111111")}
         {plaidArr.length > 0 ?
           <BarChart
             axes
@@ -177,9 +176,7 @@ class Expenses extends Component {
             width={900}
             data={plaidArr}
           /> : null}
-        {console.log(cat, 'cat********')}
          <h3 > Budget Expenses </h3>
-
         {this.props.budget.budget ?
           <table className="table table-bordered">
             <thead className="habits" >
@@ -203,9 +200,7 @@ class Expenses extends Component {
             })}
           </table> : null}
            <h3 >  Expenses </h3>
-
-                    {
-                        transactions ?
+                    {transactions ?
                         <table className="table table-bordered">
                     <thead className="habits" >
                         <tr>
@@ -228,21 +223,16 @@ class Expenses extends Component {
                             )
                         })
                     }  </table> : null }
-
-
-                <div>       </div>
-
+                <div>
+                </div>
       </div>
     )
-
   }
 }
 
 const barChart = (items) => {
-    console.log('ITEMS', items)
     var toLoop = items.transactions
     var loopLength = items.total_transactions
-    console.log('LOOPSTUFF', toLoop, loopLength)
     var things = {}
     var arr = []
     if (toLoop !== undefined) {
@@ -252,14 +242,10 @@ const barChart = (items) => {
                 things[name] = things[name] || 0
                 things[name] += toLoop[i].amount
             }
-            console.log(things)
         }
-        console.log('things!!!', things)
         for (var val in things) {
-            console.log(val)
             arr.push({ type: val, amount: things[val] })
         }
-        //return arr;
         return arr
     }
     return 'failed'
@@ -270,3 +256,5 @@ export default connect(
  }),
   { modalShow, logout, fetchTransactions },
 )(Expenses)
+
+

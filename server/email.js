@@ -41,7 +41,6 @@ module.exports = require('express').Router()
       emails: newemails
     })
       .then((updated) => {
-        console.log('UPDATED', updated)
         res.send(updated)
       })
   })

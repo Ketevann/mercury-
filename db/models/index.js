@@ -19,8 +19,6 @@ const app = require('APP')
        Expense: require('./expenses'),
       // Savings: require('./savings'),
       // Debt: require('./debt'),
-      Thing: require('./thing'),
-      Favorite: require('./favorite'),
       AccessToken: require('./accessTokens')
       // ---------- Add new models here ----------
     }

@@ -68,9 +68,8 @@ module.exports = db => db.define('users', {
   }
 })
 
-module.exports.associations = (User, {OAuth, Thing, Favorite, Expense}) => {
+module.exports.associations = (User, {OAuth, Expense}) => {
   User.hasOne(OAuth)
-  User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
   User.belongsTo(Expense)
 
 }

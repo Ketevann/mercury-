@@ -12,7 +12,6 @@ class Front extends Component {
     super()
   }
   render(){
-    {console.log(this.props, 'props in Front')}
 
     return (<div className="homepage">
 

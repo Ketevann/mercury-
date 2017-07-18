@@ -26,15 +26,12 @@ class Spending extends Component {
 
     render() {
         if (!this.props.user) return null
-        console.log('PROPS', this.props)
         let transactions = this.props.transac.transactions
         if (transactions !== undefined)
             var tot = this.props.barChartTr.reduce((total, val) => {
-                console.log('VAL+TOTAL', val.amount, total)
                 return total + val.amount
             }
                 , 0)
-        console.log('TOT', tot);
         return (
             <div>
                 <div className="form-container">
@@ -142,10 +139,8 @@ class Spending extends Component {
 
 }
 const barChart = (items) => {
-    console.log('ITEMS', items)
     var toLoop = items.transactions
     var loopLength = items.total_transactions
-    console.log('LOOPSTUFF', toLoop, loopLength)
     var things = {}
     var arr = []
     if (toLoop !== undefined) {

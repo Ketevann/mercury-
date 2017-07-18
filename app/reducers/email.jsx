@@ -27,14 +27,12 @@ const addEmail = (emails)=>({
 const emailReducer = (email=initialState, action) => {
   switch (action.type) {
   case BUDGETUP:
-    console.log('in first option!!')
     return Object.assign({}, email, {budgetUpdates: action.budgetUpdates})
   case PRODUP:
     return Object.assign({}, email, {prodUpdates: action.prodUpdates})
   case SETPROD:
     return Object.assign({}, email, {thing: action.productInfo.thing, amount: action.productInfo.amount})
   case ADDEMAIL:
-    console.log(action.emails)
     return Object.assign({}, email, {emails: action.emails})
   default:
     return Object.assign({}, email)
@@ -44,7 +42,6 @@ const emailReducer = (email=initialState, action) => {
 
 export const budgetEmail = (status) =>
   dispatch =>{
-    console.log('in DISPATCHER', status)
   return axios.put('api/email/budgetEmail', status)
     .then((res) => dispatch(budgetUp(status)))
     .catch(console.error())
@@ -52,7 +49,6 @@ export const budgetEmail = (status) =>
 
 export const prodEmail = (status) =>
   dispatch =>{
-    console.log('in DISPATCHER', status)
   return axios.put('api/email/prodEmail', status)
     .then((res) => dispatch(prodUp(status)))
     .catch(console.error())
@@ -60,7 +56,6 @@ export const prodEmail = (status) =>
 
 export const prodCont = (status) =>
   dispatch =>{
-    console.log('in DISPATCHER', status)
   return axios.put('api/email/addToUser',status)
     .then((res) => dispatch(setProd(status)))
     .catch(console.error())
@@ -85,7 +80,6 @@ export const emailSettings = () =>
     axios.get('/api/auth/whoami')
       .then(response => {
         const user = response.data
-        console.log('GOT THE USER', response.data.emails)
         dispatch(budgetUp({budgetUpdates: response.data.budgetUpdates}))
         dispatch(prodUp({prodUpdates: response.data.prodUpdates}))
         dispatch(setProd({thing: response.data.thing, amount: response.data.amount}))

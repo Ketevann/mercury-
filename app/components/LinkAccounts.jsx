@@ -18,7 +18,6 @@ class LinkAccounts extends Component {
 
     onSubmit = (evt) => {
         evt.preventDefault();
-        console.log('in!', evt.target.thing.value, evt.target.dollar.value);
 
         var info = {
             thing: evt.target.thing.value,
@@ -37,7 +36,6 @@ class LinkAccounts extends Component {
                 <button className="transbutton btn" onClick={this.props.fetchItems}>Get Items</button>
                 {this.state.plaidData.map(({ institution }) => <div>{institution.name} - {institution.type}</div>)}
                 <form onSubmit={(evt)=>{
-                    console.log('in??')
                     this.onSubmit(evt)
                 }}>
                     <label>

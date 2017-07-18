@@ -30,8 +30,6 @@ class BudgetForm extends React.Component  {
 
 
     }
-    console.log("hwewew")
-    console.log(this.props.budgetCreate)
 
     this.props.budgetCreate(newBudget)
      evt.target.food.value = ""
@@ -46,7 +44,6 @@ class BudgetForm extends React.Component  {
 
 
   render() {
-    {console.log(" budget prop", this.props)}
     return (<div className="budgetform">
       <form  onSubmit={(evt) => this.handleSubmit(evt)}>
         <div className="form-group row">

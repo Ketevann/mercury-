@@ -16,7 +16,6 @@ class Email extends Component {
   }
 
   onBudgetClick = (evt) =>{
-    console.log('in onBudgetClick?')
     var status = {budgetUpdates: evt.target.value}
     this.props.budgetEmail(status)
   }
@@ -28,7 +27,6 @@ class Email extends Component {
 
   onSubmit = (evt) => {
         evt.preventDefault();
-        console.log('in!', evt.target.thing.value, evt.target.dollar.value);
 
         var info = {
             thing: evt.target.thing.value,
@@ -44,7 +42,6 @@ class Email extends Component {
     var info = {
             email: evt.target.email.value
         }
-    console.log('in onEmailSubmit')
     evt.target.email.value = ''
     this.props.emailAdder(info)
   }
@@ -53,7 +50,6 @@ class Email extends Component {
   }
 
   render(){
-    console.log('PROPS',this.props)
 
     return (
       <div className="email">
@@ -65,7 +61,6 @@ class Email extends Component {
         </div>
         <div className="col-sm-1">
           <select value={this.props.budgetUpdates} onChange={(evt)=>{
-            console.log('knows we clicked?')
             this.onBudgetClick(evt)}}>
             <option value="ON">ON</option>
             <option value="OFF">OFF</option>
@@ -82,7 +77,6 @@ class Email extends Component {
         <div>
         <h3>Specified Purchase Details</h3>
                   <form onSubmit={(evt)=>{
-                    console.log('in??')
                     this.onSubmit(evt)
                 }}>
                   <div className='row'>
@@ -115,7 +109,6 @@ class Email extends Component {
         <ul style={{'list-style': 'none'}}>
         {
           this.props.emails && this.props.emails[0]!=='' && this.props.emails.map((email)=>{
-            console.log('doing this??')
             return(
               <div>
               <li className="emaillist"><button className=" glyphicon glyphicon-remove" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}></button> {email}</li>
@@ -131,7 +124,6 @@ class Email extends Component {
 
 export default connect(
    (state) => {
-    console.log('STATE',state)
     return ({budgetUpdates: state.email.budgetUpdates,
             prodUpdates: state.email.prodUpdates,
             thing: state.email.thing,

@@ -4,7 +4,6 @@ export const Login = ({ login, signup, thirdPartyLogin }) => (
 <div>
   <form onSubmit={evt => {
     evt.preventDefault()
-    console.log(evt.target.email.value, ' valuee')
 
     login(evt.target.email.value, evt.target.password.value)
   } }>
@@ -14,7 +13,6 @@ export const Login = ({ login, signup, thirdPartyLogin }) => (
   </form>
   <form onSubmit={evt => {
     evt.preventDefault()
-    console.log(evt.target.email.value, ' valuee')
 
     signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
   } }>

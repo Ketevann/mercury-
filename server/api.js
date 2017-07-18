@@ -30,7 +30,6 @@ api
 
 
 api.get('/bla', (req, res, next) =>{
-  console.log("GEEEET")
    var categories
    client.getCategories(function(err, response) {
             // Handle err

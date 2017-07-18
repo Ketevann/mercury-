@@ -10,7 +10,6 @@ var giphy = require('giphy-api')();  //using secrets does not work - i have secr
 // need to add FindUser in case user exists
 module.exports = require('express').Router()
   .post('/', (req, res, next) =>{
-        console.log("i!!n nodemailer!!!!!!*************")
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -58,12 +57,10 @@ module.exports = require('express').Router()
 
 .get('/search', (req,res, next) => {
 
- console.log(giffy, "apikeeyy")
 
 giphy.search('starbucks') // 'flamingo is a keyword to search for
 .then(function (data) {
     // Res contains gif data!
-    console.log("hitting", data)
     res.send(data)
 })
 })

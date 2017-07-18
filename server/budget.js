@@ -37,7 +37,6 @@ module.exports = require('express').Router()
   .then(budget => {
     if (budget === null) res.end()
       else{
-        console.log("budger,", budget)
         res.status(200).send(budget.expense)
       }
     })

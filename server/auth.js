@@ -3,7 +3,6 @@ const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 const secrets = env
 const { User, OAuth } = require('APP/db')
-console.log('*********', User)
 const auth = require('express').Router()
 const cors = require('cors')
 /*************************
@@ -113,7 +112,6 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 // maybe add a fail redirect to a signup page?
 auth.post('/login/local', (req, res, next) => {
   const { email, password } = req.body;
-  console.log('email:', email, 'password:', password, req.body)
   User.findOne({
     where: { email },
     attributes: { include: ['password_digest'] }
@@ -143,7 +141,6 @@ auth.post('/login/local', () => {
 })
 
 auth.post('/signup', (req, res, next) => {
-  console.log("we are getting in here", req.body)
   User.findOne({
     where: {
       email: req.body.email,
@@ -153,10 +150,8 @@ auth.post('/signup', (req, res, next) => {
     .then((user) => {
 
       if (user !== null) {
-        console.log("user exists")
         res.end()
       } else {
-        console.log("creating user")
          User.create({
             name: req.body.name,
             email: req.body.email,
@@ -164,7 +159,6 @@ auth.post('/signup', (req, res, next) => {
           }
         )
           .then(user => {
-            console.log("user", user)
             return req.logIn(user, (err) => {
               if (err) { return next(err) }
             })

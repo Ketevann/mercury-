@@ -66,7 +66,6 @@ const ExampleApp = connect(
   )
 
 const getExpenses = () => {
-  console.log('in get expenses')
   store.dispatch(userExpenses())
 }
 

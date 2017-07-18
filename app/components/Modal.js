@@ -19,13 +19,11 @@ class View extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log(evt.target.email.value, evt.target.password.value)
     let credentials = { email: evt.target.email.value, password: evt.target.password.value }
     this.props.newPassowrd(credentials)
     this.handleClose()
   }
   render() {
-    { console.log(" modeeelslsl", this.props) }
     return (
       <div className="modal" onClick={this.handleClick}>{
         this.props.modal.showModal ?
@@ -69,7 +67,6 @@ class View extends React.Component {
                   <h2 clssName="clear">Join Mercury</h2>
                   <form onSubmit={evt => {
                     evt.preventDefault()
-                    console.log(evt.target.email.value, ' valuee')
                     this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
                   }
                   }>
