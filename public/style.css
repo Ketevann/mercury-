@@ -358,14 +358,14 @@ position:fixed;
   color:white
 }
 
-@media (max-width: 779px) {
+/*@media (max-width: 779px) {
      .header,.budgetform {
       font-size: 2em;
        margin-top:255px;
        padding:0px
 
     }
-}
+}*/
 @media (max-width: 779px) {
   .budgetform {
 
