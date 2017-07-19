@@ -63,7 +63,7 @@ OAuth.setupStrategy({
   config: {
     clientID: secrets.GOOGLE_CLIENT_ID,
     clientSecret: secrets.GOOGLE_CLIENT_SECRET,
-    callbackURL: `https://pacific-dawn-67519.herokuapp.com/api/auth/login/google`,
+    callbackURL: `https://appmercury.herokuapp.com/api/auth/login/google`,
   },
   passport
 })
