@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import {responsiveStateReducer} from 'redux-responsive'
 
 const rootReducer = combineReducers({
   auth: require('./auth').default,
@@ -11,7 +12,11 @@ const rootReducer = combineReducers({
 
   email: require('./email').default,
 
-  status: require('./login').default
+  status: require('./login').default,
+
+  menu: require('./dropdown').default,
+
+  browser: responsiveStateReducer
 })
 
 export default rootReducer

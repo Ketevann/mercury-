@@ -839,3 +839,14 @@ body {
 select {
   background-color: white;
 }
+
+/*@media screen and (max-width: 779px){
+.navbar.navbar-inverse.navbar-fixed-top.animate{
+  width: 100px;
+  background-color:beige;
+}
+}*/
+.fa-bars{
+ color: white;
+ margin-top:10px;
+}
