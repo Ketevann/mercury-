@@ -56,7 +56,6 @@ class Expenses extends Component {
 
 
   render() {
-
     let budgetArr = []
     let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
 
@@ -69,6 +68,8 @@ class Expenses extends Component {
         return total + val.amount
       }
 , 0)}
+{console.log(this.props, 'props', plaidArr)}
+
 var height=300, width=900
 //  if ($(window).width() < 780){
 //   height =200
@@ -159,22 +160,28 @@ var height=300, width=900
          : null }
          {this.props.plaid.transactions.transactions ?
         Object.keys(combine).map(key => {
+          console.log("iteration")
           if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
             if(Number(cat[key])>0)
           sum2 += Number(cat[key])
           plaidArr.push({ x: key, y: cat[key] })
         }
+
         })
      : null }
+     {this.props.plaid.transactions.transactions ?
+       console.log('transac is here')
+       :null}
       <h1>Total Expenses: ${sum2.toFixed(2)} </h1>
-        {plaidArr.length > 0 ?
+      {console.log('plaidARRRRR', plaidArr, cat, 'cat')}
+        {cat.length > 0 ?
           <BarChart
             axes
             grid
             colorBars
             height={300}
             width={900}
-            data={plaidArr}
+            data={cat}
           /> : null}
          <h3 > Budget Expenses </h3>
         {this.props.budget.budget ?

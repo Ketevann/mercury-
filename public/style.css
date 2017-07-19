@@ -54,12 +54,11 @@ position:fixed;
   margin-top: 160px;
   width: 150px;
 }
-/*.logo {
-  margin-left: -30px;
-  margin-top: 12px;
-  padding-right: 60px;
+.logo {
 
-}*/
+  padding-right: 10px;
+
+}
 /*@media (max-width: 400px) {
     .logo {
 
@@ -254,7 +253,7 @@ position:fixed;
 .logo {
   margin-left: -30px;
   margin-top: 12px;
-  padding-right: 60px;
+  padding-right: 10px;
 
 }
 @media (max-width: 400px) {
@@ -361,8 +360,8 @@ position:fixed;
 
 @media (max-width: 779px) {
      .header,.budgetform {
-
-       margin-top:260px;
+      font-size: 2em;
+       margin-top:255px;
        padding:0px
 
     }
@@ -378,7 +377,7 @@ position:fixed;
 @media (max-width: 779px) {
      .text {
 
-       margin-top:40px;
+       margin-top:10px;
        padding:0px
 
     }
@@ -807,7 +806,7 @@ body {
 
 @media screen and (max-width: 779px){
 .expenses-btns {
-  margin-top:280px;
+  margin-top:255px;
   padding: 10px;
 }
 }

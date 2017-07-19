@@ -16,20 +16,10 @@ const FORGOT = 'FORGOT'
 
 
 export const modalShow = (modal) =>  ({type: SHOWMODAL, modal})
-
-
 export const modalHide = () => ({type: HIDEMODAL})
-export const Login = () => ({type: LOGIN})
-export const Signup = () => ({type: SIGNUP })
-export const forgot = () => ({type: FORGOT })
-
-
-
 
 
 const modalReducer = (modal=inistialState, action) => {
-  console.log("herreee")
-  //var newmodal = Object.assign({},modal);
   switch (action.type) {
   case SHOWMODAL:
 
@@ -38,23 +28,16 @@ const modalReducer = (modal=inistialState, action) => {
   case HIDEMODAL:
 
     return Object.assign({}, modal, {showModal: false})
-
-
-    case LOGIN:
-
-    return Object.assign({}, modal, {login: true, signUp:false, forgotPassword: false})
-
-  case SIGNUP:
-
-    return Object.assign({}, modal, {signUp: true, login: false})
-
-  case FORGOT:
-
-    return Object.assign({}, modal, {forgotPassword: true})
   }
-  console.log(modal, 'modal')
   return modal
 }
 
+export const showModal = () =>
+  dispatch =>
+    dispatch(modalShow())
+
+export const hideModal = () =>
+  dispatch =>
+    dispatch(modalHide())
 
 export default modalReducer

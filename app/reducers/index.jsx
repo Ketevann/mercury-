@@ -9,7 +9,9 @@ const rootReducer = combineReducers({
 
   budget: require('./budget').default,
 
-  email: require('./email').default
+  email: require('./email').default,
+
+  status: require('./login').default
 })
 
 export default rootReducer

@@ -8,6 +8,7 @@ import { modalShow } from "../reducers/modal"
 import store from '../store'
 import { logout } from 'APP/app/reducers/auth'
 import { connectPlaid } from '../reducers/plaid'
+import { browserHistory } from 'react-router'
 
 
 
@@ -18,9 +19,17 @@ class Navbar extends Component {
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
+
   }
   handleClick() {
     store.dispatch(this.props.modalShow(this.props.modal))
+  }
+  clickHandler(){
+    this.props.logout()
+    browserHistory.push('/')
+
+
   }
   render() {
     return (
@@ -34,7 +43,7 @@ class Navbar extends Component {
           </div>
           <div className="container">
             <div className="navbar-header hidden-xs">
-                          <li><img className="logo" src={'./logo3.png'} /></li>
+                          <li><img className="logo menu-icon" src={'./logo3.png'} /></li>
 
             </div>
             <ul className="nav navbar-nav navbar-right mobile-bar">
@@ -52,7 +61,7 @@ class Navbar extends Component {
                  <li className="menu-icon"><Link className="menu-icon" to="" id="name" >{this.props.user && this.props.user.name}</Link></li> : null}
                   {this.props.user ?
                     <li>
-                  <Link className="menu-icon" type="button" id="logbtn"  onClick={this.props.logout}>Logout</Link></li> : null}
+                  <Link className="menu-icon" type="button" id="logbtn"  onClick={()=> this.clickHandler()}>Logout</Link></li> : null}
 
             </ul>
           </div>

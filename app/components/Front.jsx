@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router";
 import store from '../store'
 import {modalShow, modalHide, Login, Signup, forgot, newPassowrd} from '../reducers/modal'
-import View from './Modal'
+import Modal from './Modal'
 
 
 
