@@ -804,12 +804,12 @@ body {
   }
 }
 
-@media screen and (max-width: 779px){
+/*@media screen and (max-width: 779px){
 .expenses-btns {
   margin-top:255px;
   padding: 10px;
 }
-}
+}*/
 
 
 .form-control.email{
