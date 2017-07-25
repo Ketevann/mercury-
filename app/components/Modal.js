@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
-import { showModal, hideModal } from '../reducers/modal'
-import { boolLogin, boolSignUp, boolPassword } from '../reducers/login'
+import {showModal, hideModal} from '../reducers/modal'
+import {boolLogin, boolSignUp, boolPassword} from '../reducers/login'
 
 import { connect } from 'react-redux'
 import { login, signup } from 'APP/app/reducers/auth'
@@ -25,8 +25,8 @@ class Modal extends React.Component {
     this.props.newPassowrd({ email: evt.target.email.value, password: evt.target.password.value })
     this.handleClose()
   }
-
   render() {
+    {console.log(this.props, ' modal')}
     return (
       <div className="modal" onClick={this.handleClick}>{
         this.props.modal.showModal ?
@@ -51,22 +51,7 @@ class Modal extends React.Component {
                   <br></br>
                   <h2 clssName="clear">Join Mercury</h2>
                   <SignupForm />
-                </div> : null}
-                  <form onSubmit={evt => {
-                evt.preventDefault()
-                this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
-              }
-              }>
-                <input className="credentials" name="name" placeholder="Name" required />
-                <br></br>
-                <input className="credentials" name="email" placeholder="Email" required />
-                <br></br>
-                <input className="credentials" name="password" type="password" placeholder="Password" required />
-                <br></br>
-                <br></br>
-
-                <input className="btn" type="submit" value="Sign Up" />
-              </form>
+                </div>}
               <br></br>
               <a href="/api/auth/login/google"> <button className="google"></button> </a>
             </ModalDialog>
@@ -79,5 +64,5 @@ class Modal extends React.Component {
 
 export default connect(
   ({ modal, status }) => ({ modal: modal, status: status }),
-  { showModal, hideModal, boolLogin, boolSignUp },
+  {showModal, hideModal, boolLogin, boolSignUp},
 )(Modal)
