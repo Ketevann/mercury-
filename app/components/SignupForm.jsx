@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
-import { modalShow, modalHide, Login, Signup, forgot, newPassowrd } from '../reducers/modal'
+import { modalShow, modalHide} from '../reducers/modal'
 import { connect } from 'react-redux'
 import { login, signup } from 'APP/app/reducers/auth'
 import store from '../store'
@@ -39,7 +39,7 @@ class SignupForm extends React.Component {
 }
 export default connect(
   ({ modal }) => ({ modal: modal }),
-  { modalShow, modalHide, login, signup, Login, Signup, forgot, newPassowrd },
+  { modalShow, modalHide,  signup },
 )(SignupForm)
 
 
