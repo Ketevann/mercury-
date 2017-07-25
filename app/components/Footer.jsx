@@ -6,12 +6,8 @@ const PLAID_PUBLIC_KEY = require('../../newCredentials.js').PLAID_PUBLIC_KEY
 
 import { connectPlaid, fetchAccounts, fetchTransactions, fetchItems } from '../reducers/plaid'
 
-class Footer extends Component {
-  constructor(props, context) {
-    super(props, context)
-
-    }
-    render() {
+const Footer = () => {
+  
         return (
           <div className=" footer">
             <br />
@@ -25,5 +21,4 @@ class Footer extends Component {
     }
 }
 
-export default connect(
-    state => ({}), {})(Footer)
+export default Footer
