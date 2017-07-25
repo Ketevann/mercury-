@@ -14,16 +14,19 @@ class LoginForm extends React.Component {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
+  handleClick = () => store.dispatch(modalShow())
+  handleClose = () => store.dispatch(modalHide())
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.login(evt.target.email.value, evt.target.password.value)
     this.handleClose()
 
+
   }
   render() {
     return (
       <div>
+
         <form onSubmit={evt => this.handleSubmit(evt)}>
           <input className="credentials" name="email" placeholder="Emailz" required />
           <br></br>

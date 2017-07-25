@@ -23,27 +23,22 @@ const client = new plaid.Client(
 )
 
 var j = schedule.scheduleJob('27 * * * *', function(){
-  console.log('Please work????')
-  console.log('client', client)
   AccessToken.findAll({include: [
     {model: User, include: [
       {model: Expenses}
     ]}
   ]}
   ).then((tokens)=> {
-  	console.log('token?',tokens.length)
   asyncLoop(tokens, function (token, next){
   	client.getTransactions(token.accessToken, '2017-06-01','2017-06-30' , {
     count: 250,
     offset: 0,
   }, function (error, transactionsResponse) {
-    console.log('immediate i')
     if (error != null) {
       console.log(JSON.stringify(error))
       return 'error'
     }
     var keyword = '';
-    console.log('i before budget!')
     if(token.user.budgetUpdates==='ON'){
       var budget = (+token.user.expense.food)+(+token.user.expense.bills)+(+token.user.expense.healthcare)+(+token.user.expense.transportation)+
       (+token.user.expense.education)+(+token.user.expense.emergencies)+(+token.user.expense.entertainment)+(+token.user.expense.other);
@@ -54,8 +49,6 @@ var j = schedule.scheduleJob('27 * * * *', function(){
         else return total
       },0)
       var budgetStr = (budget>=totalSum) ? `${token.user.name} was under budget!` : `${token.user.name} was over budget!`
-      console.log('BUDGET',budget)
-      console.log('totalSum',totalSum)
    }
    else{
       var budgetStr = '';

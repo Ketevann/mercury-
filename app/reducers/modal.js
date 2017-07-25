@@ -14,11 +14,12 @@ const LOGIN = 'LOGIN'
 const SIGNUP = 'SIGNUP'
 const FORGOT = 'FORGOT'
 
-
+/*            Action Creators               */
 export const modalShow = (modal) =>  ({type: SHOWMODAL, modal})
 export const modalHide = () => ({type: HIDEMODAL})
 
 
+/*             Reducer               */
 const modalReducer = (modal=inistialState, action) => {
   switch (action.type) {
   case SHOWMODAL:
@@ -32,6 +33,7 @@ const modalReducer = (modal=inistialState, action) => {
   return modal
 }
 
+/*            Dispatcher               */
 export const showModal = () =>
   dispatch =>
     dispatch(modalShow())

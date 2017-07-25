@@ -17,10 +17,10 @@
 }
 
 .alignleft {
-	float: left;
+  float: left;
 }
 .alignright {
-	float: right;
+  float: right;
   margin-bottom:50px;
   padding-right:10px;
 
@@ -65,12 +65,12 @@ position:fixed;
         margin-left: 10px;
     }
 }*/
-@media (max-width: 779px) {
+/*@media (max-width: 779px) {
     .signup {
 
         margin-top: 0px;
     }
-}
+}*/
 
 @media (max-width: 779px) {
     .email {
@@ -802,6 +802,11 @@ body {
   #icons {
    text-align: center
   }
+  .logo{
+    position: absolute;
+    top:-23px;
+    margin-left:90px;
+  }
 }
 
 /*@media screen and (max-width: 779px){
@@ -846,7 +851,13 @@ select {
   background-color:beige;
 }
 }*/
-.fa-bars{
+i.fa.fa-bars.fa-2x{
  color: white;
- margin-top:10px;
+ position: relative;
+ top:15px;
+ margin-left: 10px;
+}
+
+.menulist.nav.navbar-nav{
+  margin-left:40px;
 }

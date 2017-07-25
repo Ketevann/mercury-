@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {whoami} from './auth'
 const inistialState = {
-  showMenu: true,
+  showMenu: false,
 
 }
 

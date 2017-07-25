@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router";
 import Login from './Login'
-import WhoAmI from './WhoAmI'
 import View from './Modal'
 import { connect } from 'react-redux'
 import { modalShow } from "../reducers/modal"
@@ -24,13 +23,10 @@ class Navbar extends Component {
     this.clickHandler = this.clickHandler.bind(this)
 
   }
-
   handleClicker() {
-    console.log("clickinnn")
     store.dispatch(this.props.modalShow())
   }
   handleClick = () => this.props.menuShow()
-  handleClose = () => this.props.menuHide()
 
   clickHandler() {
     this.props.logout()
@@ -39,113 +35,50 @@ class Navbar extends Component {
   }
 
   render() {
-    var disp
-    if (this.props.menu.showMenu === true) disp = 'block'
+    var disp, displayStyle
+
+    if (this.props.menu.showMenu === true)
+      disp = 'inline-block'
     else disp = 'none'
     const divStyle = {
-      display: disp, // note the capital 'W' here
-      // 'ms' is the only lowercase vendor prefix
+      display: disp
     };
-    var opp
-    if (store.getState().browser.is.small === true || store.getState().browser.is.extraSmall === true) opp = 'none'
-    else opp = 'block'
-    const divStyle2 = {
-      display: opp, // note the capital 'W' here
-      // 'ms' is the only lowercase vendor prefix
+
+    if (store.getState().browser.is.small === true || store.getState().browser.is.extraSmall === true) displayStyle = 'inline'
+    else displayStyle = 'none'
+
+    const iconStyle = {
+      display: displayStyle
     };
-    { console.log(this.props, 'props in modal') }
+    if (store.getState().browser.is.small !== true && store.getState().browser.is.extraSmall !== true) divStyle.display = 'block'
+
     return (
-      <div>
-
-
-        <div>
-
-          <div className="navbar-more-overlay" />
-          <nav className="navbar navbar-inverse navbar-fixed-top animate">
-            <div className="container navbar-more visible-xs">
-
-
+      <div className="container">
+        <nav className="navbar navbar-inverse navbar-fixed-top animate">
+          <div >
+            <div id="menu">
+              <i style={iconStyle} className="menuicon fa fa-bars fa-2x" onClick={() => this.handleClick()} />
+              <ul className="menulist nav navbar-nav">
+                <li><img className="logo menuicon" src={'./logo3.png'} /></li></ul>
             </div>
-            <div className="container">
-              <div className="navbar-header hidden-xs">
-                <li><img className="logo menu-icon" src={'./logo3.png'} /></li>
-
-              </div>
-              {console.log($(window).width(), store.getState(), ' meeed', store.getState().browser.is.medium, opp, 'oppsss')}
-              {store.getState().browser.is.medium === true ?
-                console.log("yay")
-                : console.log("nooooo")}
-              {store.getState().browser.is.small === true || store.getState().browser.is.extraSmall === true ?
-                <div className="mobbar">
-                  <i className="fa fa-bars fa-2x" onClick={() => this.handleClick()} />
-                  <ul style={divStyle} className="nav navbar-nav navbar-right mobile-bar " >
-
-                    <li><Link className="menu-icon" id="home" to="/home">Home</Link></li>
-                    {this.props.user ?
-                      <li><Link className="menu-icon" id="link" to="/budget">Budget</Link></li> : null}
-                    {this.props.user ?
-                      <li><a className="menu-icon" onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
-                    {this.props.user ?
-                      <li><Link className="menu-icon" id="link" to="/emailSettings">Email Settings</Link></li> : null}
-                    {!this.props.user ?
-                      <li><Link className="menu-icon" href="#" onClick={() =>store.dispatch(this.props.modalShow())}> Login / Sign Up </Link></li>
-                      : null}
-                    {this.props.user ?
-                      <li className="menu-icon"><Link className="menu-icon" to="" id="name" >{this.props.user && this.props.user.name}</Link></li> : null}
-                    {this.props.user ?
-                      <li>
-                        <Link className="menu-icon" type="button" id="logbtn" onClick={() => this.clickHandler()}>Logout</Link></li> : null}
-
-                  </ul>
-                </div>
-                : null}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <ul style={divStyle2} className="nav navbar-nav navbar-right mobile-bar">
-
-                <li><Link className="menu-icon" id="home" to="/home">Home</Link></li>
-                {this.props.user ?
-                  <li><Link className="menu-icon" id="link" to="/budget">Budget</Link></li> : null}
-                {this.props.user ?
-                  <li><a className="menu-icon" onClick={this.props.connectPlaid}>Connect to My Account</a></li> : null}
-                {this.props.user ?
-                  <li><Link className="menu-icon" id="link" to="/emailSettings">Email Settings</Link></li> : null}
-                {!this.props.user ?
-                  <li><Link className="menu-icon" href="#" onClick={() => store.dispatch(this.props.modalShow())}> Login / Sign Up </Link></li>
-                  : null}
-                {this.props.user ?
-                  <li className="menu-icon"><Link className="menu-icon" to="" id="name" >{this.props.user && this.props.user.name}</Link></li> : null}
-                {this.props.user ?
-                  <li>
-                    <Link className="menu-icon" type="button" id="logbtn" onClick={() => this.clickHandler()}>Logout</Link></li> : null}
-
+            {this.props.user ?
+              <ul className="menulist nav navbar-nav" style={divStyle}>
+                <li><Link className="menuicon" id="home" to="/home">Home</Link></li>
+                <li><a className="menuicon" onClick={this.props.connectPlaid}>Connect to My Account</a></li>
+                <li><Link className="menuicon" id="link" to="/emailSettings">Email Settings</Link></li>
+                 <li><Link className="menuicon" id="link" to="/budget">Budget</Link></li>
+                <li className="menuicon"><Link className="menuicon" to="" id="name" >{this.props.user && this.props.user.name}</Link></li>
+                <li><Link className="menuicon" type="button" id="logbtn" onClick={() => this.clickHandler()}>Logout</Link></li>
               </ul>
-            </div>
-          </nav>
-
-
-        </div>
+              : <ul className="menulist nav navbar-nav" style={divStyle}><li><Link className="menuicon" href="#" onClick={() => store.dispatch(this.props.modalShow())}> Login / Sign Up </Link></li></ul>}
+          </div>
+        </nav>
         {this.props.modal.showModal ? <View /> : null}
       </div>
     )
   }
 }
 
-/*const mapStateToProps = (state) => {
-  return {modal: state.modal}
-}*/
 
 
 export default connect(

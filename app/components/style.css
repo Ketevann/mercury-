@@ -108,13 +108,7 @@ position:fixed;
 .transaction{
   text-align: center;
 }
-.spendinghabits{
-width:90% !important;
-height:100% !important;
 
-  margin: auto;
-
-}
 .budget{
  background-image: url("./banks.jpg");
 background-repeat: no-repeat;
@@ -809,6 +803,9 @@ body {
 .expenses-btns {
   margin-top:280px;
   padding: 10px;
+}
+.menulis{
+  margin-left:20px;
 }
 }
 

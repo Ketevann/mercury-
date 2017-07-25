@@ -78,15 +78,12 @@ class BudgetForm extends React.Component  {
             <input className="form-control" required name="healthcare" type="number" step="0.01" id="example-tel-input" />
           </div>
         </div>
-
-
         <div className="form-group row">
           <label htmlFor="example-tel-input" className="col-2 col-form-label">Entertainment</label>
           <div className="col-10">
             <input className="form-control" required name="ent" type="number" step="0.01" id="example-tel-input" />
           </div>
         </div>
-
         <div className="form-group row">
           <label className="col-2 col-form-label">Transportation</label>
           <div className="col-10">
@@ -99,11 +96,8 @@ class BudgetForm extends React.Component  {
             <input className="form-control" required name="other" type="number" step="0.01" id="example-week-input" />
           </div>
         </div>
-
-
         <button type="submit" className="btn btn-primary">Submit</button>
        </form>
-
       </div>
 
     )
