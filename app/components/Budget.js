@@ -4,7 +4,7 @@ import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
 
 
-const Budget = () {
+const Budget = () => {
   
     return (
       <div className="budget">
