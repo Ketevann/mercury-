@@ -56,7 +56,7 @@ class Expenses extends Component {
     let budgetArr = [], plaidArr = [], expensesSum= 0, found = false,
       expenseCategory = {
         food: 0,
-        biils: 0,
+        bills: 0,
         healthcare: 0,
         transportation: 0,
         education: 0,
@@ -109,7 +109,9 @@ class Expenses extends Component {
         <h4>Total Budget Expenses: ${budgetsum} </h4>
         <h4>Total Expenses: ${expensesSum.toFixed(2)} </h4>
         {/*if the transactions were fetched aking a bar chart by sending the data to Chart component as props */}
+       {console.log(plaidArr, 'pka')}
         {plaidArr.length > 0 ?
+
           <Chart data={plaidArr} /> : null}
          <h3>Budget Expenses</h3>
          {/*creates the budget expenses table if the budget exists*/}
