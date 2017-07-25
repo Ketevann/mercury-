@@ -1,7 +1,6 @@
 import React from 'react'
-import {budgetCreate, send, sendGiff} from '../reducers/budget'
+import {budgetCreate} from '../reducers/budget'
 import {connect} from 'react-redux'
-//import {PieChart} from 'react-easy-chart';
 
 
 
@@ -14,7 +13,6 @@ class BudgetForm extends React.Component  {
     evt.preventDefault()
 
     const newBudget = {
-
       food: evt.target.food.value,
       bills: evt.target.bills.value,
       healthcare: evt.target.healthcare.value,
@@ -24,22 +22,17 @@ class BudgetForm extends React.Component  {
       entertainment: evt.target.ent.value,
       other: evt.target.other.value
 
-
-
-
-
-
     }
 
     this.props.budgetCreate(newBudget)
-     evt.target.food.value = ""
-     evt.target.bills.value = ""
-     evt.target.healthcare.value = ""
-       evt.target.emergency.value = ""
-     evt.target.transporation.value = ""
-    evt.target.education.value = ""
-     evt.target.ent.value = ""
-      other: evt.target.other.value = ""
+    evt.target.food.value = ''
+    evt.target.bills.value = ''
+    evt.target.healthcare.value = ''
+    evt.target.emergency.value = ''
+    evt.target.transporation.value = ''
+    evt.target.education.value = ''
+    evt.target.ent.value = ''
+    evt.target.other.value = ''
   }
 
 
@@ -52,7 +45,6 @@ class BudgetForm extends React.Component  {
             <input className="form-control" required name="bills" type="number"  step="0.01" id="example-text-input" />
           </div>
         </div>
-
         <div className="form-group row">
           <label htmlFor="example-search-input"  className="col-2 col-form-label">Education</label>
           <div className="col-10">
@@ -65,7 +57,6 @@ class BudgetForm extends React.Component  {
             <input className="form-control" required name="emergency" type="number" step="0.01" id="example-email-input" />
           </div>
         </div>
-
         <div className="form-group row">
           <label htmlFor="example-tel-input" className="col-2 col-form-label">Food</label>
           <div className="col-10">
@@ -99,20 +90,10 @@ class BudgetForm extends React.Component  {
         <button type="submit" className="btn btn-primary">Submit</button>
        </form>
       </div>
-
     )
   }
 }
 
 
 
-
-
-// {this.props.budget.budget  ?
-
-//          <img src={this.props.budget.budget.data[0].images.downsized.url} />
-//  :null}
-export default connect(
- ({ modal, auth, budget }) => ({ modal: modal, user: auth, budget: budget }),
-  {budgetCreate, send, sendGiff},
-)(BudgetForm)
+export default connect({}, {budgetCreate},)(BudgetForm)

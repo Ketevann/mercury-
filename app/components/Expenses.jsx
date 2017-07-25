@@ -67,12 +67,13 @@ class Expenses extends Component {
       transactions = this.props.transactions.transactions, budgetsum = 0, val
    {/*creates the budget expenses table if the budget exists*/}
     if (transactions !== undefined){
-      plaidArr = another(iterate(transactions, expenseCategory), plaidArr, expensesSum)
+
+      plaidArr = chartArray(createObj(transactions, expenseCategory), plaidArr, expensesSum)
       var tot = this.props.barChartTr.reduce((total, val) => {
         return total + val.amount
       }
 , 0)}
-{console.log(this.props, 'props', plaidArr)}
+
     return (
     <div className="expense">
       <div className="form-container">
@@ -109,9 +110,8 @@ class Expenses extends Component {
         <h4>Total Budget Expenses: ${budgetsum} </h4>
         <h4>Total Expenses: ${expensesSum.toFixed(2)} </h4>
         {/*if the transactions were fetched aking a bar chart by sending the data to Chart component as props */}
-       {console.log(plaidArr, 'pka')}
-        {plaidArr.length > 0 ?
 
+        {plaidArr.length > 0 ?
           <Chart data={plaidArr} /> : null}
          <h3>Budget Expenses</h3>
          {/*creates the budget expenses table if the budget exists*/}
@@ -174,7 +174,8 @@ class Expenses extends Component {
 {/*iterates over real transactions, compares transaction categories to the "categories" object,
 initialized above, sums up the total money spent on each category and the total money spent,
 puts the data in the array of objects as x and y coordinates and returns the array to be used in as data in the chart*/}
-const iterate = (transaction, expenseCategory) => {
+
+const createObj = (transaction, expenseCategory) => {
  let found = false, val
   transaction.map(obj => {
     if (obj.amount > 0) val = obj.amount
@@ -196,7 +197,8 @@ const iterate = (transaction, expenseCategory) => {
   })
   return expenseCategory
 }
-function another(expenseCategory, plaidArr, expensesSum){
+
+function chartArray(expenseCategory, plaidArr, expensesSum){
   Object.keys(expenseCategory).map(key => {
     console.log("iteration")
     if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){

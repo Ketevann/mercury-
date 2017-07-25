@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
 
 export default connect(
   ({ modal }) => ({ modal: modal }),
-  { modalShow, modalHide, login, signup, Login, Signup, forgot, newPassowrd },
+  {login},
 )(LoginForm)
 
 

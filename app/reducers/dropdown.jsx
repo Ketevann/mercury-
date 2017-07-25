@@ -8,9 +8,6 @@ const inistialState = {
 const SHOWMENU = 'SHOWDROP'
 const HIDEMENU = "HIDEDROP"
 
-
-
-
 export const menuShow = (modal) => ({type: SHOWMENU, modal})
 export const menuHide = () => ({type: HIDEMENU})
 
@@ -19,9 +16,10 @@ export const menuHide = () => ({type: HIDEMENU})
 const menuReducer = (menu=inistialState, action) => {
   switch (action.type) {
   case SHOWMENU:
-  var bool
-  if (menu.showMenu) bool = false
-  else bool = true
+
+    var bool
+    if (menu.showMenu) bool = false
+    else bool = true
     return Object.assign({}, menu, {showMenu: bool})
 
   case HIDEMENU:
@@ -30,6 +28,7 @@ const menuReducer = (menu=inistialState, action) => {
 
 
   }
+
   return menu
 }
 

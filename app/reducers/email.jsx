@@ -42,35 +42,37 @@ const emailReducer = (email=initialState, action) => {
 
 export const budgetEmail = (status) =>
   dispatch =>{
-  return axios.put('api/email/budgetEmail', status)
+
+  return axios.put('/api/email/budgetEmail', status)
     .then((res) => dispatch(budgetUp(status)))
     .catch(console.error())
   }
 
 export const prodEmail = (status) =>
   dispatch =>{
-  return axios.put('api/email/prodEmail', status)
+
+  return axios.put('/api/email/prodEmail', status)
     .then((res) => dispatch(prodUp(status)))
     .catch(console.error())
   }
 
 export const prodCont = (status) =>
   dispatch =>{
-  return axios.put('api/email/addToUser',status)
+  return axios.put('/api/email/addToUser',status)
     .then((res) => dispatch(setProd(status)))
     .catch(console.error())
   }
 
 export const emailAdder = (email) =>
   dispatch =>{
-  return axios.put('api/email/addEmail',email)
+  return axios.put('/api/email/addEmail',email)
     .then((res) => dispatch(addEmail(res.data.emails)))
     .catch(console.error())
   }
 
 export const emailRemover = (email) =>
   dispatch =>{
-  return axios.put('api/email/removeEmail',email)
+  return axios.put('/api/email/removeEmail',email)
     .then((res) => dispatch(addEmail(res.data.emails)))
     .catch(console.error())
   }

@@ -13,7 +13,7 @@ const sendGif = (data) => ({type: GETGIF, data})
 
 
 const budgetReducer = (budget=initialState, action) => {
-  //var newmodal = Object.assign({},modal);
+
   switch (action.type) {
   case CREATEBUDGET:
     return Object.assign({}, budget, {budget: action.budget})
@@ -39,7 +39,7 @@ export const budgetCreate = (credentials) =>
 export const send = () =>
   dispatch =>
   axios.post('/api/nodemailer')
-    .then((res) => (console.log("aaaadid a thing!!!!", res.data)))
+
     .catch(console.error())
 
 export const sendGiff = () =>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Login = ({ login, signup, thirdPartyLogin }) => (
+export const Login = ({ login, signup}) => (
 <div>
   <form onSubmit={evt => {
     evt.preventDefault()
@@ -31,5 +31,5 @@ import {connect} from 'react-redux'
 
 export default connect(
   state => ({}),
-  {login, signup, thirdPartyLogin},
+  {login, signup},
 )(Login)

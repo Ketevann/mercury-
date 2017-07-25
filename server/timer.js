@@ -23,6 +23,10 @@ const client = new plaid.Client(
 )
 
 var j = schedule.scheduleJob('27 * * * *', function(){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 60fc7c416081bc76fa63ef2c97dc801c43dce357
   AccessToken.findAll({include: [
     {model: User, include: [
       {model: Expenses}
@@ -49,6 +53,10 @@ var j = schedule.scheduleJob('27 * * * *', function(){
         else return total
       },0)
       var budgetStr = (budget>=totalSum) ? `${token.user.name} was under budget!` : `${token.user.name} was over budget!`
+<<<<<<< HEAD
+=======
+
+>>>>>>> 60fc7c416081bc76fa63ef2c97dc801c43dce357
    }
    else{
       var budgetStr = '';
@@ -62,7 +70,6 @@ var j = schedule.scheduleJob('27 * * * *', function(){
     		return total+val.amount;
     	else return total
     },0)
-    console.log('total!',token.user.thing,total,token.user.amount)
     var message = (total<token.user.amount) ? `${token.user.name} did not overspend on ${token.user.thing}!` : `${token.user.name} overspent on ${token.user.thing}!`
     keyword = token.user.thing;
   }
@@ -71,11 +78,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
   }
   if(keyword==='' && token.user.budgetUpdates==='ON')
     keyword = (budget>=totalSum)? 'success' : 'failure'
-    //console.log(total,typeof total);
-    //console.log(total, token[0].user.thing )
-    //var message = (total<token[0].user.amount) ? `${token[0].user.name} was successful!` : `${token[0].user.name} was unsuccessful!`
-    //var second = `${token[0].user.name} spent ${total} on ${token[0].user.thing} - goal was ${token[0].user.amount}`
-    //var fin = message + " "+second;
+
   var totalMessage = budgetStr+' '+message
   if(totalMessage!==" "){
     let transporter = nodemailer.createTransport({
@@ -89,20 +92,11 @@ var j = schedule.scheduleJob('27 * * * *', function(){
       }
     })
 
-    // setup email data with unicode symbols
-    // let mailOptions = {
-    //   from: '"Fred Foo bread junior 👻" <*****@gmail.com>', // sender address
-    //   to: 'ninbaratwli@gmail.com', // list of receivers
-    //   subject: 'Hello ✔', // Subject line
-    //   text: 'got bread ?', // plain text body
-    //   html: '<b>got bread  ?</b>' // html body
-    // }
-    //console.log('to pass:',token[0].user.thing )
+
     giphy.search(keyword) // 'flamingo is a keyword to search for
 		.then(function (data) {
     // Res contains gif data!
-    //console.log('found a gif!!!')
-    //console.log('HAS A THING??',data.data[0])
+
     var length = data.data.length;
     var chosen = data.data[Math.floor(length*Math.random())]
     var mailOptions = {
@@ -123,9 +117,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
         return console.log(error);
       }
       console.log('Message %s sent: %s', info.messageId, info.response);
-      /*req.end()
-      transporter.close()
-      res.send('WHYYYYYY')*/
+
     }) //closes sendmail
     }).catch((error)=>console.log(error)) //closes giphy
   }//closes if total message is not null

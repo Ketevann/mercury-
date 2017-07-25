@@ -29,7 +29,6 @@ class LinkAccounts extends Component {
     render() {
         return (
             <div className="linkedaccounts">
-
                 <button className="transbutton btn" onClick={this.props.connectPlaid}>Open Plaid</button>
                 <button className="transbutton btn" onClick={this.props.fetchAccounts}>Get Accounts</button>
                 <button className="transbutton btn" onClick={this.props.fetchTransactions}>Get Transactions</button>

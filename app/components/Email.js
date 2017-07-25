@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
-import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
 import {budgetEmail, prodEmail, prodCont, emailAdder, emailRemover} from '../reducers/email'
 const axios = require('axios');
@@ -26,22 +25,23 @@ class Email extends Component {
   }
 
   onSubmit = (evt) => {
-        evt.preventDefault();
 
-        var info = {
-            thing: evt.target.thing.value,
-            amount: evt.target.dollar.value
-        }
-        evt.target.thing.value = ''
-        evt.target.dollar.value = ''
-        this.props.prodCont(info)
+    evt.preventDefault()
+    var info = {
+      thing: evt.target.thing.value,
+      amount: evt.target.dollar.value
     }
+    evt.target.thing.value = ''
+    evt.target.dollar.value = ''
+    this.props.prodCont(info)
+  }
 
   onEmailSubmit = (evt) => {
     evt.preventDefault();
     var info = {
-            email: evt.target.email.value
-        }
+
+      email: evt.target.email.value
+    }
     evt.target.email.value = ''
     this.props.emailAdder(info)
   }
@@ -53,7 +53,7 @@ class Email extends Component {
 
     return (
       <div className="email">
-        <h3 >Add Your Friends and Let Them Know about Your Success!</h3>
+        <h3 className="emailheader">Add Your Friends and Let Them Know about Your Success!</h3>
         <div className="row">
         <div className="col-sm-3">
           <p style={{'margin-bottom':'0px'}}>Enable Budget Updates:</p>
@@ -62,12 +62,12 @@ class Email extends Component {
         <div className="col-sm-1">
           <select value={this.props.budgetUpdates} onChange={(evt)=>{
             this.onBudgetClick(evt)}}>
-            <option value="ON">ON</option>
-            <option value="OFF">OFF</option>
+            <option className="form-control email" value="ON">ON</option>
+            <option className="form-control email" value="OFF">OFF</option>
           </select>
           <select onChange={(evt)=>{this.onProdClick(evt)}} value={this.props.prodUpdates} >
-            <option value="ON">ON</option>
-            <option value="OFF">OFF</option>
+            <option className="form-control email" value="ON">ON</option>
+            <option className="form-control email" value="OFF">OFF</option>
           </select>
         </div>
         <div className='col-sm-4'>
@@ -82,28 +82,26 @@ class Email extends Component {
                   <div className='row'>
                   <div className='col-sm-3'>
                     <p>Purchase Location:</p>
-                    <input  type="text" name="thing" placeholder={this.props.thing} />
+                    <input className="form-control email" type="text" name="thing" placeholder={this.props.thing} />
                     <br></br>
                     <p className="dollar">Dollar Amount per Month:</p>
-                     <input type="text" name="dollar" placeholder={this.props.amount} />
+                     <input className="form-control email" type="text" name="dollar" placeholder={this.props.amount} />
                      <br></br>
                      <br></br>
                     <button className="pure-button" type="submit" className="btn">Submit</button>
                   </div>
                   <div className='col-sm-1'>
-
-
                   </div>
                   </div>
                 </form>
         </div>
-          <div>
-        <h3>Add Contact Email</h3>
-                  <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
-                    <p>Email Address:</p>
-                    <input type="text" name="email" />
-                    <button className="pure-button" type="submit" className="btn">Submit</button>
-                </form>
+         <div>
+        <h3 className="emailheader">Add Contact Email</h3>
+        <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
+          <p>Email Address:</p>
+          <input className="form-control email"  type="text" name="email" />
+          <button className="pure-button" type="submit" className="btn">Submit</button>
+      </form>
         </div>
         <h4>   Current Emails</h4>
         <ul style={{'list-style': 'none'}}>
@@ -125,9 +123,9 @@ class Email extends Component {
 export default connect(
    (state) => {
     return ({budgetUpdates: state.email.budgetUpdates,
-            prodUpdates: state.email.prodUpdates,
-            thing: state.email.thing,
-            amount: state.email.amount,
-            emails: state.email.emails})},
+      prodUpdates: state.email.prodUpdates,
+      thing: state.email.thing,
+      amount: state.email.amount,
+      emails: state.email.emails})},
   {budgetEmail,prodEmail, prodCont, emailAdder, emailRemover},
 )(Email)

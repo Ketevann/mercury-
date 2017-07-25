@@ -54,23 +54,39 @@ position:fixed;
   margin-top: 160px;
   width: 150px;
 }
-.logo {
 
-  padding-right: 10px;
+/*.logo {
+  margin-left: -30px;
+  margin-top: 12px;
+  padding-right: 60px;
 
-}
+}*/
 /*@media (max-width: 400px) {
     .logo {
 
         margin-left: 10px;
     }
 }*/
+
 /*@media (max-width: 779px) {
     .signup {
 
         margin-top: 0px;
     }
 }*/
+
+@media (max-width: 779px) {
+    .email {
+
+        margin-top: 200px;
+    }
+}
+@media (max-width: 779px) {
+    .form-control.email {
+
+        margin-top: 0px;
+    }
+}
 
 @media (max-width: 779px) {
     .email {
@@ -244,7 +260,6 @@ position:fixed;
   color: whitesmoke
 }
 
-
 .
 .btn-warning {
   margin-top: 160px;
@@ -370,14 +385,22 @@ position:fixed;
   .budgetform {
 
        margin-top:200px;
+  }}
+@media (max-width: 779px) {
+     .header,.budgetform {
+
+       margin-top:263px;
        padding:0px
 
     }
 }
-@media (max-width: 779px) {
+/*@media (max-width: 779px) {
      .text {
 
        margin-top:10px;
+  .budgetform {
+
+       margin-top:200px;
        padding:0px
 
     }
@@ -385,11 +408,21 @@ position:fixed;
 @media (max-width: 779px) {
      .emailheader {
 
+     .text {
+
+       margin-top:40px;
+       padding:0px
+
+    }
+}*/
+/*@media (max-width: 779px) {
+     .emailheader {
+
        margin-top:190px;
        padding:0px
 
     }
-}
+}*/
 
  #social-fb:hover {
      color: #3B5998;
@@ -648,55 +681,7 @@ body {
    border-radius: 5px;
 }
 
-/* Remove margins and padding from the list */
-.goalsList {
-   margin: 0;
-   padding: 0;
-   list-style: none;
 
-}/* Style the list items */
-.goalsList li {
-   cursor: pointer;
-   position: relative;
-
-   font-size: 18px;
-   transition: 0.2s;
-   color: #333;
-   background-color: #ccfff5
-;
-   padding: 15px;
-   margin-bottom: 15px;
-   border-radius: 5px;    /* make the list items unselectable */
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-}/* Set all odd list items to a different color (zebra-stripes) */
-.goalsList li:nth-child(odd) {
-   background: #f9f9f9
-;
-}/* Darker background-color on hover */
-.goalsList li:hover {
-   background: #ddd;
-}/* When clicked on, add a background color and strike out text */
-.goalsList li.checked {
-   background: #888;
-   color: #fff;
-   text-decoration: line-through;
-}/* Add a "checked" mark when clicked on */
-.goalsList li.checked::before {
-   content: '';
-   position: absolute;
-   border-color: #fff;
-   border-style: solid;
-   border-width: 0 2px 2px 0;
-   top: 10px;
-   left: 16px;
-   transform: rotate(45deg);
-   height: 15px;
-   width: 7px;
-}
-=======
 @import url(https://fonts.googleapis.com/css?family=Roboto:700);
 
 #holder{
@@ -771,6 +756,7 @@ body {
           position: relative;
       }
 
+
       pre {
           tab-size: 8;
       }
@@ -815,6 +801,14 @@ body {
   padding: 10px;
 }
 }*/
+}
+
+@media screen and (max-width: 779px){
+.expenses-btns {
+  margin-top:280px;
+  padding: 10px;
+}
+}
 
 
 .form-control.email{
