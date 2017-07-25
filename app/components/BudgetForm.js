@@ -1,5 +1,5 @@
 import React from 'react'
-import {budgetCreate, send, sendGiff} from '../reducers/budget'
+import {budgetCreate} from '../reducers/budget'
 import {connect} from 'react-redux'
 
 
@@ -95,7 +95,4 @@ class BudgetForm extends React.Component  {
 
 
 
-export default connect(
- ({ modal, auth, budget }) => ({ modal: modal, user: auth, budget: budget }),
-  {budgetCreate, send, sendGiff},
-)(BudgetForm)
+export default connect({}, {budgetCreate},)(BudgetForm)
