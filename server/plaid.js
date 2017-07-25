@@ -168,12 +168,4 @@ module.exports = require('express').Router()
   })
 })
 
-.get('/bla', (req, res, next) =>{
-   var categories
-   client.getCategories(function(err, response) {
-            // Handle err
-              categories = response.categories
-res.send({cat:categories})
-            })
 
-})
