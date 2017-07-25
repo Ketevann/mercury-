@@ -20,6 +20,6 @@ const LoginForm = (props) => {
 
 
 export default connect(
-   ({ modal }) => ({ modal: modal }),
+   {modal},
   {login},
 )(LoginForm)
