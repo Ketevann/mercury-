@@ -8,11 +8,7 @@ import { modalShow } from "../reducers/modal"
 import store from '../store'
 import { logout } from 'APP/app/reducers/auth'
 import { fetchTransactions } from '../reducers/plaid'
-
-
-
-
-
+import Chart from './Chart'
 import { BarChart } from 'react-easy-chart';
 
 
@@ -37,13 +33,11 @@ var categories = {
 }
 
 
-
 class Expenses extends Component {
-
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
-    }
+  }
 
   handleSubmit(evt) {
     evt.preventDefault()
@@ -51,34 +45,38 @@ class Expenses extends Component {
       startDate: evt.target.startDate.value,
       endDate: evt.target.endDate.value
     }
+    {/*fetches transactions based on date*/}
     this.props.fetchTransactions(dates.startDate, dates.endDate)
   }
 
-
   render() {
-
-    let budgetArr = []
-    let plaidArr = [], transactions, sum = 0, sum2= 0,  cat = {}, transaction, found = false, combine = {}, val
-
-
-
+    {/*if the user is not logged in return null*/}
     if (!this.props.user) return null
-    transactions = this.props.transactions.transactions
+     {/*declaring variables */}
+    let budgetArr = [], plaidArr = [], expensesSum= 0, found = false,
+      expenseCategory = {
+        food: 0,
+        bills: 0,
+        healthcare: 0,
+        transportation: 0,
+        education: 0,
+        emergencies: 0,
+        entertainment: 0,
+        other:0
+      },
+      transactions = this.props.transactions.transactions, budgetsum = 0, val
+   {/*creates the budget expenses table if the budget exists*/}
     if (transactions !== undefined){
+      plaidArr = chartArray(createObj(transactions, expenseCategory), plaidArr, expensesSum)
       var tot = this.props.barChartTr.reduce((total, val) => {
         return total + val.amount
       }
 , 0)}
-var height=300, width=900
-//  if ($(window).width() < 780){
-//   height =200
-//   width = 400
-// }
     return (
-      <div className="expense">
+    <div className="expense">
       <div className="form-container">
-        <h2>Select transaction dates:</h2>
-        <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
+          <h2>Select transaction dates:</h2>
+          <form className="pure-form" onSubmit={(evt) => this.handleSubmit(evt)}>
             <label for="startDate">Start Date:  </label>
             <input className="pure-input-rounded" name="startDate" type="date" />
             <br />
@@ -86,97 +84,34 @@ var height=300, width=900
             <input className="pure-input-rounded" name="endDate" type="date" />
             <br />
             <button className="pure-button" type="submit" className="btn">Submit</button>
-        </form>
-                </div>
-                      <div className="montlybudget">
-
-                        <h4> Total Spent</h4>
-                        {tot && <h5>${tot.toFixed(2)}</h5>}
-                        <h4> Amount Left </h4>
-                        {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
-                        <div className="text">
-                            <h3>Spending Habits</h3>
-                        </div>
-                        </div>
+           </form>
+        </div>
+        <div className="montlybudget">
+          <h4> Total Spent</h4>
+          {tot && <h5>${tot.toFixed(2)}</h5>}
+          <h4> Amount Left </h4>
+          {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
+          <div className="text">
+            <h3>Spending Habits</h3>
+          </div>
+        </div>
+         {/*if the budget exists, creating a an array of objects with x, y coordinates and making a bar chart by sending the data to Chart component as props */}
         {this.props.budget.budget ?
           Object.keys(this.props.budget.budget).map(key => {
             if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id') {
-              sum += Number(this.props.budget.budget[key])
+              budgetsum += Number(this.props.budget.budget[key])
               budgetArr.push({ x: key, y: Number(this.props.budget.budget[key]) })
             }
-          }) : null}
-
-        <h1>Total Budget Expenses: ${sum} </h1>
-        {$(window).width() < 780 ?
-          height =200
-          : null}
-          {$(window).width() < 780 ?
-          width = 400 :null}
-        {budgetArr.length ?
-          <div id="chart">
-          <BarChart
-            axes
-            grid
-            colorBars
-            height={height}
-            width={width}
-            data={budgetArr}
-          />
-          </div>
+          })
+         && <Chart data={budgetArr} />
            : null}
-        {this.props.plaid.transactions.transactions ?
-          this.props.plaid.transactions.transactions.map(obj => {
-            found = false
-            if (obj.amount > 0) val = obj.amount
-            else val = 0
-            Object.keys(categories).map(keys => {
-              if (obj.category) {
-                if (categories[keys].indexOf(obj.category[0]) !== -1) {
-                  found = true
-                  if (cat.hasOwnProperty(keys) === false) {
-                    cat[keys] = val
-                  }
-                  else cat[keys] += val
-                }
-
-              }
-            })
-            if (!found) {
-              if (cat.hasOwnProperty('other') === false)
-                cat['other'] = val
-              else cat['other'] += val
-            }
-          })
-          : null}
-
-          {this.props.budget.budget ?
-
-            Object.keys(this.props.budget.budget).map(key =>{
-            if (cat.hasOwnProperty(key)=== false)
-              combine[key] = 0
-            else combine[key] = cat[key]
-          })
-         : null }
-         {this.props.plaid.transactions.transactions ?
-        Object.keys(combine).map(key => {
-          if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
-            if(Number(cat[key])>0)
-          sum2 += Number(cat[key])
-          plaidArr.push({ x: key, y: cat[key] })
-        }
-        })
-     : null }
-      <h1>Total Expenses: ${sum2.toFixed(2)} </h1>
+        <h4>Total Budget Expenses: ${budgetsum} </h4>
+        <h4>Total Expenses: ${expensesSum.toFixed(2)} </h4>
+        {/*if the transactions were fetched aking a bar chart by sending the data to Chart component as props */}
         {plaidArr.length > 0 ?
-          <BarChart
-            axes
-            grid
-            colorBars
-            height={300}
-            width={900}
-            data={plaidArr}
-          /> : null}
-         <h3 > Budget Expenses </h3>
+          <Chart data={plaidArr} /> : null}
+         <h3>Budget Expenses</h3>
+         {/*creates the budget expenses table if the budget exists*/}
         {this.props.budget.budget ?
           <table className="table table-bordered">
             <thead className="habits" >
@@ -186,76 +121,115 @@ var height=300, width=900
                 <th>Cost</th>
               </tr>
             </thead>
-            {Object.keys(this.props.budget.budget).map((key, index) => {
-              if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id') {
-                return (
-                  <tbody>
-                    <tr>
-                      <th scope="row">{index + 1}</th>
-                      <td>{key}</td>
-                      <td>{this.props.budget.budget[key]}</td>
-                    </tr>
-                  </tbody>)
-              }
-            })}
+            {
+              Object.keys(this.props.budget.budget).map((key, index) => {
+                if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
+                  return (
+                    <tbody>
+                      <tr>
+                        <th scope="row">{index + 1}</th>
+                        <td>{key}</td>
+                        <td>{this.props.budget.budget[key]}</td>
+                      </tr>
+                    </tbody>)
+                }
+              })
+            }
           </table> : null}
-           <h3 >  Expenses </h3>
-                    {transactions ?
-                        <table className="table table-bordered">
-                    <thead className="habits" >
-                        <tr>
-                            <th>#</th>
-                            <th>Location</th>
-                            <th>Type</th>
-                            <th>Cost</th>
-                        </tr>
-                    </thead>
-                        { transactions.map((item, index) => {
-                            return (
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">{index + 1}</th>
-                                        <td>{item.name}</td>
-                                        {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
-                                        <td>{item.amount}</td>
-                                    </tr>
-                                </tbody>
-                            )
-                        })
-                    }  </table> : null }
-                <div>
-                </div>
+          <h3 >  Expenses </h3>
+          {/*creates the transactions table if the budget exists*/}
+          {transactions ?
+          <table className="table table-bordered">
+            <thead className="habits" >
+              <tr>
+                <th>#</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            {
+              transactions.map((item, index) => {
+                return (
+                <tbody>
+                  <tr>
+                    <th scope="row">{index + 1}</th>
+                    <td>{item.name}</td>
+                    {item.category ? (<td>{item.category[0]}</td>) : (<td>N/A</td>)}
+                    <td>{item.amount}</td>
+                  </tr>
+                </tbody>)
+              })
+            }
+          </table> : null }
+        <div>
       </div>
+    </div>
     )
   }
 }
+{/*iterates over real transactions, compares transaction categories to the "categories" object,
+initialized above, sums up the total money spent on each category and the total money spent,
+puts the data in the array of objects as x and y coordinates and returns the array to be used in as data in the chart*/}
+const createObj = (transaction, expenseCategory) => {
+ let found = false, val
+  transaction.map(obj => {
+    if (obj.amount > 0) val = obj.amount
+    else val = 0
+    Object.keys(categories).map(keys => {
+      if (obj.category) {
+        if (categories[keys].indexOf(obj.category[0]) !== -1) {
+          found = true
+          if (expenseCategory[keys] === 0) {
+            expenseCategory[keys] = val
+          } else expenseCategory[keys] += val
+        }
+      }
+    })
+    if (!found) {
+      {/*if the transaction category did not match any keys in the categories object, it is placed in other*/}
+      expenseCategory['other'] += val
+    }
+  })
+  return expenseCategory
+}
+function chartArray(expenseCategory, plaidArr, expensesSum){
+  Object.keys(expenseCategory).map(key => {
+    console.log("iteration")
+    if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
+    if(Number(expenseCategory[key])>0)
+      expensesSum += Number(expenseCategory[key])
+      plaidArr.push({ x: key, y: expenseCategory[key] })
+    }
+})
+  return plaidArr
+}
 
 const barChart = (items) => {
-    var toLoop = items.transactions
-    var loopLength = items.total_transactions
-    var things = {}
-    var arr = []
+  var toLoop = items.transactions,
+  loopLength = items.total_transactions,
+  things = {},
+  arr = []
     if (toLoop !== undefined) {
-        for (var i = 0; i < loopLength; i++) {
-            var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
-            if (toLoop[i].amount > 0 && name !== 'Transfer') {
-                things[name] = things[name] || 0
-                things[name] += toLoop[i].amount
-            }
+      for (var i = 0; i < loopLength; i++) {
+        var name = (toLoop[i].category) ? toLoop[i].category[0] : 'N/A';
+        if (toLoop[i].amount > 0 && name !== 'Transfer') {
+          things[name] = things[name] || 0
+          things[name] += toLoop[i].amount
         }
+      }
         for (var val in things) {
-            arr.push({ type: val, amount: things[val] })
+          arr.push({ type: val, amount: things[val] })
         }
-        return arr
+      return arr
     }
-    return 'failed'
+  return 'failed'
 }
 
 export default connect(
-  ({ modal, auth, budget, plaid }) => ({ modal: modal, transactions: plaid.transactions,user: auth, budget: budget, plaid, monthlyBudget: 3000, barChartTr: barChart(plaid.transactions),
+  ({ modal, auth, budget, plaid }) => ({ modal: modal, transactions: plaid.transactions,user: auth, budget: budget, plaid, barChartTr: barChart(plaid.transactions),
  }),
   { modalShow, logout, fetchTransactions },
 )(Expenses)
-
 
 
