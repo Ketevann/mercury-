@@ -1,6 +1,5 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
-import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
 import {budgetEmail, prodEmail, prodCont, emailAdder, emailRemover} from '../reducers/email'
 const axios = require('axios');
@@ -92,13 +91,13 @@ class Email extends Component {
                   </div>
                 </form>
         </div>
-          <div>
+         <div>
         <h3 className="emailheader">Add Contact Email</h3>
-                  <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
-                    <p>Email Address:</p>
-                    <input className="form-control email"  type="text" name="email" />
-                    <button className="pure-button" type="submit" className="btn">Submit</button>
-                </form>
+        <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
+          <p>Email Address:</p>
+          <input className="form-control email"  type="text" name="email" />
+          <button className="pure-button" type="submit" className="btn">Submit</button>
+      </form>
         </div>
         <h4>   Current Emails</h4>
         <ul style={{'list-style': 'none'}}>
