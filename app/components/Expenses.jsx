@@ -68,9 +68,9 @@ class Expenses extends Component {
         other:0
       },
       transactions = this.props.transactions.transactions, budgetsum = 0, val
-   {/*creates the budget expenses table if the budget exists*/}
     if (transactions !== undefined){
-      plaidArr = another(iterate(transactions, expenseCategory), plaidArr, expensesSum)
+      expenseCategory = iterate(transactions, expenseCategory)
+      plaidArr = another(expenseCategory, plaidArr, expensesSum)
       var tot = this.props.barChartTr.reduce((total, val) => {
         return total + val.amount
       }
@@ -94,8 +94,7 @@ class Expenses extends Component {
         <div className="montlybudget">
           <h4> Total Spent</h4>
           {tot && <h5>${tot.toFixed(2)}</h5>}
-          <h4> Amount Left </h4>
-          {tot && <h5>${(this.props.monthlyBudget - tot).toFixed(2)}</h5>}
+
           <div className="text">
             <h3>Spending Habits</h3>
           </div>
@@ -110,8 +109,13 @@ class Expenses extends Component {
           })
          && <Chart data={budgetArr} />
            : null}
+
         <h4>Total Budget Expenses: ${budgetsum} </h4>
-        <h4>Total Expenses: ${expensesSum.toFixed(2)} </h4>
+        {Object.keys.p}
+        <h4>Total Expenses: ${expensesSum = Object.keys(expenseCategory).reduce((total, num) =>{
+              console.log(total, expenseCategory[num], "FSFSFS")
+              return total+expenseCategory[num]
+           }, 0).toFixed(2)} </h4>
         {/*if the transactions were fetched aking a bar chart by sending the data to Chart component as props */}
        {console.log(plaidArr, 'pka')}
         {plaidArr.length > 0 ?
