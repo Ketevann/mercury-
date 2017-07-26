@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
       <div>
 
         <form onSubmit={evt => this.handleSubmit(evt)}>
-          <input className="credentials" name="email" placeholder="Emailz" required />
+          <input className="credentials" name="email" placeholder="Email" required />
           <br></br>
           <input className="credentials" name="password" type="password" placeholder="Password" required />
           <br></br>
