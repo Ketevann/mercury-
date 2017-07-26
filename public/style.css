@@ -809,6 +809,17 @@ body {
   }
 }
 
+@media screen and (min-width: 779px){
+  #icons {
+   text-align: center
+  }
+  .img.logo.menuicon{
+    position: absolute;
+    top:-35px;
+    margin-left:90px;
+  }
+}
+
 /*@media screen and (max-width: 779px){
 .expenses-btns {
   margin-top:255px;

@@ -47,9 +47,12 @@ class Expenses extends Component {
     }
     {/*fetches transactions based on date*/}
     this.props.fetchTransactions(dates.startDate, dates.endDate)
+
+
   }
 
   render() {
+    {console.log('prop', this.props)}
     {/*if the user is not logged in return null*/}
     if (!this.props.user) return null
      {/*declaring variables */}
@@ -72,6 +75,7 @@ class Expenses extends Component {
         return total + val.amount
       }
 , 0)}
+
 {console.log(this.props, 'props', plaidArr)}
     return (
     <div className="expense">
