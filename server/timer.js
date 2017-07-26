@@ -23,10 +23,7 @@ const client = new plaid.Client(
 )
 
 var j = schedule.scheduleJob('27 * * * *', function(){
-<<<<<<< HEAD
-=======
 
->>>>>>> 60fc7c416081bc76fa63ef2c97dc801c43dce357
   AccessToken.findAll({include: [
     {model: User, include: [
       {model: Expenses}
@@ -53,10 +50,7 @@ var j = schedule.scheduleJob('27 * * * *', function(){
         else return total
       },0)
       var budgetStr = (budget>=totalSum) ? `${token.user.name} was under budget!` : `${token.user.name} was over budget!`
-<<<<<<< HEAD
-=======
 
->>>>>>> 60fc7c416081bc76fa63ef2c97dc801c43dce357
    }
    else{
       var budgetStr = '';

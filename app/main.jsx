@@ -13,20 +13,14 @@ import Budget from './components/Budget'
 import Front from './components/Front'
 import Footer from './components/Footer'
 import Email from './components/Email'
-<<<<<<< HEAD
-
 
 import {fetchTransactions} from './reducers/plaid.jsx'
 
-=======
-import { fetchTransactions } from './reducers/plaid.jsx'
->>>>>>> 60fc7c416081bc76fa63ef2c97dc801c43dce357
+
 import Expenses from './components/Expenses'
 import { userExpenses } from './reducers/budget'
 import BudgetForm from './components/BudgetForm'
 import LinkAccounts from './components/LinkAccounts'
-
-
 
 const getTransac = () => {
   store.dispatch(fetchTransactions())

@@ -31,7 +31,7 @@ const Budget = () => {
       </div>
 
     )
-  }
+  
 }
 
 

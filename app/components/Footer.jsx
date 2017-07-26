@@ -18,7 +18,7 @@ const Footer = () => {
             <a href="mailto:mercurybudget@gmail.com"><i id="social-em" className="fa fa-envelope-square fa-3x social" /></a></div>
           </div>
         )
-    }
+    
 }
 
 export default Footer
