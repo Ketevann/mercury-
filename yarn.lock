@@ -3879,6 +3879,10 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
+mediaquery@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/mediaquery/-/mediaquery-0.0.3.tgz#387d61c10aa95ff4d6907f6aabdd22d7a898e03e"
+
 memory-fs@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.2.0.tgz#f2bb25368bc121e391c2520de92969caee0a0290"
@@ -5022,6 +5026,12 @@ redux-logger@^2.7.0:
   dependencies:
     deep-diff "0.3.4"
 
+redux-responsive@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/redux-responsive/-/redux-responsive-4.3.2.tgz#b43aa9ec5e8be683237d4be5127792422641a1c7"
+  dependencies:
+    mediaquery "0.0.3"
+
 redux-thunk@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.1.0.tgz#c724bfee75dbe352da2e3ba9bc14302badd89a98"
@@ -5352,6 +5362,10 @@ shimmer@1.1.0:
 signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-react-dropdown@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/simple-react-dropdown/-/simple-react-dropdown-3.3.0.tgz#1ce44264c192c363a36675ca8f0b6756481c413f"
 
 sinon-chai@^2.8.0:
   version "2.8.0"
