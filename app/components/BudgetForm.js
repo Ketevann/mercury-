@@ -96,4 +96,4 @@ class BudgetForm extends React.Component  {
 
 
 
-export default connect({}, {budgetCreate},)(BudgetForm)
+export default connect(null, {budgetCreate})(BudgetForm)

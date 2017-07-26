@@ -25433,7 +25433,7 @@ var BudgetForm = function (_React$Component) {
   return BudgetForm;
 }(_react2.default.Component);
 
-exports.default = (0, _reactRedux.connect)({}, { budgetCreate: _budget.budgetCreate })(BudgetForm);
+exports.default = (0, _reactRedux.connect)(null, { budgetCreate: _budget.budgetCreate })(BudgetForm);
 
 /***/ }),
 /* 162 */
@@ -52330,7 +52330,7 @@ var LoginForm = function (_React$Component) {
           { onSubmit: function onSubmit(evt) {
               return _this2.handleSubmit(evt);
             } },
-          _react2.default.createElement('input', { className: 'credentials', name: 'email', placeholder: 'Emailz', required: true }),
+          _react2.default.createElement('input', { className: 'credentials', name: 'email', placeholder: 'Email', required: true }),
           _react2.default.createElement('br', null),
           _react2.default.createElement('input', { className: 'credentials', name: 'password', type: 'password', placeholder: 'Password', required: true }),
           _react2.default.createElement('br', null),

@@ -209,12 +209,12 @@ position:fixed;
  }
 
 .header {
-  margin-top: 200px;
+  margin-top: 150px;
   padding-bottom: 0px;
   color:white
 }
 h2.tex.header{
-  margin-top: 200px;
+  margin-top: 150px;
 }
 .logout{
   color:#fff;
@@ -265,14 +265,16 @@ h2.tex.header{
 
     }
 }*/
-/*@media (max-width: 779px) {
-=
+@media (max-width: 779px) {
+
     #icons {
    text-align: center
   }
-  .logo{
+  img.logo.menuicon
+
+{
     position: absolute;
-    top:-32px;
+    top:-35px;
     margin-left:90px;
   }
   .expenses-btns {
@@ -283,17 +285,6 @@ h2.tex.header{
 
 
 
-
-.footer {
- position:fixed;
-   left:0px;
-   bottom:0px;
-   height:70px;
-   width:100%;
-   background:#333;
-   padding: 10px;
-
-}
 
 #icons{
    text-align: center
@@ -576,4 +567,17 @@ i.fa.fa-bars.fa-2x{
 
 .menulist.nav.navbar-nav{
   margin-left:40px;
+}
+
+
+
+.footer {
+ position:fixed;
+   left:0px;
+   bottom:0px;
+   height:70px;
+   width:100%;
+   background:#333;
+   padding: 10px;
+
 }
