@@ -16,33 +16,19 @@
   background-color: black
 }
 
-.alignleft {
-  float: left;
-}
-.alignright {
-  float: right;
-  margin-bottom:50px;
-  padding-right:10px;
 
-}
-.clear {
-  clear:both;
-}
 .homepage {
   background-image: url("./pexel1.jpg");
-background-repeat: no-repeat;
-      background-size: cover;
-
-position:fixed;
-    padding:0;
-    margin:0;
-
-    top:0;
-    left:0;
-
-    width: 100vw;
-    height: 100%;
-      text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100%;
+  text-align: center;
 
 }
 .budgetbutton{
@@ -100,13 +86,11 @@ position:fixed;
         margin-top: 0px;
     }
 }
+
 .text{
   text-align: center;
   margin-top: 60px;
   color:white;
-}
-.credentials {
-  margin-top: 20px;
 }
 .table-bordered{
   font-family:  Helvetica, sans-serif;
@@ -123,82 +107,21 @@ position:fixed;
 .transaction{
   text-align: center;
 }
-.spendinghabits{
-width:90% !important;
-height:100% !important;
 
-  margin: auto;
-
-}
-.budget{
- background-image: url("./banks.jpg");
-background-repeat: no-repeat;
-position:fixed;
-    padding:0;
-    margin:0;
-
-    top:0;
-    left:0;
-
- width: 100vw;
-     height: 100%;
-      text-align: center;
-      background-size: cover;
-}
 .transbutton{
   margin-top: 50px;
 }
-.budgetbutton{
-  margin-top: 100px;
-}
-.social:hover {
-     -webkit-transform: scale(1.1);
-     -moz-transform: scale(1.1);
-     -o-transform: scale(1.1);
- }
- .social {
-     -webkit-transform: scale(0.8);
-     /* Browser Variations: */
 
-     -moz-transform: scale(0.8);
-     -o-transform: scale(0.8);
-     -webkit-transition-duration: 0.5s;
-     -moz-transition-duration: 0.5s;
-     -o-transition-duration: 0.5s;
- }
 .hometext {
   color:white
 }
-.header {
-  margin-top: 150px;
-  padding-bottom: 0px;
-  color:white
-}
- .logout{
 
-  background: transparent;
-  text-decoration: none;
-  margin-top:7px;
-  color: red;
-}
 #name, #logbtn {
   color:gray;
 }
 #logbtn:hover{
   color:white;
 }
-/*@media (max-width: 400px) {
-    .logout {
-
-        margin-top: 240px;
-        margin-left: -160px;
-        padding-left: 40px;
-
-    }
-}*/
-
-
-
 
  #social-fb:hover {
      color: #3B5998;
@@ -225,42 +148,6 @@ position:fixed;
         width: 200px;
       }
 
-      .modalDialog {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 99999;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
-
-.modalDialog:target {
-  opacity:1;
-  pointer-events: auto;
-}
-
-.modalDialog > div {
-  width: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: black;
-  color: black;
-
-}
-
-.whoami-user-name{
-  color: whitesmoke
-}
-
-.
 .btn-warning {
   margin-top: 160px;
   width: 150px;
@@ -283,36 +170,11 @@ position:fixed;
         margin-top: 0px;
     }
 }
-.text{
-  text-align: center;
-  margin-top: 60px;
-  color:white;
-}
+
 .credentials {
   margin-top: 20px;
 }
-.table-bordered{
-  font-family:  Helvetica, sans-serif;
-  width: 90%;
-  border-radius: 10px;
-  opacity: 1px
 
-
-}
-.habits{
-  background-color: #333;
-  color: whitesmoke;
-}
-.transaction{
-  text-align: center;
-}
-.spendinghabits{
-width:90%;
-height:100%;
-
-  margin: auto;
-
-}
 .budget{
  background-image: url("./banks.jpg");
 background-repeat: no-repeat;
@@ -328,9 +190,7 @@ position:fixed;
       text-align: center;
       background-size: cover;
 }
-.transbutton{
-  margin-top: 50px;
-}
+
 
 .social:hover {
      -webkit-transform: scale(1.1);
@@ -347,13 +207,14 @@ position:fixed;
      -moz-transition-duration: 0.5s;
      -o-transition-duration: 0.5s;
  }
-.hometext {
-  color:white
-}
+
 .header {
-  margin-top: 150px;
+  margin-top: 200px;
   padding-bottom: 0px;
   color:white
+}
+h2.tex.header{
+  margin-top: 200px;
 }
 .logout{
   color:#fff;
@@ -369,20 +230,9 @@ position:fixed;
 
     }
 }
-.hometext {
-  color:white
-}
 
-/*@media (max-width: 779px) {
-     .header,.budgetform {
-      font-size: 2em;
-       margin-top:255px;
-       padding:0px
-
-    }
-}*/
 @media (max-width: 779px) {
-  .budgetform {
+     .header,.budgetform {
 
        margin-top:200px;
   }}
@@ -416,35 +266,23 @@ position:fixed;
     }
 }*/
 /*@media (max-width: 779px) {
-     .emailheader {
-
-       margin-top:190px;
-       padding:0px
-
-    }
-}*/
-
- #social-fb:hover {
-     color: #3B5998;
- }
- #social-tw:hover {
-     color: #4099FF;
- }
- #social-gp:hover {
-     color: #d34836;
- }
- #social-em:hover {
-     color: #f39c12;
- }
-
-
-.center-block{
-  margin-top: 500px;
- right:78px;
- margin-right: 78px;
+=
+    #icons {
+   text-align: center
+  }
+  .logo{
+    position: absolute;
+    top:-32px;
+    margin-left:90px;
+  }
+  .expenses-btns {
+  margin-top:280px;
+  padding: 10px;
+}
 }
 
-  /*   */
+
+
 
 .footer {
  position:fixed;
@@ -458,15 +296,11 @@ position:fixed;
 }
 
 #icons{
-
-    text-align: center
-
+   text-align: center
 
 }
 
-.email{
-    padding-left:20px;
-}
+
 .expense, {
     padding:40px;
 }
@@ -504,16 +338,7 @@ body {
     position: absolute;
     left:500px;
 }
-.mybudget{
-    position: absolute;
-    left:400px;
-}
 
-.expense, .budgetform{
-    margin-bottom: 80px;
-    padding-left:40px;
-    padding-top: 50px;
-}
 .email{
     padding-top: 50px;
     padding-left:40px;
@@ -531,23 +356,6 @@ body {
 
 .dollar{
     margin-top:10px;
-}
-
-
-.addBtn:hover {
-   background-color: #58EED1;
-}
-
-.addBtn {
-   padding: 10px;
-   text-align: center;
-   font-size: 16px;
-   cursor: pointer;
-   transition: 0.3s;
-   background-color: #0066FF;
-   color: #FFF;
-   border: 2px solid #0055FF;
-   border-radius: 5px;
 }
 
 
@@ -589,16 +397,7 @@ body {
   left : -250px;
   transition : .3s;
 }
-.btnText {
-  color : white;
-  transition : .3s;
-  margin-top: 17px;
-}
-.btnText2 {
-  margin-top : 63px;
-  margin-right : -130px;
-  color : #FFF;
-}
+
 .budget-button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
   left: -130px;
 }
@@ -619,16 +418,10 @@ a.nounderline:link
 }
 
 
-
-
 body {
    min-height: 400px;
   margin-bottom:70px;
    clear: both;
-}
-
-.expense{
-    margin-bottom: 70px;
 }
 
 .addexpense{
@@ -645,24 +438,7 @@ body {
     padding-left:40px;
     padding-top: 50px;
 }
-.email{
-    padding-top: 50px;
-    padding-left:40px;
-    margin-bottom :85px;
-}
 
-.coolemail{
-    position: absolute;
-    left: 200px;
-}
-
-.emaillist{
-    margin-left: -40px;
-}
-
-.dollar{
-    margin-top:10px;
-}
 
 
 .addBtn:hover {
@@ -684,42 +460,6 @@ body {
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:700);
 
-#holder{
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  background: white;
-  padding: 10px;
-  width: 250px;
-  margin: 0 auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(-65%);
-  box-shadow: 0px 3px 8px rgba(0,0,0,0.25);
-  border-radius: 2px;
-}
-.budget-button {
-  background: #3D4C53;
-  margin : 20px auto;
-  width : 200px;
-  height : 50px;
-  overflow: hidden;
-  text-align : center;
-  transition : .2s;
-  cursor : pointer;
-  border-radius: 3px;
-  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
-}
-.btnTwo {
-  position : relative;
-  width : 200px;
-  height : 100px;
-  margin-top: -95px;
-  padding-top: 2px;
-  background : #26A69A;
-  left : -250px;
-  transition : .3s;
-}
 .btnText {
   color : white;
   transition : .3s;
@@ -730,25 +470,6 @@ body {
   margin-right : -130px;
   color : #FFF;
 }
-.budget-button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
-  left: -130px;
-}
-.budget-button:hover .btnText{ /*When hovering over .button change .btnText*/
-  margin-left : 65px;
-}
-.budget-button:active { /*Clicked and held*/
-  box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
-}
-
-.expenses-btns {
-    margin-top : 100px;
-}
-
-a.nounderline:link
-{
- text-decoration:none;
-}
-
 
 
 body {
@@ -811,15 +532,16 @@ body {
 }
 
 
+
 .form-control.email{
   width: 140px;
   margin-bottom:0px;
   display: inline-block;
 }
 
-.emailheader{
+/*.emailheader{
   margin-top:15px;
-}
+}*/
 
 
 .emailheader:before,
