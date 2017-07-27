@@ -8,26 +8,24 @@
     background-color: white;
 
 }
-.whoami-user-name{
-  color: whitesmoke
-}
+
 
 .dialog {
   background-color: black
 }
 
-.alignleft {
-	float: left;
+/*.alignleft {
+  float: left;
 }
 .alignright {
-	float: right;
+  float: right;
   margin-bottom:50px;
   padding-right:10px;
 
 }
 .clear {
   clear:both;
-}
+}*/
 .homepage {
   background-image: url("./pexel1.jpg");
 background-repeat: no-repeat;
@@ -45,39 +43,10 @@ position:fixed;
       text-align: center;
 
 }
-.budgetbutton{
-  margin-top: 100px;
-  padding:50px;
- margin-left: 150px;
-}
-.btn-warning {
-  margin-top: 160px;
-  width: 150px;
-}
-/*.logo {
-  margin-left: -30px;
-  margin-top: 12px;
-  padding-right: 60px;
 
-}*/
-/*@media (max-width: 400px) {
-    .logo {
 
-        margin-left: 10px;
-    }
-}*/
-@media (max-width: 779px) {
-    .signup {
 
-        margin-top: 0px;
-    }
-}
 
-@media (max-width: 779px) {
-    .email {
-
-        margin-top: 200px;
-    }
 }
 @media (max-width: 779px) {
     .form-control.email {
@@ -85,66 +54,8 @@ position:fixed;
         margin-top: 0px;
     }
 }
-.text{
-  text-align: center;
-  margin-top: 60px;
-  color:white;
-}
-.credentials {
-  margin-top: 20px;
-}
-.table-bordered{
-  font-family:  Helvetica, sans-serif;
-  width: 90%;
-  border-radius: 10px;
-  opacity: 1px
 
 
-}
-.habits{
-  background-color: #333;
-  color: whitesmoke;
-}
-.transaction{
-  text-align: center;
-}
-
-.budget{
- background-image: url("./banks.jpg");
-background-repeat: no-repeat;
-position:fixed;
-    padding:0;
-    margin:0;
-
-    top:0;
-    left:0;
-
- width: 100vw;
-     height: 100%;
-      text-align: center;
-      background-size: cover;
-}
-.transbutton{
-  margin-top: 50px;
-}
-.budgetbutton{
-  margin-top: 100px;
-}
-.social:hover {
-     -webkit-transform: scale(1.1);
-     -moz-transform: scale(1.1);
-     -o-transform: scale(1.1);
- }
- .social {
-     -webkit-transform: scale(0.8);
-     /* Browser Variations: */
-
-     -moz-transform: scale(0.8);
-     -o-transform: scale(0.8);
-     -webkit-transition-duration: 0.5s;
-     -moz-transition-duration: 0.5s;
-     -o-transition-duration: 0.5s;
- }
 .hometext {
   color:white
 }
@@ -153,30 +64,13 @@ position:fixed;
   padding-bottom: 0px;
   color:white
 }
- .logout{
 
-  background: transparent;
-  text-decoration: none;
-  margin-top:7px;
-  color: red;
-}
 #name, #logbtn {
   color:gray;
 }
 #logbtn:hover{
   color:white;
 }
-/*@media (max-width: 400px) {
-    .logout {
-
-        margin-top: 240px;
-        margin-left: -160px;
-        padding-left: 40px;
-
-    }
-}*/
-
-
 
 
  #social-fb:hover {
@@ -193,47 +87,12 @@ position:fixed;
  }
 
 
-.center-block{
-  margin-top: 500px;
- right:78px;
- margin-right: 78px;
-}
-
-
  .form-group {
         width: 200px;
       }
 
-      .modalDialog {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 99999;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
 
-.modalDialog:target {
-  opacity:1;
-  pointer-events: auto;
-}
 
-.modalDialog > div {
-  width: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: black;
-  color: black;
-
-}
 
 .whoami-user-name{
   color: whitesmoke
@@ -245,18 +104,7 @@ position:fixed;
   margin-top: 160px;
   width: 150px;
 }
-.logo {
-  margin-left: -30px;
-  margin-top: 12px;
-  padding-right: 60px;
 
-}
-@media (max-width: 400px) {
-    .logo {
-
-        margin-left: 10px;
-    }
-}
 @media (max-width: 600px) {
     .signup {
 
@@ -286,13 +134,7 @@ position:fixed;
 .transaction{
   text-align: center;
 }
-.spendinghabits{
-width:90%;
-height:100%;
 
-  margin: auto;
-
-}
 .budget{
  background-image: url("./banks.jpg");
 background-repeat: no-repeat;
@@ -327,14 +169,7 @@ position:fixed;
      -moz-transition-duration: 0.5s;
      -o-transition-duration: 0.5s;
  }
-.hometext {
-  color:white
-}
-.header {
-  margin-top: 150px;
-  padding-bottom: 0px;
-  color:white
-}
+
 .logout{
   color:#fff;
   background: transparent;
@@ -349,22 +184,12 @@ position:fixed;
 
     }
 }
-.hometext {
-  color:white
-}
 
-@media (max-width: 779px) {
-     .header,.budgetform {
 
-       margin-top:263px;
-       padding:0px
-
-    }
-}
 @media (max-width: 779px) {
   .budgetform {
 
-       margin-top:200px;
+       /*margin-top:200px;*/
        padding:0px
 
     }
@@ -372,7 +197,7 @@ position:fixed;
 @media (max-width: 779px) {
      .text {
 
-       margin-top:40px;
+       margin-top:10px;
        padding:0px
 
     }
@@ -386,18 +211,6 @@ position:fixed;
     }
 }
 
- #social-fb:hover {
-     color: #3B5998;
- }
- #social-tw:hover {
-     color: #4099FF;
- }
- #social-gp:hover {
-     color: #d34836;
- }
- #social-em:hover {
-     color: #f39c12;
- }
 
 
 .center-block{
@@ -412,7 +225,7 @@ position:fixed;
  position:fixed;
    left:0px;
    bottom:0px;
-   height:70px;
+   height:50px;
    width:100%;
    background:#333;
    padding: 10px;
@@ -420,15 +233,14 @@ position:fixed;
 }
 
 #icons{
+  position: relative;
 
-    text-align: center
+    text-align: center;
+    bottom: 20px;
 
 
 }
 
-.email{
-    padding-left:20px;
-}
 .expense, {
     padding:40px;
 }
@@ -458,9 +270,6 @@ body {
    clear: both;
 }
 
-.expense{
-    margin-bottom: 70px;
-}
 
 .addexpense{
     position: absolute;
@@ -583,16 +392,6 @@ a.nounderline:link
 
 
 
-body {
-   min-height: 400px;
-  margin-bottom:70px;
-   clear: both;
-}
-
-.expense{
-    margin-bottom: 70px;
-}
-
 .addexpense{
     position: absolute;
     left:500px;
@@ -607,11 +406,7 @@ body {
     padding-left:40px;
     padding-top: 50px;
 }
-.email{
-    padding-top: 50px;
-    padding-left:40px;
-    margin-bottom :85px;
-}
+
 
 .coolemail{
     position: absolute;
@@ -793,21 +588,51 @@ body {
               width:0;
           }
       }
-@media screen and (max-width: 779px){
+@media screen and (max-width: 760px){
   #icons {
    text-align: center
   }
+  .logo{
+    position: absolute;
+    top:-30px;
+    margin-left:40px;
+  }
 }
 
-@media screen and (max-width: 779px){
+@media screen and (min-width: 779px){
+  #icons {
+   text-align: center
+  }
+
+}
+
+@media screen and (max-width: 770px){
+  .img.logo.menuicon{
+    position: absolute;
+    top:-35px;
+    margin-left:90px;
+  }
+}
+.logo {
+  margin-left: 50px;;
+  padding-right: 10px;
+   margin-top: -13px;
+
+}
+
+
+@media (min-width: 400px) {
+    .logo {
+
+        margin-top: 10px;
+    }
+}
+/*@media screen and (max-width: 779px){
 .expenses-btns {
-  margin-top:280px;
+  margin-top:255px;
   padding: 10px;
 }
-.menulis{
-  margin-left:20px;
-}
-}
+}*/
 
 
 .form-control.email{
@@ -836,4 +661,36 @@ body {
 
 select {
   background-color: white;
+}
+
+/*@media screen and (max-width: 779px){
+.navbar.navbar-inverse.navbar-fixed-top.animate{
+  width: 100px;
+  background-color:beige;
+}
+}*/
+i.fa.fa-bars.fa-2x{
+ color: white;
+ position: relative;
+ top:8px;
+ margin-left: 10px;
+}
+
+.menulist.nav.navbar-nav{
+  margin-left:40px;
+}
+
+#home{
+  margin-left: 35px;
+}
+
+@media (max-width: 779px) {
+    .email {
+
+        /*margin-top: 200px;*/
+    }
+
+#home{
+  margin-left: 0px;
+}
 }

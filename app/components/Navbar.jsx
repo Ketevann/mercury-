@@ -30,6 +30,7 @@ class Navbar extends Component {
 
   clickHandler() {
     this.props.logout()
+
     browserHistory.push('/')
 
   }
@@ -57,8 +58,9 @@ class Navbar extends Component {
         <nav className="navbar navbar-inverse navbar-fixed-top animate">
           <div >
             <div id="menu">
+             <ul className="menulist nav navbar-nav">
               <i style={iconStyle} className="menuicon fa fa-bars fa-2x" onClick={() => this.handleClick()} />
-              <ul className="menulist nav navbar-nav">
+
                 <li><img className="logo menuicon" src={'./logo3.png'} /></li></ul>
             </div>
             {this.props.user ?
