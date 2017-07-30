@@ -33,13 +33,6 @@ export const signup = ( email, password, name) =>
         .catch(() => dispatch(whoami()))
 
 
-
-export const thirdPartyLogin = (provider) =>
-  dispatch =>
-     axios.get(`/api/auth/login/${provider}`)
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
-
 export const logout = () =>
   dispatch =>
     axios.post('/api/auth/logout')

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from "react-router";
 import Login from './Login'
-import View from './Modal'
+import Modal from './Modal'
 import { connect } from 'react-redux'
 import { modalShow } from "../reducers/modal"
 import store from '../store'
 import { logout } from 'APP/app/reducers/auth'
 import { connectPlaid } from '../reducers/plaid'
 import { browserHistory } from 'react-router'
-import { menuShow, menuHide } from "../reducers/dropdown"
+import { menuShow, setMenuToTrue } from "../reducers/dropdown"
 
 
 
@@ -19,25 +19,20 @@ import { menuShow, menuHide } from "../reducers/dropdown"
 class Navbar extends Component {
   constructor(props) {
     super(props)
-    this.handleClicker = this.handleClick.bind(this)
-    this.clickHandler = this.clickHandler.bind(this)
+    this.clickHandlerLogout = this.clickHandlerLogout.bind(this)
+    this.handleClick=this.handleClick.bind(this)
 
   }
-  handleClicker() {
-    store.dispatch(this.props.modalShow())
-  }
+
   handleClick = () => this.props.menuShow()
-
-  clickHandler() {
+  clickHandlerLogout() {
+    //logs out and redirects to home
     this.props.logout()
-
     browserHistory.push('/')
-
   }
 
   render() {
     var disp, displayStyle
-
     if (this.props.menu.showMenu === true)
       disp = 'inline-block'
     else disp = 'none'
@@ -70,12 +65,12 @@ class Navbar extends Component {
                 <li><Link className="menuicon" id="link" to="/emailSettings">Email Settings</Link></li>
                  <li><Link className="menuicon" id="link" to="/budget">Budget</Link></li>
                 <li className="menuicon"><Link className="menuicon" to="" id="name" >{this.props.user && this.props.user.name}</Link></li>
-                <li><Link className="menuicon" type="button" id="logbtn" onClick={() => this.clickHandler()}>Logout</Link></li>
-              </ul>
+                <li><Link className="menuicon" type="button" id="logbtn" onClick={() => this.clickHandlerLogout()}>Logout</Link></li>
+              </ul>{/*modalShow is set to true in the dispatcher and it displays a signup/login form*/}
               : <ul className="menulist nav navbar-nav" style={divStyle}><li><Link className="menuicon" href="#" onClick={() => store.dispatch(this.props.modalShow())}> Login / Sign Up </Link></li></ul>}
           </div>
         </nav>
-        {this.props.modal.showModal ? <View /> : null}
+        {this.props.modal.showModal ? <Modal /> : null}
       </div>
     )
   }
@@ -85,5 +80,5 @@ class Navbar extends Component {
 
 export default connect(
   ({ modal, auth, menu, browser }) => ({ modal: modal, user: auth, menu: menu, browser: browser }),
-  { modalShow, logout, connectPlaid, menuShow, menuHide },
+  { modalShow, logout, connectPlaid, menuShow, setMenuToTrue },
 )(Navbar)

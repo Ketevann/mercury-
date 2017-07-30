@@ -111,6 +111,7 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 // POST requests for local login:
 // maybe add a fail redirect to a signup page?
 auth.post('/login/local', (req, res, next) => {
+  console.log(req.body, 'reee')
   const { email, password } = req.body;
   User.findOne({
     where: { email },
@@ -118,25 +119,29 @@ auth.post('/login/local', (req, res, next) => {
   })
     .then(user => {
       if (!user) {
+        console.log("no users")
         debug('authenticate user(email: "%s") did fail: no such user', email)
-        throw new Error('one')
+        res.sendStatus(401)
       }
       return user.authenticate(password).then(ok => {
         if (!ok) {
+          console.log("not ok ")
           debug('authenticate user(email: "%s") did fail: bad password')
-          throw new Error('two')
+          res.sendStatus(401)
         }
         debug('authenticate user(email: "%s") did ok: user.id=%d', email, user.id)
         req.logIn(user, function (err) {
+          console.log("req.Login", req.user.email, "&&&")
           if (err) { throw next('three') }
-          return res.redirect('/')
+          return res.status(302).redirect('/')
+
         })
       })
     })
     .catch(next)
 })
 auth.post('/login/local', () => {
-
+  console.log("authenticationg!!!")
   return passport.authenticate('local', { successRedirect: '/' })
 })
 

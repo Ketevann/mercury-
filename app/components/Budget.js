@@ -4,11 +4,7 @@ import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
 
 
-class Budget extends Component {
-  constructor(props) {
-    super()
-  }
-  render() {
+const Budget = () =>  {
     return (
       <div className="budget">
         <div className="expenses-btns">
@@ -34,10 +30,7 @@ class Budget extends Component {
 
     )
   }
-}
 
 
-export default connect(
-  ({ modal, auth, budget, plaid }) => ({ modal: modal, user: auth, budget, plaid }),
-  null,
-)(Budget)
+
+export default Budget

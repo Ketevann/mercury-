@@ -6,13 +6,11 @@ const inistialState = {
 }
 
 const SHOWMENU = 'SHOWDROP'
-const HIDEMENU = "HIDEDROP"
-
-
+const MENUTRUE = "MENUTRUE"
 
 
 export const menuShow = (modal) => ({type: SHOWMENU, modal})
-export const menuHide = () => ({type: HIDEMENU})
+export const setMenuToTrue = () => ({type: MENUTRUE})
 
 
 
@@ -24,7 +22,7 @@ const menuReducer = (menu=inistialState, action) => {
   else bool = true
     return Object.assign({}, menu, {showMenu: bool})
 
-  case HIDEMENU:
+  case MENUTRUE:
 
     return Object.assign({}, menu, {showMenu: true})
 

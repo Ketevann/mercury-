@@ -4,7 +4,7 @@ const db = require('APP/db'), {User} = db
 const app = require('./start')
 
 const alice = {
-  username: 'alice@secrets.org',
+  email: 'alice@secrets.org',
   password: '12345'
 }
 
@@ -15,13 +15,13 @@ describe('/api/auth', () => {
 
   beforeEach('create a user', () =>
     User.create({
-      email: alice.username,
+      email: alice.email,
       password: alice.password
     })
   )
 
-  describe('POST /login/local (username, password)', () => {
-    it('succeeds with a valid username and password', () =>
+  describe('POST /login/local (email, password)', () => {
+    it('succeeds with a valid email and password', () =>
       request(app)
         .post('/api/auth/login/local')
         .send(alice)
@@ -30,10 +30,10 @@ describe('/api/auth', () => {
         .expect('Location', '/')
       )
 
-    it('fails with an invalid username and password', () =>
+    it('fails with an invalid email and password', () =>
       request(app)
         .post('/api/auth/login/local')
-        .send({username: alice.username, password: 'wrong'})
+        .send({email: alice.email, password: 'wrong'})
         .expect(401)
       )
   })
@@ -59,7 +59,7 @@ describe('/api/auth', () => {
           .set('Accept', 'application/json')
           .expect(200)
           .then(res => expect(res.body).to.contain({
-            email: alice.username
+            email: alice.email
           }))
       )
     })

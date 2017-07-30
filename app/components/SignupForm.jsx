@@ -10,15 +10,15 @@ class SignupForm extends React.Component {
   constructor() {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
-
-
   }
+
   handleClick = () => store.dispatch(modalShow())
   handleClose = () => store.dispatch(modalHide())
+ {/*submits the form and sends email and password to sign up function*/}
   handleSubmit(evt) {
-  evt.preventDefault()
-  this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
-  this.handleClose()
+    evt.preventDefault()
+    this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
+    this.handleClose()
 
   }
   render() {
@@ -39,7 +39,7 @@ class SignupForm extends React.Component {
 }
 export default connect(
   ({ modal }) => ({ modal: modal }),
-  { modalShow, modalHide, login, signup, Login, Signup, forgot, newPassowrd },
+  { modalShow, modalHide, signup},
 )(SignupForm)
 
 

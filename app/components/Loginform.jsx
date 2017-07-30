@@ -3,9 +3,10 @@ import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 import { modalShow, modalHide, Login, Signup, forgot, newPassowrd } from '../reducers/modal'
 import { connect } from 'react-redux'
 import { login, signup } from 'APP/app/reducers/auth'
-
-
 import store from '../store'
+
+
+
 
 
 class LoginForm extends React.Component {
@@ -14,19 +15,16 @@ class LoginForm extends React.Component {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handleClick = () => store.dispatch(modalShow())
-  handleClose = () => store.dispatch(modalHide())
+  handleClick = () => this.props.store.dispatch(modalShow())
+  handleClose = () => this.props.store.dispatch(modalHide())
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.login(evt.target.email.value, evt.target.password.value)
     this.handleClose()
-
-
   }
   render() {
     return (
       <div>
-
         <form onSubmit={evt => this.handleSubmit(evt)}>
           <input className="credentials" name="email" placeholder="Email" required />
           <br></br>
@@ -42,7 +40,7 @@ class LoginForm extends React.Component {
 
 export default connect(
   ({ modal }) => ({ modal: modal }),
-  { modalShow, modalHide, login, signup, Login, Signup, forgot, newPassowrd },
+  { modalShow, modalHide, signup, store},
 )(LoginForm)
 
 

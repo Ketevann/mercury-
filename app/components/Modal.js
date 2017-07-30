@@ -26,7 +26,6 @@ class Modal extends React.Component {
     this.handleClose()
   }
   render() {
-    {console.log(this.props, ' modal')}
     return (
       <div className="modal" onClick={this.handleClick}>{
         this.props.modal.showModal ?
@@ -41,7 +40,7 @@ class Modal extends React.Component {
                   <span className="alignright" >Not a member? </span>
                   <br></br>
                   <h2 clssName="clear">Member Login</h2>
-                  <LoginForm />
+                  <LoginForm login={login} />
                   <PasswordForm />
                 </div> :
                 <div>
