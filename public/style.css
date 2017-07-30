@@ -697,3 +697,14 @@ i.fa.fa-bars.fa-2x{
 button.btn.btn-warning.signup{
   width: 150px;
 }
+
+.calendar{
+  margin-left: 50px;
+}
+.transactable{
+  margin-left: 0px;
+}
+
+.expense, .calendar {
+  width: 90%
+}

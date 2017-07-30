@@ -66,7 +66,7 @@ class Navbar extends Component {
                  <li><Link className="menuicon" id="link" to="/budget">Budget</Link></li>
                 <li className="menuicon"><Link className="menuicon" to="" id="name" >{this.props.user && this.props.user.name}</Link></li>
                 <li><Link className="menuicon" type="button" id="logbtn" onClick={() => this.clickHandlerLogout()}>Logout</Link></li>
-              </ul>{/*modalShow is set to true in the dispatcher and it displays a signup/login form*/}
+              </ul>
               : <ul className="menulist nav navbar-nav" style={divStyle}><li><Link className="menuicon" href="#" onClick={() => store.dispatch(this.props.modalShow())}> Login / Sign Up </Link></li></ul>}
           </div>
         </nav>

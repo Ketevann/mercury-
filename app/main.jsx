@@ -9,9 +9,6 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
-import FrontPage from './components/FrontPage'
-import Spending from './components/SpendingHabits'
 import Budget from './components/Budget'
 import Front from './components/Front'
 import Footer from './components/Footer'
@@ -28,7 +25,6 @@ import BudgetForm from './components/BudgetForm'
 
 
 
-import About from './components/About'
 
 
 
@@ -75,7 +71,6 @@ render(
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/home" />
         <Route path="/link" component={LinkAccounts} />
-        <Route path='/spending' component={Spending} onEnter={getTransac}/>
          <Route path='/budget' component={Budget} />
          <Route path="/addexpenses" component={BudgetForm} />
         <Route path="/myexpenses" component={Expenses} onEnter={getExpenses} />

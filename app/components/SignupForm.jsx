@@ -14,7 +14,6 @@ class SignupForm extends React.Component {
 
   handleClick = () => store.dispatch(modalShow())
   handleClose = () => store.dispatch(modalHide())
- {/*submits the form and sends email and password to sign up function*/}
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
