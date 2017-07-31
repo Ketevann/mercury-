@@ -46,23 +46,21 @@ class Expenses extends Component {
       startDate: evt.target.startDate.value,
       endDate: evt.target.endDate.value
     }
-
     this.props.fetchTransactions(dates.startDate, dates.endDate)
-
   }
-
+//converts the object in to the array of object with x and y coordinates for a chart
   ArrayforChart(expenseCategory, plaidArr, expensesSum){
     var plaid = []
     Object.keys(expenseCategory).map(key => {
       if (key !== 'created_at' && key !== 'updated_at' && key !== 'user_id' && key !== 'id'){
-        if(Number(expenseCategory[key])>0)
-          expensesSum += Number(expenseCategory[key])
+       if (Number(expenseCategory[key])>0)
+         expensesSum += Number(expenseCategory[key])
         plaid.push({ x: key, y: expenseCategory[key] })
       }
     })
- return  plaid
+    return plaid
 }
-
+ //sums the total money spent on each category of the transactions object from the PLAID API
   objectForChart(transaction, expenseCategory) {
     let found = false, val
     transaction.map(obj => {
@@ -85,8 +83,15 @@ class Expenses extends Component {
     })
     return expenseCategory
 }
-
-
+//sums up the total budget and transactions
+  reducer(obj) {
+    return Object.keys(obj).reduce((total, num) => {
+      if (isNaN(obj[num]) ===false) {
+        total+= Number(obj[num])
+      }
+      return total
+    }, 0)
+  }
   render() {
     const {budget, modal, modalShow, plaid} = this.props
      let transactions = this.props.transactions.transactions, budgetsum = 0, val
@@ -95,9 +100,8 @@ class Expenses extends Component {
     if (!this.props.user) return null
 
      {/*declaring variables */}
-
     let budgetArr = [], plaidArr = [], transacArr = [], expensesSum= 0, found = false,
-
+      sum =0,
       expenseCategory = {
         food: 0,
         bills: 0,
@@ -109,16 +113,15 @@ class Expenses extends Component {
         other:0
       }
 
-    if (transactions !== undefined){
-
-let transactionObject = this.objectForChart(transactions, expenseCategory)
-transacArr = this.ArrayforChart(transactionObject, [], 0)
-
-}
-if (budget.budget)
-  plaidArr = this.ArrayforChart(budget.budget, [], 0)
+ if (transactions !== undefined){
+   //if there is a transaction object, sums up the money spent on each category and convets the object into an array of objects
+   const transactionObject = this.objectForChart(transactions, expenseCategory)
+   transacArr = this.ArrayforChart(transactionObject, [], 0)
+ }
+    if (budget.budget) // turns the budget object into an array of objects
+      plaidArr = this.ArrayforChart(budget.budget, [], 0)
     return (
-      <div>
+    <div>
       <div className="form-container calendar">
         <h2>Select transaction dates:</h2>
         <form className="pure-form" onSubmit={(evt) => this.submitTransactionDate(evt)}>
@@ -131,14 +134,23 @@ if (budget.budget)
           <button className="pure-button" type="submit" className="btn">Submit</button>
           </form>
       </div>
-      <DisplayBudget budget={budget.budget} plaidArr={plaidArr} transacArr={transacArr} transactions={transactions} expenseCategory={expenseCategory}/>
-      </div>
- )
+      {budget.budget !== null ?
+        <div>
+          <h4 id="totalexpense">Total Budget: ${sum=this.reducer(budget.budget).toFixed(2)} </h4>
+          <Chart data={plaidArr} />
+        </div>
+        : null}
+        {transacArr.length > 0 ?
+          <div>
+            <h4 id="totalexpense">Total Expenses: ${expensesSum = this.reducer(expenseCategory).toFixed(2)} </h4>
+            <Chart data={transacArr} />
+          </div>
+        :null}
+      <DisplayBudget transactions={transactions} budget={budget.budget}/>
+    </div>
+    )
+  }
 }
-}
-
-
-
 
 
 export default connect(

@@ -20919,7 +20919,6 @@ var budgetReducer = function budgetReducer() {
 
   switch (action.type) {
     case CREATEBUDGET:
-      console.log('action budet', action.budget);
       return Object.assign({}, budget, { budget: action.budget });
   }
   return budget;
@@ -38075,9 +38074,10 @@ var Expenses = function (_Component) {
         startDate: evt.target.startDate.value,
         endDate: evt.target.endDate.value
       };
-
       this.props.fetchTransactions(dates.startDate, dates.endDate);
     }
+    //converts the object in to the array of object with x and y coordinates for a chart
+
   }, {
     key: 'ArrayforChart',
     value: function ArrayforChart(expenseCategory, plaidArr, expensesSum) {
@@ -38090,6 +38090,8 @@ var Expenses = function (_Component) {
       });
       return plaid;
     }
+    //sums the total money spent on each category of the transactions object from the PLAID API
+
   }, {
     key: 'objectForChart',
     value: function objectForChart(transaction, expenseCategory) {
@@ -38114,6 +38116,18 @@ var Expenses = function (_Component) {
       });
       return expenseCategory;
     }
+    //sums up the total budget and transactions
+
+  }, {
+    key: 'reducer',
+    value: function reducer(obj) {
+      return Object.keys(obj).reduce(function (total, num) {
+        if (isNaN(obj[num]) === false) {
+          total += Number(obj[num]);
+        }
+        return total;
+      }, 0);
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -38133,12 +38147,12 @@ var Expenses = function (_Component) {
       if (!this.props.user) return null;
 
       {/*declaring variables */}
-
       var budgetArr = [],
           plaidArr = [],
           transacArr = [],
           expensesSum = 0,
           found = false,
+          sum = 0,
           expenseCategory = {
         food: 0,
         bills: 0,
@@ -38151,11 +38165,12 @@ var Expenses = function (_Component) {
       };
 
       if (transactions !== undefined) {
-
+        //if there is a transaction object, sums up the money spent on each category and convets the object into an array of objects
         var transactionObject = this.objectForChart(transactions, expenseCategory);
         transacArr = this.ArrayforChart(transactionObject, [], 0);
       }
-      if (budget.budget) plaidArr = this.ArrayforChart(budget.budget, [], 0);
+      if (budget.budget) // turns the budget object into an array of objects
+        plaidArr = this.ArrayforChart(budget.budget, [], 0);
       return _react2.default.createElement(
         'div',
         null,
@@ -38193,7 +38208,31 @@ var Expenses = function (_Component) {
             )
           )
         ),
-        _react2.default.createElement(_DisplayBudget2.default, { budget: budget.budget, plaidArr: plaidArr, transacArr: transacArr, transactions: transactions, expenseCategory: expenseCategory })
+        budget.budget !== null ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h4',
+            { id: 'totalexpense' },
+            'Total Budget: $',
+            sum = this.reducer(budget.budget).toFixed(2),
+            ' '
+          ),
+          _react2.default.createElement(_Chart2.default, { data: plaidArr })
+        ) : null,
+        transacArr.length > 0 ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h4',
+            { id: 'totalexpense' },
+            'Total Expenses: $',
+            expensesSum = this.reducer(expenseCategory).toFixed(2),
+            ' '
+          ),
+          _react2.default.createElement(_Chart2.default, { data: transacArr })
+        ) : null,
+        _react2.default.createElement(_DisplayBudget2.default, { transactions: transactions, budget: budget.budget })
       );
     }
   }]);
@@ -51962,38 +52001,9 @@ var _TransactionsTable2 = _interopRequireDefault(_TransactionsTable);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DisplayBudget = function DisplayBudget(props) {
-  console.log(props, 'tjissss');
-  var arr = [],
-      sum = 0,
-      expensesSum;
   return _react2.default.createElement(
     'div',
     { className: 'expense' },
-    _react2.default.createElement(
-      'div',
-      { className: 'montlybudget' },
-      _react2.default.createElement(
-        'div',
-        { className: 'text' },
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Spending Habits'
-        )
-      )
-    ),
-    props.budget !== null ? _react2.default.createElement(_Chart2.default, { data: props.plaidArr }) : null,
-    props.transacArr.length > 0 ? _react2.default.createElement(
-      'h4',
-      null,
-      'Total Expenses: $',
-      expensesSum = Object.keys(props.expenseCategory).reduce(function (total, num) {
-        console.log(total, props.expenseCategory[num]);
-        return total + props.expenseCategory[num];
-      }, 0).toFixed(2),
-      ' '
-    ) : null,
-    props.transacArr.length > 0 ? _react2.default.createElement(_Chart2.default, { data: props.transacArr }) : null,
     _react2.default.createElement(
       'h3',
       null,
@@ -52053,7 +52063,81 @@ var DisplayBudget = function DisplayBudget(props) {
         }
       })
     ) : null,
-    props.transactions ? _react2.default.createElement(_TransactionsTable2.default, { transactions: props.transactions }) : null
+    props.transactions ? _react2.default.createElement(
+      'div',
+      { className: 'transactable' },
+      _react2.default.createElement(
+        'h3',
+        null,
+        '  Expenses '
+      ),
+      _react2.default.createElement(
+        'table',
+        { className: 'table table-bordered transactable' },
+        _react2.default.createElement(
+          'thead',
+          { className: 'habits' },
+          _react2.default.createElement(
+            'tr',
+            null,
+            _react2.default.createElement(
+              'th',
+              null,
+              '#'
+            ),
+            _react2.default.createElement(
+              'th',
+              null,
+              'Location'
+            ),
+            _react2.default.createElement(
+              'th',
+              null,
+              'Type'
+            ),
+            _react2.default.createElement(
+              'th',
+              null,
+              'Cost'
+            )
+          )
+        ),
+        props.transactions && props.transactions.map(function (item, index) {
+          return _react2.default.createElement(
+            'tbody',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                { scope: 'row' },
+                index + 1
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                item.name
+              ),
+              item.category ? _react2.default.createElement(
+                'td',
+                null,
+                item.category[0]
+              ) : _react2.default.createElement(
+                'td',
+                null,
+                'N/A'
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                item.amount
+              )
+            )
+          );
+        })
+      )
+    ) : null
   );
 };
 
