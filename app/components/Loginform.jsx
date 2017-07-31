@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
-import { modalShow, modalHide, Login, Signup, forgot, newPassowrd } from '../reducers/modal'
 import { connect } from 'react-redux'
-import { login, signup } from 'APP/app/reducers/auth'
+import { login } from 'APP/app/reducers/auth'
 import store from '../store'
 
 
@@ -15,8 +14,7 @@ class LoginForm extends React.Component {
     super()
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  handleClick = () => this.props.store.dispatch(modalShow())
-  handleClose = () => this.props.store.dispatch(modalHide())
+
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.login(evt.target.email.value, evt.target.password.value)
@@ -39,8 +37,8 @@ class LoginForm extends React.Component {
 
 
 export default connect(
-  ({ modal }) => ({ modal: modal }),
-  { modalShow, modalHide, signup, store},
+  null,
+  {login},
 )(LoginForm)
 
 

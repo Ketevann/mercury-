@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router";
-import Login from './Login'
-import WhoAmI from './WhoAmI'
-import View from './Modal'
 import { connect } from 'react-redux'
-import { modalShow } from "../reducers/modal"
 import store from '../store'
 import { logout } from 'APP/app/reducers/auth'
 import { fetchTransactions } from '../reducers/plaid'
@@ -93,6 +89,7 @@ class Expenses extends Component {
     }, 0)
   }
   render() {
+    {console.log(this.props, 'props')}
     const {budget, modal, modalShow, plaid} = this.props
      let transactions = this.props.transactions.transactions, budgetsum = 0, val
 
@@ -154,9 +151,9 @@ class Expenses extends Component {
 
 
 export default connect(
-  ({ modal, auth, budget, plaid }) => ({ modal: modal, transactions: plaid.transactions, user: auth, budget, plaid,
+  ({auth, budget, plaid }) => ({transactions: plaid.transactions, user: auth, budget, plaid,
  }),
-  { modalShow, logout, fetchTransactions },
+  {fetchTransactions },
 )(Expenses)
 
 

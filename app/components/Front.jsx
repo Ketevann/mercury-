@@ -2,14 +2,14 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import { Link } from "react-router";
 import store from '../store'
-import {modalShow, modalHide, Login, Signup, forgot, newPassowrd} from '../reducers/modal'
+import {modalShow, modalHide} from '../reducers/modal'
 import Modal from './Modal'
 
 
 
 const Front = (props) => {
   {console.log(props, 'prps')}
-    return (
+  return (
     <div className="homepage">
       <h2 className="tex header "> SPEND YOUR MONEY WISELY</h2>
       <h4 className="text ">Mercury helps you keep track of your budget and spending</h4>

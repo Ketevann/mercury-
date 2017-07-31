@@ -25,8 +25,6 @@ const menuReducer = (menu=inistialState, action) => {
   case MENUTRUE:
 
     return Object.assign({}, menu, {showMenu: true})
-
-
   }
   return menu
 }

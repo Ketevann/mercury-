@@ -1,18 +1,13 @@
 import axios from 'axios'
 import {whoami} from './auth'
+
 const inistialState = {
   showModal: false,
-  signUp: false,
-  login: true,
-  forgotPassword: false
 }
 
 const SHOWMODAL = 'SHOWMODAL'
 const HIDEMODAL = "HIDEMODAL"
 
-const LOGIN = 'LOGIN'
-const SIGNUP = 'SIGNUP'
-const FORGOT = 'FORGOT'
 
 /*            Action Creators               */
 export const modalShow = (modal) =>  ({type: SHOWMODAL, modal})
@@ -38,8 +33,10 @@ export const showModal = () =>
   dispatch =>
     dispatch(modalShow())
 
+
 export const hideModal = () =>
   dispatch =>
     dispatch(modalHide())
+
 
 export default modalReducer

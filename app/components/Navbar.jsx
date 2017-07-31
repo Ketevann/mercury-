@@ -33,20 +33,26 @@ class Navbar extends Component {
 
   render() {
     var disp, displayStyle
+   //toggle; if menu is true the menu dropsdown by setting the navbar to  inline-block
     if (this.props.menu.showMenu === true)
       disp = 'inline-block'
     else disp = 'none'
+
     const divStyle = {
       display: disp
     };
+    //toggle; if the screen is medium/large navarbar is always inline-block
+     if (store.getState().browser.is.small !== true && store.getState().browser.is.extraSmall !== true) divStyle.display = 'inline-block'
 
+      const iconStyle = {
+      display: displayStyle
+    };
+    //if the screensize is small or extra small the menu icon is visible, otherwise it is hidden
     if (store.getState().browser.is.small === true || store.getState().browser.is.extraSmall === true) displayStyle = 'inline'
     else displayStyle = 'none'
 
-    const iconStyle = {
-      display: displayStyle
-    };
-    if (store.getState().browser.is.small !== true && store.getState().browser.is.extraSmall !== true) divStyle.display = 'block'
+
+
 
     return (
       <div className="container">
@@ -55,7 +61,6 @@ class Navbar extends Component {
             <div id="menu">
              <ul className="menulist nav navbar-nav">
               <i style={iconStyle} className="menuicon fa fa-bars fa-2x" onClick={() => this.handleClick()} />
-
                 <li><img className="logo menuicon" src={'./logo3.png'} /></li></ul>
             </div>
             {this.props.user ?

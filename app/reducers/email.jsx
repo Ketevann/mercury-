@@ -36,7 +36,7 @@ const emailReducer = (email=initialState, action) => {
     return Object.assign({}, email, {emails: action.emails})
   default:
     return Object.assign({}, email)
-}
+ }
 }
 
 
@@ -87,9 +87,6 @@ export const emailSettings = () =>
       })
       .catch(console.error())
   }
-
-
-
 
 export default emailReducer
 

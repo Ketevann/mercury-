@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import React, { Component } from 'react'
+import React from 'react'
 import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
 

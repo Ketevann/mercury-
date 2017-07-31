@@ -1,9 +1,7 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
-import BudgetForm from './BudgetForm'
 import { Link } from "react-router";
 import {budgetEmail, prodEmail, prodCont, emailAdder, emailRemover} from '../reducers/email'
-const axios = require('axios');
 
 class Email extends Component {
   constructor(props){
@@ -50,7 +48,6 @@ class Email extends Component {
   }
 
   render(){
-
     return (
       <div className="email">
         <h3 >Add Your Friends and Let Them Know about Your Success!</h3>
@@ -71,48 +68,45 @@ class Email extends Component {
           </select>
         </div>
         <div className='col-sm-4'>
-
+          </div>
         </div>
-        </div>
-        <div>
+      <div>
         <h3>Specified Purchase Details</h3>
-                  <form onSubmit={(evt)=>{
-                    this.onSubmit(evt)
-                }}>
-                  <div className='row'>
-                  <div className='col-sm-3'>
-                    <p>Purchase Location:</p>
-                    <input  type="text" name="thing" placeholder={this.props.thing} />
-                    <br></br>
-                    <p className="dollar">Dollar Amount per Month:</p>
-                     <input type="text" name="dollar" placeholder={this.props.amount} />
-                     <br></br>
-                     <br></br>
-                    <button className="pure-button" type="submit" className="btn">Submit</button>
-                  </div>
-                  <div className='col-sm-1'>
-
-
-                  </div>
-                  </div>
-                </form>
+          <form onSubmit={(evt)=>{
+            this.onSubmit(evt)
+        }}>
+          <div className='row'>
+          <div className='col-sm-3'>
+            <p>Purchase Location:</p>
+            <input  type="text" name="thing" placeholder={this.props.thing} />
+            <br></br>
+            <p className="dollar">Dollar Amount per Month:</p>
+              <input type="text" name="dollar" placeholder={this.props.amount} />
+              <br></br>
+              <br></br>
+            <button className="pure-button" type="submit" className="btn">Submit</button>
+          </div>
+          <div className='col-sm-1'>
+          </div>
+          </div>
+        </form>
         </div>
           <div>
         <h3>Add Contact Email</h3>
-                  <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
-                    <p>Email Address:</p>
-                    <input type="text" name="email" />
-                    <button className="pure-button" type="submit" className="btn">Submit</button>
-                </form>
+          <form onSubmit={(evt)=>this.onEmailSubmit(evt)}>
+            <p>Email Address:</p>
+            <input type="text" name="email" />
+            <button className="pure-button" type="submit" className="btn">Submit</button>
+           </form>
         </div>
         <h4>   Current Emails</h4>
         <ul style={{'list-style': 'none'}}>
         {
           this.props.emails && this.props.emails[0]!=='' && this.props.emails.map((email)=>{
             return(
-              <div>
+            <div>
               <li className="emaillist"><button className=" glyphicon glyphicon-remove" value={email} onClick={(evt)=>{this.onButtonClick(evt)}}></button> {email}</li>
-              </div>)
+            </div>)
           })
         }
         </ul>
@@ -129,5 +123,5 @@ export default connect(
             thing: state.email.thing,
             amount: state.email.amount,
             emails: state.email.emails})},
-  {budgetEmail,prodEmail, prodCont, emailAdder, emailRemover},
+  {budgetEmail, prodEmail, prodCont, emailAdder, emailRemover},
 )(Email)

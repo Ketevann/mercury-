@@ -41,17 +41,6 @@ var email = ""
     })
   )
 
-  /**
-   * First we clear the database before beginning each run
-   */
-
-
-         // supertest agents persist cookies
-
-
-
-
-
      it('responds with a 404 a user is not logged in', function () {
       return agent
       .get('/api/budget')

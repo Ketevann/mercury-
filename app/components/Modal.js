@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 import {showModal, hideModal} from '../reducers/modal'
-import {boolLogin, boolSignUp, boolPassword} from '../reducers/login'
+import {boolLogin, boolSignUp} from '../reducers/login'
 
 import { connect } from 'react-redux'
 import { login, signup } from 'APP/app/reducers/auth'
 import LoginForm from './LoginForm'
-import PasswordForm from './PasswordForm'
 import SignupForm from './SignupForm'
 import store from '../store'
 
@@ -41,7 +40,7 @@ class Modal extends React.Component {
                   <br></br>
                   <h2 clssName="clear">Member Login</h2>
                   <LoginForm login={login} />
-                  <PasswordForm />
+
                 </div> :
                 <div>
                   <h5> <a href="#" onClick={() => this.props.boolLogin()} className="alignright">Login</a></h5>
