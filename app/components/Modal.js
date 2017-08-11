@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
-import {showModal, hideModal} from '../reducers/modal'
-import {boolLogin, boolSignUp} from '../reducers/login'
+import {modalShow, modalHide} from '../reducers/modal'
+import {Login, Signup} from '../reducers/login'
 
 import { connect } from 'react-redux'
 import { login, signup } from 'APP/app/reducers/auth'
@@ -12,12 +12,12 @@ import store from '../store'
 
 class Modal extends React.Component {
 
+  handleClick = () => store.dispatch.modalShow()
+  handleClose = () => store.dispatch.modalHide()
 
-  handleClick = () => this.props.showModal()
-  handleClose = () => this.props.hideModal()
-
-
+  
   render() {
+    const { login } = this.props.status
     return (
       <div className="modal" onClick={this.handleClick}>{
         this.props.modal.showModal ?
@@ -26,9 +26,9 @@ class Modal extends React.Component {
               <div className="clear"></div>
               <br></br>
               <br></br>
-              {this.props.status.login === true ?
+              {login ?
                 <div>
-                  <h5> <a onClick={() => this.props.boolSignUp()} className="alignright">Sign up</a></h5>
+                  <h5> <a onClick={() => store.dispatch.SignUp()} className="alignright">Sign up</a></h5>
                   <span className="alignright" >Not a member? </span>
                   <br></br>
                   <h2 clssName="clear">Member Login</h2>
@@ -36,7 +36,7 @@ class Modal extends React.Component {
 
                 </div> :
                 <div>
-                  <h5> <a href="#" onClick={() => this.props.boolLogin()} className="alignright">Login</a></h5>
+                  <h5> <a href="#" onClick={() => store.dispatch.Login()} className="alignright">Login</a></h5>
                   <span className="alignright" >Already a member? </span>
                   <br></br>
                   <br></br>
@@ -55,5 +55,5 @@ class Modal extends React.Component {
 
 export default connect(
   ({ modal, status }) => ({ modal: modal, status: status }),
-  {showModal, hideModal, boolLogin, boolSignUp},
+  {modalShow, modalHide, Signup, Login},
 )(Modal)
