@@ -12,9 +12,7 @@ import store from '../store'
 
 class Modal extends React.Component {
 
-  constructor() {
-    super()
-  }
+
   handleClick = () => this.props.showModal()
   handleClose = () => this.props.hideModal()
 
