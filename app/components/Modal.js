@@ -14,16 +14,11 @@ class Modal extends React.Component {
 
   constructor() {
     super()
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleClick = () => this.props.showModal()
   handleClose = () => this.props.hideModal()
 
-  handleSubmit(evt) {
-    evt.preventDefault()
-    this.props.newPassowrd({ email: evt.target.email.value, password: evt.target.password.value })
-    this.handleClose()
-  }
+
   render() {
     return (
       <div className="modal" onClick={this.handleClick}>{
