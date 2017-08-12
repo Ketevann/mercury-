@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
-import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 import { connect } from 'react-redux'
 import {signup } from 'APP/app/reducers/auth'
-import store from '../store'
 
 class SignupForm extends React.Component {
 
@@ -12,8 +10,7 @@ class SignupForm extends React.Component {
     this.state= {signedUp: null}
   }
 
-  handleClick = () => store.dispatch(modalShow())
-  handleClose = () => store.dispatch(modalHide())
+ 
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.signup(evt.target.email.value, evt.target.password.value, evt.target.name.value)
