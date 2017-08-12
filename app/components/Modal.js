@@ -12,12 +12,11 @@ import store from '../store'
 
 class Modal extends React.Component {
 
-  handleClick = () => store.dispatch.modalShow()
-  handleClose = () => store.dispatch.modalHide()
-
-  
+ handleClick = () => store.dispatch(modalShow())
+  handleClose = () => store.dispatch(modalHide())
   render() {
     const { login } = this.props.status
+    {console.log(this.props, 'props')}
     return (
       <div className="modal" onClick={this.handleClick}>{
         this.props.modal.showModal ?
@@ -26,9 +25,9 @@ class Modal extends React.Component {
               <div className="clear"></div>
               <br></br>
               <br></br>
-              {login ?
+              {this.props.status.login ?
                 <div>
-                  <h5> <a onClick={() => store.dispatch.SignUp()} className="alignright">Sign up</a></h5>
+                  <h5> <a onClick={() => store.dispatch(this.props.Signup())} className="alignright">Sign up</a></h5>
                   <span className="alignright" >Not a member? </span>
                   <br></br>
                   <h2 clssName="clear">Member Login</h2>
@@ -36,7 +35,7 @@ class Modal extends React.Component {
 
                 </div> :
                 <div>
-                  <h5> <a href="#" onClick={() => store.dispatch.Login()} className="alignright">Login</a></h5>
+                  <h5> <a href="#" onClick={() => store.dispatch(this.props.Login())} className="alignright">Login</a></h5>
                   <span className="alignright" >Already a member? </span>
                   <br></br>
                   <br></br>
