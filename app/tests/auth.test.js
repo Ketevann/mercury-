@@ -1,72 +1,88 @@
-import chai, { expect } from 'chai'
-chai.use(require('chai-enzyme')())
-chai.use(require('sinon-chai'))
-import budgetReducer, { CREATEBUDGET, create, budgetCreate } from '../reducers/budget'
-import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter';
-import * as actions from '../reducers/auth'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+const request = require('supertest')
+const {expect} = require('chai')
+const db = require('APP/db'), {User} = db
+const app = require('./start')
 
-const mockAxios = new MockAdapter(axios);
-//const mockStore = configureMockStore(middlewares);
+const alice = {
+  email: 'alice@secrets.org',
+  password: '12345'
+}
 
-const middlewares = [thunk]
-const mockStore = configureMockStore(middlewares)
+/* global describe it before afterEach beforeEach */
+describe('/api/auth', () => {
+  before('Await database sync', () => db.didSync)
+  afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 
+  beforeEach('create a user', () =>
+    User.create({
+      email: alice.email,
+      password: alice.password
+    })
+  )
 
-// describe('async actions', () => {
-//  var MockAdapter = require('axios-mock-adapter');
-//   // This sets the mock adapter on the default instance
-//   var mockAxios = new MockAdapter(axios);
+  describe('POST /login/local (email, password)', () => {
+    it('succeeds with a valid email and password', () =>
+      request(app)
+        .post('/api/auth/login/local')
+        .send(alice)
+        .expect(302)
+        .expect('Set-Cookie', /session=.*/)
+        .expect('Location', '/')
+      )
 
-//   afterEach(() => {
-//     mockAxios.reset()
-//   })
-
-// })
-
-
-
-
-
-
-
-
-
-
-
-describe('async actions', () => {
-  var MockAdapter = require('axios-mock-adapter');
-  // This sets the mock adapter on the default instance
-  var mockAxios = new MockAdapter(axios);
-
-  // beforeEach(() => {
-
-  // })
-  afterEach(() => {
-    mockAxios.reset()
+    it('fails with an invalid email and password', () =>
+      request(app)
+        .post('/api/auth/login/local')
+        .send({email: alice.email, password: 'wrong'})
+        .expect(401)
+      )
   })
-  it('creates AUTHENTICATED when fetching users has been done', () => {
-    mockAxios.onAny('/api/auth/login/local')
-      .reply(200, { body: { todos: ['do something'] } })
-    const store = mockStore({ todos: [] })
-    return store.dispatch(actions.login()).then(() => {
-      mockAxios.reset()
-      mockAxios.onGet('api/auth/whoami')
-        .reply(200, { user: ['currentUser'] })
-      const expectedActions = [
-        { type: actions.AUTHENTICATED, user: { user: ['currentUser'] } }
-      ]
-      const store = mockStore({ user: [] })
-      return store.dispatch(actions.whoami()).then(() => {
-        expect(store.getActions()).to.deep.equal(expectedActions)
-      })
+
+  describe('GET /whoami', () => {
+    describe('when not logged in', () =>
+      it('responds with an empty object', () =>
+        request(app).get('/api/auth/whoami')
+          .expect(200)
+          .then(res => expect(res.body).to.eql({}))
+      ))
+
+    describe('when logged in', () => {
+      // supertest agents persist cookies
+      const agent = request.agent(app)
+
+      beforeEach('log in', () => agent
+        .post('/api/auth/login/local')
+        .send(alice))
+
+      it('responds with the currently logged in user', () =>
+        agent.get('/api/auth/whoami')
+          .set('Accept', 'application/json')
+          .expect(200)
+          .then(res => expect(res.body).to.contain({
+            email: alice.email
+          }))
+      )
     })
   })
+
+  describe('POST /logout', () =>
+    describe('when logged in', () => {
+      const agent = request.agent(app)
+
+      beforeEach('log in', () => agent
+        .post('/api/auth/login/local')
+        .send(alice))
+
+      it('logs you out and redirects to whoami', () => agent
+        .post('/api/auth/logout')
+        .expect(302)
+        .expect('Location', '/api/auth/whoami')
+        .then(() =>
+          agent.get('/api/auth/whoami')
+            .expect(200)
+            .then(rsp => expect(rsp.body).eql({}))
+        )
+      )
+    })
+  )
 })
-
-
-
-
-
